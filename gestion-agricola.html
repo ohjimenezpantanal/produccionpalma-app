@@ -828,9 +828,8 @@ function calcNotaTotal(){
   const ptsCal=totalCal>0?Math.round((counters.cal_100+counters.cal_70)/totalCal*10):0;
   const ana=document.getElementById('f-ana').value; const ptsANA=ana==='Óptima'?10:(ana==='Deficiente'||ana==='En exceso')?5:0;
   const apertura=document.getElementById('f-apertura').value; const ptsAp=apertura==='Sí'?5:0;
-  const rendHa=document.getElementById('f-rend-ha').value; const ptsRH=rendHa.includes('Excelente')?10:rendHa.includes('Muy bueno')?7:rendHa.includes('Bueno')?4:0;
   const ptsTec=calTecnica+calCobertura+calMarcado+calEquipos;
-  const total100=Math.min(100,Math.max(0,ptsInf+ptsCal+ptsANA+ptsAp+ptsRH+ptsTec));
+  const total100=Math.min(100,Math.max(0,ptsInf+ptsCal+ptsANA+ptsAp+ptsTec));
   const pctLabel=total>0?Math.round(counters.inf_base/total*100)+'% correctas':'sin datos';
   const el=document.getElementById('nota-auto'); el.style.display='block';
   el.className='nota-auto'+(total100>=80?'':total100>=60?' warn':' bad');
