@@ -845,8 +845,7 @@ function calcNotaFinal(){
   const ptsCal=totalCal>0?Math.round((counters.cal_100+counters.cal_70)/totalCal*10):0;
   const ana=document.getElementById('f-ana').value; const ptsANA=ana==='Óptima'?10:(ana==='Deficiente'||ana==='En exceso')?5:0;
   const apertura=document.getElementById('f-apertura').value; const ptsAp=apertura==='Sí'?5:0;
-  const rendHa=document.getElementById('f-rend-ha').value; const ptsRH=rendHa.includes('Excelente')?10:rendHa.includes('Muy bueno')?7:rendHa.includes('Bueno')?4:0;
-  return Math.min(100,Math.max(0,ptsInf+ptsCal+ptsANA+ptsAp+ptsRH+calTecnica+calCobertura+calMarcado+calEquipos));
+  return Math.min(100,Math.max(0,ptsInf+ptsCal+ptsANA+ptsAp+calTecnica+calCobertura+calMarcado+calEquipos));
 }
 
 function toggleChip(el,tipo,otroId){
@@ -879,8 +878,8 @@ function agregarPolinizador(){
   ['cv-inf_base','cv-inf_parcial','cv-inf_sin'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=0;});
   calTecnica=0; calCobertura=0; calMarcado=0; calEquipos=0;
   document.querySelectorAll('.cal-btn').forEach(b=>b.className='cal-btn');
-  document.querySelectorAll('[data-ana],[data-ap],[data-rha]').forEach(b=>{b.className='escala-btn';if(b.dataset.rha){b.style.flex='1';b.style.minWidth='90px';}});
-  document.getElementById('f-ana').value=''; document.getElementById('f-apertura').value=''; document.getElementById('f-rend-ha').value='';
+  document.querySelectorAll('[data-ana],[data-ap]').forEach(b=>{b.className='escala-btn';});
+  document.getElementById('f-ana').value=''; document.getElementById('f-apertura').value='';
   document.getElementById('polin-resumen').style.display='none'; document.getElementById('nota-auto').style.display='none';
   document.getElementById('msg-error').style.display='none';
   window.scrollTo({top:document.getElementById('paso-2').offsetTop-80,behavior:'smooth'});
