@@ -871,7 +871,7 @@ function agregarPolinizador(){
   const nota=calcNotaFinal();
   const total=counters.inf_base+counters.inf_parcial+counters.inf_sin;
   const pctC=total>0?Math.round(counters.inf_base/total*100):0;
-  polinizadores.push({lote:document.getElementById('p-lote').value,nombre,inf_base:counters.inf_base,inf_parcial:counters.inf_parcial,inf_sin:counters.inf_sin,ana:document.getElementById('f-ana').value,apertura:document.getElementById('f-apertura').value,rendHa:document.getElementById('f-rend-ha').value,cal_tecnica:calTecnica,cal_cobertura:calCobertura,cal_marcado:calMarcado,cal_equipos:calEquipos,nota,pctC});
+  polinizadores.push({lote:document.getElementById('p-lote').value,nombre,inf_base:counters.inf_base,inf_parcial:counters.inf_parcial,inf_sin:counters.inf_sin,ana:document.getElementById('f-ana').value,apertura:document.getElementById('f-apertura').value,cal_tecnica:calTecnica,cal_cobertura:calCobertura,cal_marcado:calMarcado,cal_equipos:calEquipos,nota,pctC});
   renderPolinLista();
   document.getElementById('p-polinizador').value=''; document.getElementById('p-lote').value='';
   counters.inf_base=0; counters.inf_parcial=0; counters.inf_sin=0;
@@ -928,7 +928,7 @@ async function enviar(){
   const nombreActivo=document.getElementById('p-polinizador').value;
   if(nombreActivo){
     const notaA=calcNotaFinal(),totalA=counters.inf_base+counters.inf_parcial+counters.inf_sin;
-    polinizadores.push({lote:document.getElementById('p-lote').value,nombre:nombreActivo,inf_base:counters.inf_base,inf_parcial:counters.inf_parcial,inf_sin:counters.inf_sin,ana:document.getElementById('f-ana').value,apertura:document.getElementById('f-apertura').value,rendHa:document.getElementById('f-rend-ha').value,cal_tecnica:calTecnica,cal_cobertura:calCobertura,cal_marcado:calMarcado,cal_equipos:calEquipos,nota:notaA,pctC:totalA>0?Math.round(counters.inf_base/totalA*100):0});
+    polinizadores.push({lote:document.getElementById('p-lote').value,nombre:nombreActivo,inf_base:counters.inf_base,inf_parcial:counters.inf_parcial,inf_sin:counters.inf_sin,ana:document.getElementById('f-ana').value,apertura:document.getElementById('f-apertura').value,cal_tecnica:calTecnica,cal_cobertura:calCobertura,cal_marcado:calMarcado,cal_equipos:calEquipos,nota:notaA,pctC:totalA>0?Math.round(counters.inf_base/totalA*100):0});
   }
   if(!polinizadores.length){showError('Agrega al menos un polinizador');btn.disabled=false;btn.innerHTML='Guardar en Sheets';return;}
   const defOtro=document.getElementById('otro-def').value,plagaOtro=document.getElementById('otro-plaga').value;
