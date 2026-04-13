@@ -983,8 +983,8 @@ function nuevoPolinizador(){
   ['cv-inf_base','cv-inf_parcial','cv-inf_sin'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=0;});
   document.getElementById('p-polinizador').value=''; document.getElementById('p-lote').value='';
   document.querySelectorAll('.cal-btn').forEach(b=>b.className='cal-btn');
-  document.querySelectorAll('[data-ana],[data-ap],[data-rha]').forEach(b=>{b.className='escala-btn';if(b.dataset.rha){b.style.flex='1';b.style.minWidth='90px';}});
-  document.getElementById('f-ana').value=''; document.getElementById('f-apertura').value=''; document.getElementById('f-rend-ha').value='';
+  document.querySelectorAll('[data-ana],[data-ap]').forEach(b=>{b.className='escala-btn';});
+  document.getElementById('f-ana').value=''; document.getElementById('f-apertura').value='';
   document.getElementById('polin-resumen').style.display='none'; document.getElementById('nota-auto').style.display='none';
   for(let i=0;i<6;i++){const p=document.getElementById('paso-'+i);if(p)p.style.display=i===2?'block':'none';}
   const sh=document.querySelector('#paso-2 .sec-sub-form');
