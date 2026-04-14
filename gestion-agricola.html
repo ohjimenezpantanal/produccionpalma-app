@@ -946,7 +946,7 @@ async function enviar(){
     document.getElementById('paso-5').style.display='block';
     document.getElementById('progress-label').textContent='✓ Registro completado';
     document.querySelectorAll('.step-dot').forEach(d=>d.className='step-dot done');
-    document.getElementById('confirm-sub').textContent=`${base.finca} · ${base.fecha} · ${polinizadores.length} polinizador${polinizadores.length>1?'es':''}${guardadoOffline?' · guardado localmente':''}`;
+    document.getElementById('confirm-sub').textContent=`${base.finca} · ${base.fecha} · ${polinizadores.length} polinizador${polinizadores.length>1?'es':''};
     document.getElementById('confirm-details').innerHTML=polinizadores.map(p=>`<div class="confirm-row"><span class="confirm-row-lbl">${p.nombre}${p.lote?' · '+p.lote:''}</span><span class="confirm-row-val" style="color:${p.nota>=80?'var(--accent)':p.nota>=60?'var(--amber)':'var(--red)'}">${p.nota}/100 ${p.nota>=80?'🟢':p.nota>=60?'🟡':'🔴'}</span></div>`).join('');
     window.scrollTo({top:0,behavior:'smooth'});
   }catch(e){showError('// error: '+e.message);btn.disabled=false;btn.innerHTML='Guardar en Sheets';}
