@@ -999,6 +999,8 @@ async function enviar(){
       }
     }
     actualizarIndicador();
+    const guardadoOffline=!estaOnline||await contarCola()>0;
+    document.getElementById('confirm-title')?document.querySelector('.confirm-title').textContent=guardadoOffline?'Guardado sin conexión':'Registro guardado':null;
     document.getElementById('paso-4').style.display='none';
     document.getElementById('paso-5').style.display='block';
     document.getElementById('progress-label').textContent='✓ Registro completado';
