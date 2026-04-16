@@ -977,7 +977,7 @@ function generarResumen(){
 
 async function enviar(){
   const btn=document.getElementById('btn-enviar');
-  btn.disabled=true; btn.innerHTML='<span class="spinner"></span>Guardando...';
+  btn.disabled=true; btn.innerHTML='<span class="spinner"></span>'+(estaOnline?'Guardando...':'Guardando sin conexión...');
   const nombreActivo=document.getElementById('p-polinizador').value;
   if(nombreActivo){
     const notaA=calcNotaFinal(),totalA=counters.inf_base+counters.inf_parcial+counters.inf_sin;
