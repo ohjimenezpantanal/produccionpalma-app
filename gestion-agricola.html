@@ -805,7 +805,7 @@ function nextPaso(actual){
     if(!document.getElementById('f-finca').value){showError('Selecciona una finca');return;}
     if(!document.getElementById('f-by').value){showError('Selecciona quién registra');return;}
   }
-    if(actual===3){     if(!selPlagas.length){showError('Indica la presencia de plagas (incluyendo "Sin presencia")');return;}     if(!document.getElementById('f-maleza').value){showError('Selecciona el % de cobertura de maleza');return;}     if(!document.getElementById('f-poda').value){showError('Selecciona el estado de poda');return;}     const hayPlaga=selPlagas.length&&!selPlagas.includes('Sin presencia');     if(hayPlaga&&!document.getElementById('f-plagas-pct').value){showError('Indica el % de palmas afectadas por plagas');return;}     generarResumen();   }
+    if(actual===3){     if(!selPlagas.length){showError('Indica la presencia de plagas (incluyendo "Sin presencia")');return;}     if(!malezaCorona&&!malezaChapia){showError('Selecciona el % de cobertura de maleza (Corona y/o Chapia)');return;}     if(!document.getElementById('f-poda').value){showError('Selecciona el estado de poda');return;}     const hayPlaga=selPlagas.length&&!selPlagas.includes('Sin presencia');     if(hayPlaga&&!document.getElementById('f-plagas-pct').value){showError('Indica el % de palmas afectadas por plagas');return;}     generarResumen();   }
   document.getElementById('paso-'+actual).style.display='none';
   document.getElementById('paso-'+(actual+1)).style.display='block';
   updateProgress(actual+1);
