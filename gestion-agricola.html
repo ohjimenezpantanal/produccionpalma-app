@@ -408,12 +408,26 @@ input[type=date]::-webkit-calendar-picker-indicator{filter:invert(.5)}
       </div>
       <div class="slabel">Gestión agronómica</div>
       <div class="field"><label>% Cobertura de maleza</label>
-        <div style="display:flex;gap:8px;margin-bottom:8px">
-  <button class="escala-btn" style="flex:1" onclick="selTipoMaleza(this,'Corona')" data-tipo-maleza="Corona">Corona</button>
-  <button class="escala-btn" style="flex:1" onclick="selTipoMaleza(this,'Chapia')" data-tipo-maleza="Chapia">Chapia</button>
+       <input type="hidden" id="f-maleza-tipo">
+<input type="hidden" id="f-maleza">
+<div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px;margin-top:4px">
+  <div style="font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Corona</div>
+  <div style="display:flex;gap:6px" id="maleza-corona-btns">
+    <button class="escala-btn" style="flex:1;font-size:11px" onclick="selMalezaPct(this,'corona','0')" data-mc="0">0%</button>
+    <button class="escala-btn" style="flex:1;font-size:11px" onclick="selMalezaPct(this,'corona','25')" data-mc="25">25%</button>
+    <button class="escala-btn" style="flex:1;font-size:11px" onclick="selMalezaPct(this,'corona','50')" data-mc="50">50%</button>
+    <button class="escala-btn" style="flex:1;font-size:11px" onclick="selMalezaPct(this,'corona','75')" data-mc="75">75%</button>
+    <button class="escala-btn" style="flex:1;font-size:11px" onclick="selMalezaPct(this,'corona','90')" data-mc="90">90%</button>
+  </div>
+  <div style="font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;margin-top:12px">Chapia</div>
+  <div style="display:flex;gap:6px" id="maleza-chapia-btns">
+    <button class="escala-btn" style="flex:1;font-size:11px" onclick="selMalezaPct(this,'chapia','0')" data-mch="0">0%</button>
+    <button class="escala-btn" style="flex:1;font-size:11px" onclick="selMalezaPct(this,'chapia','25')" data-mch="25">25%</button>
+    <button class="escala-btn" style="flex:1;font-size:11px" onclick="selMalezaPct(this,'chapia','50')" data-mch="50">50%</button>
+    <button class="escala-btn" style="flex:1;font-size:11px" onclick="selMalezaPct(this,'chapia','75')" data-mch="75">75%</button>
+    <button class="escala-btn" style="flex:1;font-size:11px" onclick="selMalezaPct(this,'chapia','90')" data-mch="90">90%</button>
+  </div>
 </div>
-<input type="hidden" id="f-maleza-tipo">
-<select id="f-maleza"><option value="">— seleccionar —</option><option value="10">10% — Limpio</option><option value="25">25% — Poca maleza</option><option value="50">50% — Cobertura media</option><option value="75">75% — Alta cobertura</option><option value="90">90% — Muy alta / urgente</option></select>
       </div>
       <div class="field"><label>Estado de poda — hojas por podar</label>
         <div class="escala-row">
