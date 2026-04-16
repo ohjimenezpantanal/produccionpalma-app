@@ -455,6 +455,22 @@ let counters={verdes:0,pintones:0,sobremaduros:0,frutos_sueltos:0,fruta_sin_cort
 let pesos=[],selDeficiencias=[],selPlagas=[];
 let calTecnica=0,calCobertura=0,calMarcado=0,calEquipos=0;
 
+// ════════════════════════════════════════
+//  MODO OFFLINE — Cola con IndexedDB
+// ════════════════════════════════════════
+const DB_NAME='pantanal_campo',DB_VER=1,STORE='cola';
+let db=null,estaOnline=navigator.onLine;
+function abrirDB(){return new Promise((res,rej)=>{const req=indexedDB.open(DB_NAME,DB_VER);req.onupgradeneeded=e=>{e.target.result.createObjectStore(STORE,{keyPath:'id',autoIncrement:true});};req.onsuccess=e=>{db=e.target.result;res(db);};req.onerror=()=>rej(req.error);});}
+async function guardarEnCola(payload){await abrirDB();return new Promise((res,rej)=>{const tx=db.transaction(STORE,'readwrite');tx.objectStore(STORE).add({payload,ts:Date.now()});tx.oncomplete=()=>res();tx.onerror=()=>rej(tx.error);});}
+async function contarCola(){await abrirDB();return new Promise(res=>{const tx=db.transaction(STORE,'readonly');const req=tx.objectStore(STORE).count();req.onsuccess=()=>res(req.result);req.onerror=()=>res(0);});}
+async function obtenerCola(){await abrirDB();return new Promise(res=>{const tx=db.transaction(STORE,'readonly');const req=tx.objectStore(STORE).getAll();req.onsuccess=()=>res(req.result||[]);req.onerror=()=>res([]);});}
+async function eliminarDeCola(id){await abrirDB();return new Promise(res=>{const tx=db.transaction(STORE,'readwrite');tx.objectStore(STORE).delete(id);tx.oncomplete=()=>res();});}
+async function actualizarIndicador(){const n=await contarCola();const ind=document.getElementById('offline-indicator');const dot=document.getElementById('offline-dot');const lbl=document.getElementById('offline-label');ind.style.display='inline-flex';if(!estaOnline){ind.className='offline-badge offline';dot.className='offline-dot pulse';lbl.textContent=n>0?n+' pendiente'+(n>1?'s':''):'sin señal';}else if(n>0){ind.className='offline-badge syncing';dot.className='offline-dot pulse';lbl.textContent=n+' por sync';}else{ind.className='offline-badge online';dot.className='offline-dot';lbl.textContent='online';setTimeout(()=>{if(estaOnline)ind.style.display='none';},3000);}}
+async function sincronizarCola(){if(!estaOnline)return;const items=await obtenerCola();if(!items.length){actualizarIndicador();return;}document.getElementById('offline-label').textContent='sincronizando...';let ok=0;for(const item of items){try{const res=await fetch(SCRIPT_URL,{method:'POST',body:JSON.stringify(item.payload)});const json=await res.json();if(json.ok){await eliminarDeCola(item.id);ok++;}}catch(e){}}actualizarIndicador();if(ok>0)console.log('Sync: '+ok+' registros enviados');}
+window.addEventListener('online',()=>{estaOnline=true;actualizarIndicador();sincronizarCola();});
+window.addEventListener('offline',()=>{estaOnline=false;actualizarIndicador();});
+abrirDB().then(()=>actualizarIndicador());
+
 // INIT
 const hoyStr=new Date().toLocaleDateString('es-EC',{weekday:'short',day:'numeric',month:'short'}).toUpperCase();
 document.getElementById('topbar-date').textContent=hoyStr;
