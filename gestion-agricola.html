@@ -18,8 +18,6 @@
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{min-height:100%;background:var(--bg);color:var(--text);font-family:var(--display)}
-
-/* TOPBAR */
 .topbar{display:flex;align-items:center;justify-content:space-between;padding:16px 20px 12px;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:20}
 .topbar-brand{display:flex;align-items:center;gap:10px}
 .topbar-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:blink 2.5s ease-in-out infinite}
@@ -27,13 +25,9 @@ html,body{min-height:100%;background:var(--bg);color:var(--text);font-family:var
 .topbar-name{font-size:13px;font-weight:700}
 .topbar-sub{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.06em}
 .topbar-date{font-family:var(--mono);font-size:11px;color:var(--muted2)}
-
-/* MAIN TABS */
 .main-tabs{display:flex;border-bottom:1px solid var(--border);background:var(--bg)}
-.main-tab{flex:1;padding:13px 8px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;transition:color .15s,border-color .15s}
+.main-tab{flex:1;padding:11px 4px;font-family:var(--mono);font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;transition:color .15s,border-color .15s}
 .main-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
-
-/* DASHBOARD */
 .btn-refresh{background:none;border:1px solid var(--border);border-radius:8px;color:var(--muted2);padding:5px 10px;font-family:var(--mono);font-size:10px;cursor:pointer}
 .semana-filter{display:flex;gap:6px;padding:12px 16px;overflow-x:auto;border-bottom:1px solid var(--border)}
 .semana-filter::-webkit-scrollbar{display:none}
@@ -54,7 +48,6 @@ html,body{min-height:100%;background:var(--bg);color:var(--text);font-family:var
 .bar-wrap{height:2px;background:rgba(255,255,255,.06);border-radius:1px;overflow:hidden;margin-top:5px}
 .bar-fill{height:100%;border-radius:1px}
 .finca-val{font-family:var(--mono);font-size:14px;font-weight:500;flex-shrink:0;margin-left:12px;text-align:right}
-.finca-val-sub{font-family:var(--mono);font-size:9px;color:var(--muted);margin-top:2px;text-align:right}
 .rank-item{display:flex;align-items:center;gap:10px;padding:11px 12px;background:var(--surface);border:1px solid var(--border);border-radius:10px;margin-bottom:6px}
 .rank-num{font-family:var(--mono);font-size:11px;color:var(--muted);width:18px;flex-shrink:0;text-align:center}
 .rank-info{flex:1;min-width:0}
@@ -79,8 +72,6 @@ html,body{min-height:100%;background:var(--bg);color:var(--text);font-family:var
 .badge{font-family:var(--mono);font-size:10px;padding:3px 8px;border-radius:6px;background:var(--surface2);border:1px solid var(--border)}
 .empty{text-align:center;padding:24px 0;font-family:var(--mono);font-size:11px;color:var(--muted)}
 .section{margin-bottom:24px}
-
-/* FORMULARIO */
 .progress-wrap{padding:12px 20px;background:var(--bg);border-bottom:1px solid var(--border)}
 .progress-steps{display:flex;gap:4px}
 .step-dot{flex:1;height:3px;border-radius:2px;background:var(--border2);transition:background .3s}
@@ -103,7 +94,6 @@ html,body{min-height:100%;background:var(--bg);color:var(--text);font-family:var
 .field select option{background:#1c1c1c}
 .field textarea{resize:none;height:80px}
 input[type=date]::-webkit-calendar-picker-indicator{filter:invert(.5)}
-.field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .pesos-wrap{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px}
 .pesos-list{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px;min-height:32px}
 .peso-tag{background:var(--surface2);border:1px solid var(--border2);border-radius:20px;padding:5px 12px;font-family:var(--mono);font-size:13px;display:flex;align-items:center;gap:6px}
@@ -139,8 +129,6 @@ input[type=date]::-webkit-calendar-picker-indicator{filter:invert(.5)}
 .nota-auto.warn{border-left-color:var(--amber)}
 .nota-auto.bad{border-left-color:var(--red)}
 .nota-lbl{font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
-.nota-val{font-family:var(--mono);font-size:28px;font-weight:500}
-.nota-val small{font-size:12px;color:var(--muted2);margin-left:4px}
 .nota-badge{display:inline-flex;align-items:baseline;gap:4px}
 .nota-badge-num{font-family:var(--mono);font-size:36px;font-weight:500}
 .nota-badge-den{font-family:var(--mono);font-size:16px;color:var(--muted)}
@@ -170,14 +158,68 @@ input[type=date]::-webkit-calendar-picker-indicator{filter:invert(.5)}
 .confirm-row:last-child{border-bottom:none}
 .confirm-row-lbl{color:var(--muted)}
 .confirm-row-val{color:var(--accent);text-align:right;max-width:65%}
-/* MODO OFFLINE */ .offline-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 8px;border-radius:20px;font-family:var(--mono);font-size:10px;font-weight:500;transition:all .3s} .offline-badge.online{background:rgba(184,240,74,.1);border:1px solid rgba(184,240,74,.2);color:var(--accent)} .offline-badge.offline{background:rgba(240,168,48,.1);border:1px solid rgba(240,168,48,.3);color:var(--amber)} .offline-badge.syncing{background:rgba(74,184,240,.1);border:1px solid rgba(74,184,240,.2);color:var(--blue)} .offline-dot{width:6px;height:6px;border-radius:50%;background:currentColor} .offline-dot.pulse{animation:blink 1s ease-in-out infinite} .btn-nuevo{width:100%;padding:14px;background:var(--accent);color:#0c0c0c;font-family:var(--display);font-size:14px;font-weight:700;border:none;border-radius:12px;cursor:pointer;margin-top:8px}
+.offline-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 8px;border-radius:20px;font-family:var(--mono);font-size:10px;font-weight:500;transition:all .3s}
+.offline-badge.online{background:rgba(184,240,74,.1);border:1px solid rgba(184,240,74,.2);color:var(--accent)}
+.offline-badge.offline{background:rgba(240,168,48,.1);border:1px solid rgba(240,168,48,.3);color:var(--amber)}
+.offline-badge.syncing{background:rgba(74,184,240,.1);border:1px solid rgba(74,184,240,.2);color:var(--blue)}
+.offline-dot{width:6px;height:6px;border-radius:50%;background:currentColor}
+.offline-dot.pulse{animation:blink 1s ease-in-out infinite}
+.btn-nuevo{width:100%;padding:14px;background:var(--accent);color:#0c0c0c;font-family:var(--display);font-size:14px;font-weight:700;border:none;border-radius:12px;cursor:pointer;margin-top:8px}
+
+/* ═══ REPORTE ═══ */
+.rpt-header{padding:16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.rpt-controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.rpt-select{background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px 12px;font-family:var(--mono);font-size:11px;-webkit-appearance:none}
+.btn-rpt{padding:9px 16px;border-radius:8px;font-family:var(--mono);font-size:11px;cursor:pointer;border:none;font-weight:500;letter-spacing:.04em}
+.btn-rpt-gen{background:var(--accent);color:#0c0c0c}
+.btn-rpt-pdf{background:transparent;color:var(--accent);border:1px solid rgba(184,240,74,.3)!important;border:none}
+.rpt-status{font-family:var(--mono);font-size:10px;color:var(--muted)}
+.rpt-body{padding:16px}
+.rpt-finca-block{margin-bottom:32px}
+.rpt-finca-title{background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--accent);padding:10px 14px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between}
+.rpt-finca-name{font-family:var(--display);font-size:15px;font-weight:700}
+.rpt-finca-count{font-family:var(--mono);font-size:10px;color:var(--muted)}
+.rpt-ranking{width:100%;border-collapse:collapse;margin-bottom:16px;font-family:var(--mono);font-size:11px}
+.rpt-ranking th{padding:6px 10px;text-align:left;color:var(--muted);font-size:9px;text-transform:uppercase;letter-spacing:.08em;border-bottom:1px solid var(--border)}
+.rpt-ranking td{padding:9px 10px;border-bottom:1px solid var(--border)}
+.rpt-ranking tr:last-child td{border-bottom:none}
+.rpt-pos{font-family:var(--display);font-size:16px;font-weight:800;color:var(--muted)}
+.rpt-pos.p1{color:#f0c030}
+.rpt-pos.p2{color:#b0b8c0}
+.rpt-pos.p3{color:#c08060}
+.rpt-nota-num{font-family:var(--display);font-size:18px;font-weight:800}
+.rpt-ficha{background:var(--surface);border:1px solid var(--border);border-radius:10px;margin-bottom:10px;overflow:hidden}
+.rpt-ficha-head{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--border)}
+.rpt-ficha-nombre{font-size:14px;font-weight:700}
+.rpt-ficha-nota{font-family:var(--display);font-size:26px;font-weight:800}
+.rpt-ficha-body{padding:12px 14px}
+.rpt-criterios{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.rpt-crit{background:var(--surface2);border-radius:8px;padding:10px 12px}
+.rpt-crit-lbl{font-family:var(--mono);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.rpt-crit-val{font-family:var(--mono);font-size:14px;font-weight:500}
+.rpt-crit-bar{height:3px;background:var(--border);border-radius:2px;overflow:hidden;margin-top:5px}
+.rpt-crit-fill{height:100%;border-radius:2px}
+.rpt-mejora{background:rgba(240,168,48,.06);border:1px solid rgba(240,168,48,.15);border-radius:8px;padding:10px 14px;margin-top:8px}
+.rpt-mejora-lbl{font-family:var(--mono);font-size:9px;color:var(--amber);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.rpt-mejora-txt{font-family:var(--mono);font-size:11px;color:var(--muted2);line-height:1.6}
+.rpt-tend{margin-top:10px}
+.rpt-tend-lbl{font-family:var(--mono);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.rpt-tend-weeks{display:flex;gap:4px}
+.rpt-tend-week{flex:1;text-align:center}
+.rpt-tend-sem{font-family:var(--mono);font-size:9px;color:var(--muted);margin-bottom:3px}
+.rpt-tend-val{font-family:var(--mono);font-size:11px;font-weight:500;padding:4px 2px;border-radius:4px}
+.rpt-tend-val.g{background:rgba(184,240,74,.1);color:var(--accent)}
+.rpt-tend-val.a{background:rgba(240,168,48,.1);color:var(--amber)}
+.rpt-tend-val.r{background:rgba(240,80,80,.1);color:var(--red)}
+.rpt-tend-val.e{background:var(--surface2);color:var(--muted)}
+.rpt-empty{text-align:center;padding:48px 20px;font-family:var(--mono);font-size:12px;color:var(--muted)}
+.rpt-global{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:20px}
 </style>
 <link rel="manifest" href="/produccionpalma-app/manifest.json">
 <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/produccionpalma-app/sw.js').then(()=>console.log('SW ok')).catch(e=>console.log('SW error',e));}</script>
 </head>
 <body>
 
-<!-- TOPBAR -->
 <div class="topbar">
   <div class="topbar-brand">
     <div class="topbar-dot"></div>
@@ -195,35 +237,31 @@ input[type=date]::-webkit-calendar-picker-indicator{filter:invert(.5)}
   </div>
 </div>
 
-<!-- MAIN TABS -->
 <div class="main-tabs">
   <button class="main-tab active" onclick="goMainTab('dashboard')">Dashboard</button>
   <button class="main-tab" onclick="goMainTab('estadisticas')">Estadísticas</button>
+  <button class="main-tab" onclick="goMainTab('reporte')">Reporte</button>
   <button class="main-tab" onclick="goMainTab('registro')">Registrar</button>
 </div>
 
-<!-- ═══════════════════════════════════════ -->
-<!--  DASHBOARD                             -->
-<!-- ═══════════════════════════════════════ -->
+<!-- DASHBOARD -->
 <div id="main-dashboard">
   <div style="display:flex;align-items:center;justify-content:flex-end;padding:8px 16px;border-bottom:1px solid var(--border)">
     <button class="btn-refresh" onclick="cargarDatos()">↻ Actualizar</button>
   </div>
   <div style="display:flex;gap:0;border-bottom:1px solid var(--border);background:var(--bg)">
-  <button class="main-tab active" style="font-size:10px;padding:8px 12px" id="filter-tab-mes" onclick="switchFilter('mes')">Por mes</button>
-  <button class="main-tab" style="font-size:10px;padding:8px 12px" id="filter-tab-sem" onclick="switchFilter('semana')">Por semana</button>
-</div>
-<div class="semana-filter" id="mes-filter" style="display:flex"></div>
-<div class="semana-filter" id="semana-filter" style="display:none"></div>
+    <button class="main-tab active" style="font-size:10px;padding:8px 12px" id="filter-tab-mes" onclick="switchFilter('mes')">Por mes</button>
+    <button class="main-tab" style="font-size:10px;padding:8px 12px" id="filter-tab-sem" onclick="switchFilter('semana')">Por semana</button>
+  </div>
+  <div class="semana-filter" id="mes-filter" style="display:flex"></div>
+  <div class="semana-filter" id="semana-filter" style="display:none"></div>
   <div style="padding:16px">
     <div id="loading" class="loading"><span class="spinner-w"></span>Cargando datos...</div>
     <div id="main-content" style="display:none"></div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════ -->
-<!--  ESTADÍSTICAS                          -->
-<!-- ═══════════════════════════════════════ -->
+<!-- ESTADÍSTICAS -->
 <div id="main-estadisticas" style="display:none">
   <div style="display:flex;align-items:center;justify-content:flex-end;padding:8px 16px;border-bottom:1px solid var(--border)">
     <button class="btn-refresh" onclick="cargarEstadisticas()">↻ Actualizar</button>
@@ -235,8 +273,43 @@ input[type=date]::-webkit-calendar-picker-indicator{filter:invert(.5)}
 </div>
 
 <!-- ═══════════════════════════════════════ -->
-<!--  REGISTRO                              -->
+<!--  REPORTE POLINIZADORES                 -->
 <!-- ═══════════════════════════════════════ -->
+<div id="main-reporte" style="display:none">
+  <div class="rpt-header">
+    <div>
+      <div style="font-family:var(--display);font-size:14px;font-weight:700">Reporte de Polinizadores</div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:2px" id="rpt-status-txt">Seleccione mes y genere el reporte</div>
+    </div>
+    <div class="rpt-controls">
+      <select class="rpt-select" id="rpt-mes-select">
+        <option value="0">Enero 2026</option>
+        <option value="1">Febrero 2026</option>
+        <option value="2">Marzo 2026</option>
+        <option value="3" selected>Abril 2026</option>
+        <option value="4">Mayo 2026</option>
+        <option value="5">Junio 2026</option>
+        <option value="6">Julio 2026</option>
+        <option value="7">Agosto 2026</option>
+        <option value="8">Septiembre 2026</option>
+        <option value="9">Octubre 2026</option>
+        <option value="10">Noviembre 2026</option>
+        <option value="11">Diciembre 2026</option>
+      </select>
+      <button class="btn-rpt btn-rpt-gen" onclick="generarReporte()">↻ Generar</button>
+      <button class="btn-rpt btn-rpt-pdf" style="background:transparent;color:var(--accent);border:1px solid rgba(184,240,74,.3);border-radius:8px;padding:9px 16px;font-family:var(--mono);font-size:11px;cursor:pointer" onclick="descargarPDF()" id="btn-pdf" style="display:none">⬇ PDF</button>
+    </div>
+  </div>
+  <div class="rpt-body">
+    <div class="rpt-empty" id="rpt-empty">
+      <div style="font-size:32px;margin-bottom:12px">📋</div>
+      Presione <strong>Generar</strong> para cargar el reporte del mes seleccionado
+    </div>
+    <div id="rpt-content" style="display:none"></div>
+  </div>
+</div>
+
+<!-- REGISTRO -->
 <div id="main-registro" style="display:none">
   <div class="progress-wrap">
     <div class="progress-steps">
@@ -248,10 +321,8 @@ input[type=date]::-webkit-calendar-picker-indicator{filter:invert(.5)}
     </div>
     <div class="progress-label" id="progress-label">Paso 1 de 5 — Identificación</div>
   </div>
-
   <div style="padding:20px">
     <div class="msg error" id="msg-error"></div>
-
     <!-- PASO 0 -->
     <div id="paso-0">
       <div class="sec-header-form"><div class="sec-icon-form">01 / Identificación</div><div class="sec-title-form">Ronda de campo</div><div class="sec-sub-form">Fecha, finca y responsable</div></div>
@@ -265,7 +336,6 @@ input[type=date]::-webkit-calendar-picker-indicator{filter:invert(.5)}
       </div>
       <div class="nav-btns"><button class="btn-next" style="flex:1" onclick="nextPaso(0)">Siguiente →</button></div>
     </div>
-
     <!-- PASO 1 -->
     <div id="paso-1" style="display:none">
       <div class="sec-header-form"><div class="sec-icon-form">02 / Calidad de cosecha</div><div class="sec-title-form">Calidad de cosecha</div><div class="sec-sub-form">Peso, formación y madurez</div></div>
@@ -295,7 +365,6 @@ input[type=date]::-webkit-calendar-picker-indicator{filter:invert(.5)}
       </div>
       <div class="nav-btns"><button class="btn-back" onclick="prevPaso(1)">← Atrás</button><button class="btn-next" onclick="nextPaso(1)">Siguiente →</button></div>
     </div>
-
     <!-- PASO 2 -->
     <div id="paso-2" style="display:none">
       <div class="sec-header-form"><div class="sec-icon-form">03 / Polinización</div><div class="sec-title-form">Calificación del polinizador</div><div class="sec-sub-form">Lote, conteo e inflorescencias</div></div>
@@ -333,18 +402,18 @@ input[type=date]::-webkit-calendar-picker-indicator{filter:invert(.5)}
         </div>
         <input type="hidden" id="f-apertura">
       </div>
-      <div class="slabel" style="margin-top:20px">Calificación del técnico (40 pts) — evaluación completa</div>
-      <div class="cal-row"><div class="cal-criterio">Técnica de aplicación</div><div class="cal-desc">Técnica de aplicación: calificación del 1 al 10</div><div class="cal-btns" id="cal-tecnica"><button class="cal-btn" onclick="selCal('tecnica',1,this)">1</button><button class="cal-btn" onclick="selCal('tecnica',2,this)">2</button><button class="cal-btn" onclick="selCal('tecnica',3,this)">3</button><button class="cal-btn" onclick="selCal('tecnica',4,this)">4</button><button class="cal-btn" onclick="selCal('tecnica',5,this)">5</button><button class="cal-btn" onclick="selCal('tecnica',6,this)">6</button><button class="cal-btn" onclick="selCal('tecnica',7,this)">7</button><button class="cal-btn" onclick="selCal('tecnica',8,this)">8</button><button class="cal-btn" onclick="selCal('tecnica',9,this)">9</button><button class="cal-btn" onclick="selCal('tecnica',10,this)">10</button></div></div>
+      <div class="slabel" style="margin-top:20px">Calificación del técnico (40 pts)</div>
+      <div class="cal-row"><div class="cal-criterio">Técnica de aplicación</div><div class="cal-desc">Calificación del 1 al 10</div><div class="cal-btns" id="cal-tecnica"><button class="cal-btn" onclick="selCal('tecnica',1,this)">1</button><button class="cal-btn" onclick="selCal('tecnica',2,this)">2</button><button class="cal-btn" onclick="selCal('tecnica',3,this)">3</button><button class="cal-btn" onclick="selCal('tecnica',4,this)">4</button><button class="cal-btn" onclick="selCal('tecnica',5,this)">5</button><button class="cal-btn" onclick="selCal('tecnica',6,this)">6</button><button class="cal-btn" onclick="selCal('tecnica',7,this)">7</button><button class="cal-btn" onclick="selCal('tecnica',8,this)">8</button><button class="cal-btn" onclick="selCal('tecnica',9,this)">9</button><button class="cal-btn" onclick="selCal('tecnica',10,this)">10</button></div></div>
       <div class="cal-row"><div class="cal-criterio">Cobertura del lote</div><div class="cal-desc">¿Visitó todas las palmas del lote sin omitir?</div><div class="cal-btns" id="cal-cobertura"><button class="cal-btn" onclick="selCal('cobertura',1,this)">1</button><button class="cal-btn" onclick="selCal('cobertura',2,this)">2</button><button class="cal-btn" onclick="selCal('cobertura',3,this)">3</button><button class="cal-btn" onclick="selCal('cobertura',4,this)">4</button><button class="cal-btn" onclick="selCal('cobertura',5,this)">5</button><button class="cal-btn" onclick="selCal('cobertura',6,this)">6</button><button class="cal-btn" onclick="selCal('cobertura',7,this)">7</button><button class="cal-btn" onclick="selCal('cobertura',8,this)">8</button><button class="cal-btn" onclick="selCal('cobertura',9,this)">9</button><button class="cal-btn" onclick="selCal('cobertura',10,this)">10</button></div></div>
-      <div class="cal-row"><div class="cal-criterio">Marcado de hoja polinizada</div><div class="cal-desc">¿Marca correctamente cada flor tratada? (5 pts máx)</div><div class="cal-btns" id="cal-marcado"><button class="cal-btn" onclick="selCal('marcado',1,this)">1</button><button class="cal-btn" onclick="selCal('marcado',2,this)">2</button><button class="cal-btn" onclick="selCal('marcado',3,this)">3</button><button class="cal-btn" onclick="selCal('marcado',4,this)">4</button><button class="cal-btn" onclick="selCal('marcado',5,this)">5</button><button class="cal-btn" onclick="selCal('marcado',6,this)">6</button><button class="cal-btn" onclick="selCal('marcado',7,this)">7</button><button class="cal-btn" onclick="selCal('marcado',8,this)">8</button><button class="cal-btn" onclick="selCal('marcado',9,this)">9</button><button class="cal-btn" onclick="selCal('marcado',10,this)">10</button></div></div>
-      <div class="cal-row"><div class="cal-criterio">Cuidado de equipos y JACO</div><div class="cal-desc">Estado del aspersor, JACO, recipientes y almacenamiento del polen (5 pts máx)</div><div class="cal-btns" id="cal-equipos"><button class="cal-btn" onclick="selCal('equipos',1,this)">1</button><button class="cal-btn" onclick="selCal('equipos',2,this)">2</button><button class="cal-btn" onclick="selCal('equipos',3,this)">3</button><button class="cal-btn" onclick="selCal('equipos',4,this)">4</button><button class="cal-btn" onclick="selCal('equipos',5,this)">5</button><button class="cal-btn" onclick="selCal('equipos',6,this)">6</button><button class="cal-btn" onclick="selCal('equipos',7,this)">7</button><button class="cal-btn" onclick="selCal('equipos',8,this)">8</button><button class="cal-btn" onclick="selCal('equipos',9,this)">9</button><button class="cal-btn" onclick="selCal('equipos',10,this)">10</button></div></div>
+      <div class="cal-row"><div class="cal-criterio">Marcado de hoja polinizada</div><div class="cal-desc">¿Marca correctamente cada flor tratada?</div><div class="cal-btns" id="cal-marcado"><button class="cal-btn" onclick="selCal('marcado',1,this)">1</button><button class="cal-btn" onclick="selCal('marcado',2,this)">2</button><button class="cal-btn" onclick="selCal('marcado',3,this)">3</button><button class="cal-btn" onclick="selCal('marcado',4,this)">4</button><button class="cal-btn" onclick="selCal('marcado',5,this)">5</button><button class="cal-btn" onclick="selCal('marcado',6,this)">6</button><button class="cal-btn" onclick="selCal('marcado',7,this)">7</button><button class="cal-btn" onclick="selCal('marcado',8,this)">8</button><button class="cal-btn" onclick="selCal('marcado',9,this)">9</button><button class="cal-btn" onclick="selCal('marcado',10,this)">10</button></div></div>
+      <div class="cal-row"><div class="cal-criterio">Cuidado de equipos y JACO</div><div class="cal-desc">Estado del aspersor, JACO y almacenamiento del polen</div><div class="cal-btns" id="cal-equipos"><button class="cal-btn" onclick="selCal('equipos',1,this)">1</button><button class="cal-btn" onclick="selCal('equipos',2,this)">2</button><button class="cal-btn" onclick="selCal('equipos',3,this)">3</button><button class="cal-btn" onclick="selCal('equipos',4,this)">4</button><button class="cal-btn" onclick="selCal('equipos',5,this)">5</button><button class="cal-btn" onclick="selCal('equipos',6,this)">6</button><button class="cal-btn" onclick="selCal('equipos',7,this)">7</button><button class="cal-btn" onclick="selCal('equipos',8,this)">8</button><button class="cal-btn" onclick="selCal('equipos',9,this)">9</button><button class="cal-btn" onclick="selCal('equipos',10,this)">10</button></div></div>
       <div class="nota-auto" id="nota-auto" style="display:none">
         <div class="nota-lbl">Calificación total del polinizador</div>
         <div style="display:flex;align-items:center;justify-content:space-between">
           <div class="nota-badge"><div class="nota-badge-num" id="nota-total">—</div><div class="nota-badge-den">/ 100</div></div>
           <div id="nota-semaforo" style="font-size:24px"></div>
         </div>
-        <div class="nota-breakdown" id="nota-breakdown" style="font-family:var(--mono);font-size:11px;color:var(--muted2);margin-top:6px;line-height:1.8"></div>
+        <div id="nota-breakdown" style="font-family:var(--mono);font-size:11px;color:var(--muted2);margin-top:6px;line-height:1.8"></div>
       </div>
       <button onclick="agregarPolinizador()" style="width:100%;margin-top:16px;padding:13px;background:transparent;color:var(--accent);font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;border:1px solid rgba(184,240,74,.3);border-radius:12px;cursor:pointer">+ Agregar polinizador</button>
       <div id="polin-lista" style="display:none;margin-top:16px">
@@ -353,7 +422,6 @@ input[type=date]::-webkit-calendar-picker-indicator{filter:invert(.5)}
       </div>
       <div class="nav-btns"><button class="btn-back" onclick="prevPaso(2)">← Atrás</button><button class="btn-next" onclick="nextPaso(2)">Siguiente →</button></div>
     </div>
-
     <!-- PASO 3 -->
     <div id="paso-3" style="display:none">
       <div class="sec-header-form"><div class="sec-icon-form">04 / Sanidad y gestión</div><div class="sec-title-form">Campo y agronomía</div><div class="sec-sub-form">Estado general de la finca</div></div>
@@ -410,26 +478,26 @@ input[type=date]::-webkit-calendar-picker-indicator{filter:invert(.5)}
       </div>
       <div class="slabel">Gestión agronómica</div>
       <div class="field"><label>% Cobertura de maleza</label>
-       <input type="hidden" id="f-maleza-tipo">
-<input type="hidden" id="f-maleza">
-<div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px;margin-top:4px">
-  <div style="font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Corona</div>
-  <div style="display:flex;gap:6px" id="maleza-corona-btns">
-    <button class="escala-btn" style="flex:1;font-size:11px" onclick="selMalezaPct(this,'corona','0')" data-mc="0">0%</button>
-    <button class="escala-btn" style="flex:1;font-size:11px" onclick="selMalezaPct(this,'corona','25')" data-mc="25">25%</button>
-    <button class="escala-btn" style="flex:1;font-size:11px" onclick="selMalezaPct(this,'corona','50')" data-mc="50">50%</button>
-    <button class="escala-btn" style="flex:1;font-size:11px" onclick="selMalezaPct(this,'corona','75')" data-mc="75">75%</button>
-    <button class="escala-btn" style="flex:1;font-size:11px" onclick="selMalezaPct(this,'corona','90')" data-mc="90">90%</button>
-  </div>
-  <div style="font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;margin-top:12px">Chapia</div>
-  <div style="display:flex;gap:6px" id="maleza-chapia-btns">
-    <button class="escala-btn" style="flex:1;font-size:11px" onclick="selMalezaPct(this,'chapia','0')" data-mch="0">0%</button>
-    <button class="escala-btn" style="flex:1;font-size:11px" onclick="selMalezaPct(this,'chapia','25')" data-mch="25">25%</button>
-    <button class="escala-btn" style="flex:1;font-size:11px" onclick="selMalezaPct(this,'chapia','50')" data-mch="50">50%</button>
-    <button class="escala-btn" style="flex:1;font-size:11px" onclick="selMalezaPct(this,'chapia','75')" data-mch="75">75%</button>
-    <button class="escala-btn" style="flex:1;font-size:11px" onclick="selMalezaPct(this,'chapia','90')" data-mch="90">90%</button>
-  </div>
-</div>
+        <input type="hidden" id="f-maleza-tipo">
+        <input type="hidden" id="f-maleza">
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px;margin-top:4px">
+          <div style="font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Corona</div>
+          <div style="display:flex;gap:6px" id="maleza-corona-btns">
+            <button class="escala-btn" style="flex:1;font-size:11px" onclick="selMalezaPct(this,'corona','0')" data-mc="0">0%</button>
+            <button class="escala-btn" style="flex:1;font-size:11px" onclick="selMalezaPct(this,'corona','25')" data-mc="25">25%</button>
+            <button class="escala-btn" style="flex:1;font-size:11px" onclick="selMalezaPct(this,'corona','50')" data-mc="50">50%</button>
+            <button class="escala-btn" style="flex:1;font-size:11px" onclick="selMalezaPct(this,'corona','75')" data-mc="75">75%</button>
+            <button class="escala-btn" style="flex:1;font-size:11px" onclick="selMalezaPct(this,'corona','90')" data-mc="90">90%</button>
+          </div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;margin-top:12px">Chapia</div>
+          <div style="display:flex;gap:6px" id="maleza-chapia-btns">
+            <button class="escala-btn" style="flex:1;font-size:11px" onclick="selMalezaPct(this,'chapia','0')" data-mch="0">0%</button>
+            <button class="escala-btn" style="flex:1;font-size:11px" onclick="selMalezaPct(this,'chapia','25')" data-mch="25">25%</button>
+            <button class="escala-btn" style="flex:1;font-size:11px" onclick="selMalezaPct(this,'chapia','50')" data-mch="50">50%</button>
+            <button class="escala-btn" style="flex:1;font-size:11px" onclick="selMalezaPct(this,'chapia','75')" data-mch="75">75%</button>
+            <button class="escala-btn" style="flex:1;font-size:11px" onclick="selMalezaPct(this,'chapia','90')" data-mch="90">90%</button>
+          </div>
+        </div>
       </div>
       <div class="field"><label>Estado de poda — hojas por podar</label>
         <div class="escala-row">
@@ -444,14 +512,12 @@ input[type=date]::-webkit-calendar-picker-indicator{filter:invert(.5)}
       <div class="field"><label>Observaciones generales</label><textarea id="f-obs" placeholder="Novedades, condiciones del suelo, actividades pendientes..."></textarea></div>
       <div class="nav-btns"><button class="btn-back" onclick="prevPaso(3)">← Atrás</button><button class="btn-next" onclick="nextPaso(3)">Revisar y enviar →</button></div>
     </div>
-
     <!-- PASO 4 -->
     <div id="paso-4" style="display:none">
       <div class="sec-header-form"><div class="sec-icon-form">05 / Confirmación</div><div class="sec-title-form">Resumen del registro</div><div class="sec-sub-form">Revisa antes de guardar</div></div>
       <div id="resumen-contenido"></div>
       <div class="nav-btns"><button class="btn-back" onclick="prevPaso(4)">← Atrás</button><button class="btn-next" id="btn-enviar" onclick="enviar()">Guardar en Sheets</button></div>
     </div>
-
     <!-- PASO 5 -->
     <div id="paso-5" style="display:none">
       <div class="confirm-wrap">
@@ -466,11 +532,13 @@ input[type=date]::-webkit-calendar-picker-indicator{filter:invert(.5)}
   </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
 const SCRIPT_URL='https://script.google.com/macros/s/AKfycbxfQLFt4hMUlhrdFkfz-cnghpcWjYNBqxCai4sWew-IBS0JPGXcw6lLTqm8kqrA5Iss/exec';
 const FINCAS=['Los Corrales','Andino','Chipo','Castañeda','Marujita'];
 const LOTES={'Los Corrales':['CO-1','CO-2','CO-3','CO-4','CO-5'],'Andino':['AN-1','AN-2','AN-3','AN-4'],'Chipo':['CH-1','CH-2','CH-3'],'Castañeda':['CA-1','CA-2'],'Marujita':['Lote 1','Lote 2','Lote 3']};
 const PASOS=['Identificación','Calidad cosecha','Polinización','Sanidad y gestión','Confirmación'];
+const MESES_NAMES=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
 const C={fecha:0,semana:1,finca:2,lote_nov:3,by:4,rac_pesados:5,peso_prom:6,cal100:7,cal70:8,cal50:9,cal20:10,verdes:11,pintones:12,sobremaduros:13,frutos_sin:14,fruta_sin_cortar:15,lote_polin:16,polinizador:17,inf_base:18,inf_parcial:19,inf_sin:20,ana:21,apertura:22,rend_ha:23,cal_tec:24,cal_cob:25,cal_mar:26,cal_eq:27,nota:28,def_pct:29,tipo_def:30,plagas:31,maleza:32,poda:33,obs:34,tipo_maleza:35};
 
 let allData=[],semanaActiva='todas',mesActivo='todas';
@@ -478,10 +546,9 @@ let polinizadores=[];
 let counters={verdes:0,pintones:0,sobremaduros:0,frutos_sueltos:0,fruta_sin_cortar:0,inf_base:0,inf_parcial:0,inf_sin:0,deficiencia:0,cal_100:0,cal_70:0,cal_50:0,cal_20:0};
 let pesos=[],selDeficiencias=[],selPlagas=[];
 let calTecnica=0,calCobertura=0,calMarcado=0,calEquipos=0;
+let rptDataCache=null;
 
-// ════════════════════════════════════════
-//  MODO OFFLINE — Cola con IndexedDB
-// ════════════════════════════════════════
+// OFFLINE
 const DB_NAME='pantanal_campo',DB_VER=1,STORE='cola';
 let db=null,estaOnline=navigator.onLine;
 function abrirDB(){return new Promise((res,rej)=>{const req=indexedDB.open(DB_NAME,DB_VER);req.onupgradeneeded=e=>{e.target.result.createObjectStore(STORE,{keyPath:'id',autoIncrement:true});};req.onsuccess=e=>{db=e.target.result;res(db);};req.onerror=()=>rej(req.error);});}
@@ -498,19 +565,20 @@ abrirDB().then(()=>actualizarIndicador());
 // INIT
 const hoyStr=new Date().toLocaleDateString('es-EC',{weekday:'short',day:'numeric',month:'short'}).toUpperCase();
 document.getElementById('topbar-date').textContent=hoyStr;
-const _hoy=new Date().toISOString().split('T')[0]; document.getElementById('f-fecha').value=_hoy; document.getElementById('f-fecha').max=_hoy;
+const _hoy=new Date().toISOString().split('T')[0];
+document.getElementById('f-fecha').value=_hoy;
+document.getElementById('f-fecha').max=_hoy;
 
-// MAIN TAB SWITCH
+// TAB SWITCH
 function goMainTab(tab){
-  document.querySelectorAll('.main-tab').forEach((t,i)=>t.classList.toggle('active',['dashboard','estadisticas','registro'][i]===tab));
-  document.getElementById('main-dashboard').style.display=tab==='dashboard'?'block':'none';
-  document.getElementById('main-estadisticas').style.display=tab==='estadisticas'?'block':'none';
-  document.getElementById('main-registro').style.display=tab==='registro'?'block':'none';
+  document.querySelectorAll('.main-tab').forEach((t,i)=>t.classList.toggle('active',['dashboard','estadisticas','reporte','registro'][i]===tab));
+  ['dashboard','estadisticas','reporte','registro'].forEach(id=>{
+    document.getElementById('main-'+id).style.display=id===tab?'block':'none';
+  });
   if(tab==='dashboard') cargarDatos();
   if(tab==='estadisticas') cargarEstadisticas();
 }
-
-function irDashboard(){ goMainTab('dashboard'); }
+function irDashboard(){goMainTab('dashboard');}
 
 // ════════════════════════════════════════
 //  DASHBOARD
@@ -521,83 +589,45 @@ function cargarDatos(){
   const cbName='_cb_'+Date.now();
   window[cbName]=function(json){
     delete window[cbName];
-    const s=document.getElementById('jsonp-script');
-    if(s) s.remove();
-    if(json.ok&&json.registros){
-      allData=json.registros.slice(1).filter(r=>r[C.finca]&&r[C.fecha]);
-      buildSemanaFilter();
-      renderAll();
-    }
+    const s=document.getElementById('jsonp-script');if(s)s.remove();
+    if(json.ok&&json.registros){allData=json.registros.slice(1).filter(r=>r[C.finca]&&r[C.fecha]);buildSemanaFilter();renderAll();}
     document.getElementById('loading').style.display='none';
     document.getElementById('main-content').style.display='block';
   };
-  const script=document.createElement('script');
-  script.id='jsonp-script';
+  const script=document.createElement('script');script.id='jsonp-script';
   script.src=SCRIPT_URL+'?callback='+cbName;
-  script.onerror=function(){ document.getElementById('loading').innerHTML='<span style="color:var(--red)">// sin conexión</span>'; };
+  script.onerror=function(){document.getElementById('loading').innerHTML='<span style="color:var(--red)">// sin conexión</span>';};
   document.head.appendChild(script);
 }
 
 function buildSemanaFilter(){
   const semanas=[...new Set(allData.map(r=>r[C.semana]))].filter(Boolean).sort((a,b)=>b-a).slice(0,8);
-  document.getElementById('semana-filter').innerHTML=
-    `<button class="sem-btn active" onclick="setSemana('todas',this)">Todas</button>`+
-    semanas.map(s=>`<button class="sem-btn" onclick="setSemana('${s}',this)">Sem ${s}</button>`).join('');
-
+  document.getElementById('semana-filter').innerHTML=`<button class="sem-btn active" onclick="setSemana('todas',this)">Todas</button>`+semanas.map(s=>`<button class="sem-btn" onclick="setSemana('${s}',this)">Sem ${s}</button>`).join('');
   const MESES=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
-  const meses=[...new Set(allData.map(r=>{
-    const d=new Date(r[C.fecha]); return isNaN(d)?null:d.getMonth();
-  }).filter(m=>m!==null))].sort((a,b)=>a-b);
-  document.getElementById('mes-filter').innerHTML=
-    `<button class="sem-btn active" onclick="setMes('todas',this)">Todos</button>`+
-    meses.map(m=>`<button class="sem-btn" onclick="setMes('${m}',this)">${MESES[m]}</button>`).join('');
+  const meses=[...new Set(allData.map(r=>{const d=new Date(r[C.fecha]);return isNaN(d)?null:d.getMonth();}).filter(m=>m!==null))].sort((a,b)=>a-b);
+  document.getElementById('mes-filter').innerHTML=`<button class="sem-btn active" onclick="setMes('todas',this)">Todos</button>`+meses.map(m=>`<button class="sem-btn" onclick="setMes('${m}',this)">${MESES[m]}</button>`).join('');
 }
-
 function switchFilter(tipo){
-  document.getElementById('filter-tab-mes').classList.toggle('active', tipo==='mes');
-  document.getElementById('filter-tab-sem').classList.toggle('active', tipo==='semana');
+  document.getElementById('filter-tab-mes').classList.toggle('active',tipo==='mes');
+  document.getElementById('filter-tab-sem').classList.toggle('active',tipo==='semana');
   document.getElementById('mes-filter').style.display=tipo==='mes'?'flex':'none';
   document.getElementById('semana-filter').style.display=tipo==='semana'?'flex':'none';
-  semanaActiva='todas'; mesActivo='todas';
-  renderAll();
+  semanaActiva='todas';mesActivo='todas';renderAll();
 }
-
-function setMes(m, btn){
-  mesActivo=m;
-  document.querySelectorAll('#mes-filter .sem-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  renderAll();
-}
-
-function setSemana(s,btn){
-  semanaActiva=s;
-  document.querySelectorAll('#semana-filter .sem-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  renderAll();
-}
-
+function setMes(m,btn){mesActivo=m;document.querySelectorAll('#mes-filter .sem-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderAll();}
+function setSemana(s,btn){semanaActiva=s;document.querySelectorAll('#semana-filter .sem-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderAll();}
 function getData(){
   let data=allData;
   if(semanaActiva!=='todas') data=data.filter(r=>String(r[C.semana])===String(semanaActiva));
-  if(mesActivo!=='todas') data=data.filter(r=>{
-    const d=new Date(r[C.fecha]); return !isNaN(d)&&d.getMonth()===parseInt(mesActivo);
-  });
+  if(mesActivo!=='todas') data=data.filter(r=>{const d=new Date(r[C.fecha]);return !isNaN(d)&&d.getMonth()===parseInt(mesActivo);});
   return data;
 }
-
-function getUltimaRonda(data){
-  const ur={};
-  data.forEach(r=>{ const f=r[C.finca],fecha=new Date(r[C.fecha]); if(!ur[f]||fecha>new Date(ur[f][C.fecha])) ur[f]=r; });
-  return ur;
-}
-
-function color3(v,g,m){ return v>=g?'var(--accent)':v>=m?'var(--amber)':'var(--red)'; }
+function getUltimaRonda(data){const ur={};data.forEach(r=>{const f=r[C.finca],fecha=new Date(r[C.fecha]);if(!ur[f]||fecha>new Date(ur[f][C.fecha]))ur[f]=r;});return ur;}
+function color3(v,g,m){return v>=g?'var(--accent)':v>=m?'var(--amber)':'var(--red)';}
 
 function renderAll(){
-  const data=getData(), ur=getUltimaRonda(data);
+  const data=getData(),ur=getUltimaRonda(data);
   let html='';
-
-  // KPIs
   const pesosV=data.filter(r=>Number(r[C.peso_prom])>0);
   const promPeso=pesosV.length?(pesosV.reduce((s,r)=>s+Number(r[C.peso_prom]),0)/pesosV.length).toFixed(1):'—';
   const dpolin=data.filter(r=>r[C.polinizador]&&(Number(r[C.inf_base])+Number(r[C.inf_parcial])+Number(r[C.inf_sin]))>0);
@@ -605,184 +635,404 @@ function renderAll(){
   const tBase=dpolin.reduce((s,r)=>s+Number(r[C.inf_base]),0);
   const tAll=dpolin.reduce((s,r)=>s+(Number(r[C.inf_base])+Number(r[C.inf_parcial])+Number(r[C.inf_sin])),0);
   const pctPolin=tAll>0?Math.round(tBase/tAll*100):0;
-  html+=`<div class="kpi-grid">
-    <div class="kpi-card"><div class="kpi-lbl">Peso prom.</div><div class="kpi-val" style="color:${color3(parseFloat(promPeso),18,14)}">${promPeso}<span style="font-size:10px;color:var(--muted)"> kg</span></div><div class="kpi-sub">racimo</div></div>
-    <div class="kpi-card"><div class="kpi-lbl">Polinización</div><div class="kpi-val" style="color:${color3(pctPolin,80,60)}">${pctPolin}<span style="font-size:10px;color:var(--muted)">%</span></div><div class="kpi-sub">correcta</div></div>
-    <div class="kpi-card"><div class="kpi-lbl">Nota prom.</div><div class="kpi-val" style="color:${color3(parseFloat(promNota),80,60)}">${promNota}<span style="font-size:10px;color:var(--muted)">/100</span></div><div class="kpi-sub">polinizadores</div></div>
-  </div>`;
-
-  // Alertas
+  html+=`<div class="kpi-grid"><div class="kpi-card"><div class="kpi-lbl">Peso prom.</div><div class="kpi-val" style="color:${color3(parseFloat(promPeso),18,14)}">${promPeso}<span style="font-size:10px;color:var(--muted)"> kg</span></div><div class="kpi-sub">racimo</div></div><div class="kpi-card"><div class="kpi-lbl">Polinización</div><div class="kpi-val" style="color:${color3(pctPolin,80,60)}">${pctPolin}<span style="font-size:10px;color:var(--muted)">%</span></div><div class="kpi-sub">correcta</div></div><div class="kpi-card"><div class="kpi-lbl">Nota prom.</div><div class="kpi-val" style="color:${color3(parseFloat(promNota),80,60)}">${promNota}<span style="font-size:10px;color:var(--muted)">/100</span></div><div class="kpi-sub">polinizadores</div></div></div>`;
   const alertas=[];
-  FINCAS.forEach(f=>{ const r=ur[f]; if(!r) return;
-    const pl=r[C.plagas],pp=r[C.pct_plagas],def=r[C.tipo_def],dp=r[C.def_pct];
-    if(pl&&!pl.includes('Sin presencia')){
-      if(pp==='>50%') alertas.push({n:'red',t:`${f} — Plagas críticas`,s:`${pl} · ${pp}`});
-      else alertas.push({n:'amber',t:`${f} — Plagas detectadas`,s:`${pl} · ${pp||'<20%'}`});
-    }
-    if(def){
-      if(dp==='>50%') alertas.push({n:'red',t:`${f} — Deficiencia crítica`,s:`${def} · ${dp}`});
-      else if(dp==='20-50%') alertas.push({n:'amber',t:`${f} — Deficiencia moderada`,s:`${def} · ${dp}`});
-    }
-  });
-  if(!alertas.length) alertas.push({n:'green',t:'Sin alertas activas',s:'Todas las fincas en estado normal'});
-  html+=`<div class="section"><div class="sec-header"><div class="sec-icon">Alertas</div></div>
-    ${alertas.map(a=>`<div class="alerta-item alerta-${a.n}"><div class="alerta-dot" style="background:${a.n==='red'?'var(--red)':a.n==='amber'?'var(--amber)':'var(--accent)'}"></div><div><div class="alerta-title">${a.t}</div><div class="alerta-sub">${a.s}</div></div></div>`).join('')}
-  </div>`;
-
-  // Calidad cosecha
-  const maxPeso=Math.max(...FINCAS.map(f=>{ const r=data.filter(x=>x[C.finca]===f&&Number(x[C.peso_prom])>0); return r.length?r.reduce((s,x)=>s+Number(x[C.peso_prom]),0)/r.length:0; }),1);
+  FINCAS.forEach(f=>{const r=ur[f];if(!r)return;const pl=r[C.plagas],pp=r[C.pct_plagas],def=r[C.tipo_def],dp=r[C.def_pct];if(pl&&!pl.includes('Sin presencia')){if(pp==='>50%')alertas.push({n:'red',t:`${f} — Plagas críticas`,s:`${pl} · ${pp}`});else alertas.push({n:'amber',t:`${f} — Plagas detectadas`,s:`${pl} · ${pp||'<20%'}`});}if(def){if(dp==='>50%')alertas.push({n:'red',t:`${f} — Deficiencia crítica`,s:`${def} · ${dp}`});else if(dp==='20-50%')alertas.push({n:'amber',t:`${f} — Deficiencia moderada`,s:`${def} · ${dp}`});}});
+  if(!alertas.length)alertas.push({n:'green',t:'Sin alertas activas',s:'Todas las fincas en estado normal'});
+  html+=`<div class="section"><div class="sec-header"><div class="sec-icon">Alertas</div></div>${alertas.map(a=>`<div class="alerta-item alerta-${a.n}"><div class="alerta-dot" style="background:${a.n==='red'?'var(--red)':a.n==='amber'?'var(--amber)':'var(--accent)'}"></div><div><div class="alerta-title">${a.t}</div><div class="alerta-sub">${a.s}</div></div></div>`).join('')}</div>`;
+  const maxPeso=Math.max(...FINCAS.map(f=>{const r=data.filter(x=>x[C.finca]===f&&Number(x[C.peso_prom])>0);return r.length?r.reduce((s,x)=>s+Number(x[C.peso_prom]),0)/r.length:0;}),1);
   html+=`<div class="section"><div class="sec-header"><div class="sec-icon">Calidad cosecha</div><div class="sec-title">Peso · Formación · Madurez</div></div>`;
-  html+=FINCAS.map(f=>{
-    const rows=data.filter(r=>r[C.finca]===f&&Number(r[C.peso_prom])>0);
-    if(!rows.length) return `<div class="finca-row"><div class="finca-name">${f}</div><div class="finca-val" style="color:var(--muted)">—</div></div>`;
-    const prom=(rows.reduce((s,r)=>s+Number(r[C.peso_prom]),0)/rows.length).toFixed(1);
-    const pct=Math.round(prom/maxPeso*100);
-    const col=color3(parseFloat(prom),18,14);
-    return `<div class="finca-row"><div style="flex:1"><div class="finca-name">${f}</div><div class="bar-wrap"><div class="bar-fill" style="width:${pct}%;background:${col}"></div></div></div><div style="margin-left:12px;text-align:right"><div class="finca-val" style="color:${col}">${prom} kg</div></div></div>`;
-  }).join('');
+  html+=FINCAS.map(f=>{const rows=data.filter(r=>r[C.finca]===f&&Number(r[C.peso_prom])>0);if(!rows.length)return `<div class="finca-row"><div class="finca-name">${f}</div><div class="finca-val" style="color:var(--muted)">—</div></div>`;const prom=(rows.reduce((s,r)=>s+Number(r[C.peso_prom]),0)/rows.length).toFixed(1);const pct=Math.round(prom/maxPeso*100);const col=color3(parseFloat(prom),18,14);return `<div class="finca-row"><div style="flex:1"><div class="finca-name">${f}</div><div class="bar-wrap"><div class="bar-fill" style="width:${pct}%;background:${col}"></div></div></div><div style="margin-left:12px;text-align:right"><div class="finca-val" style="color:${col}">${prom} kg</div></div></div>`;}).join('');
   html+=`<div style="height:10px"></div>`;
-  html+=FINCAS.map(f=>{
-    const r=ur[f]; if(!r) return '';
-    const t=Number(r[C.cal100])+Number(r[C.cal70])+Number(r[C.cal50])+Number(r[C.cal20]);
-    const sinR=Number(r[C.frutos_sin])||0, sinC=Number(r[C.fruta_sin_cortar])||0;
-    if(!t&&!sinR&&!sinC) return '';
-    const pctB=t>0?Math.round((Number(r[C.cal100])+Number(r[C.cal70]))/t*100):null;
-    const col=pctB!==null?color3(pctB,70,50):'var(--muted2)';
-    return `<div class="finca-row"><div style="flex:1"><div class="finca-name">${f}</div><div class="finca-meta">${t?`${pctB}% bien formados`:''}${(sinR||sinC)?(t?' · ':'')+`${sinR+sinC} pend.`:''}</div></div>${pctB!==null?`<div class="finca-val" style="color:${col}">${pctB}%</div>`:''}</div>`;
-  }).filter(Boolean).join('');
+  html+=FINCAS.map(f=>{const r=ur[f];if(!r)return '';const t=Number(r[C.cal100])+Number(r[C.cal70])+Number(r[C.cal50])+Number(r[C.cal20]);const sinR=Number(r[C.frutos_sin])||0,sinC=Number(r[C.fruta_sin_cortar])||0;if(!t&&!sinR&&!sinC)return '';const pctB=t>0?Math.round((Number(r[C.cal100])+Number(r[C.cal70]))/t*100):null;const col=pctB!==null?color3(pctB,70,50):'var(--muted2)';return `<div class="finca-row"><div style="flex:1"><div class="finca-name">${f}</div><div class="finca-meta">${t?`${pctB}% bien formados`:''}${(sinR||sinC)?(t?' · ':'')+`${sinR+sinC} pend.`:''}</div></div>${pctB!==null?`<div class="finca-val" style="color:${col}">${pctB}%</div>`:''}</div>`;}).filter(Boolean).join('');
   html+=`</div>`;
-
-  // Polinización ranking
   const byP={};
-  dpolin.forEach(r=>{ const n=r[C.polinizador]; if(!n) return;
-    if(!byP[n]) byP[n]={notas:[],corrects:0,total:0,fincas:new Set()};
-    byP[n].notas.push(Number(r[C.nota]));
-    byP[n].corrects+=Number(r[C.inf_base])||0;
-    byP[n].total+=(Number(r[C.inf_base])||0)+(Number(r[C.inf_parcial])||0)+(Number(r[C.inf_sin])||0);
-    byP[n].fincas.add(r[C.finca]);
-  });
+  dpolin.forEach(r=>{const n=r[C.polinizador];if(!n)return;if(!byP[n])byP[n]={notas:[],corrects:0,total:0,fincas:new Set()};byP[n].notas.push(Number(r[C.nota]));byP[n].corrects+=Number(r[C.inf_base])||0;byP[n].total+=(Number(r[C.inf_base])||0)+(Number(r[C.inf_parcial])||0)+(Number(r[C.inf_sin])||0);byP[n].fincas.add(r[C.finca]);});
   const ranking=Object.entries(byP).map(([n,d])=>({nombre:n,notaProm:(d.notas.reduce((a,b)=>a+b,0)/d.notas.length).toFixed(0),eval:d.notas.length,pctC:d.total>0?Math.round(d.corrects/d.total*100):0,finca:[...d.fincas].join(', ')})).sort((a,b)=>b.notaProm-a.notaProm);
   html+=`<div class="section"><div class="sec-header"><div class="sec-icon">Polinización</div><div class="sec-title">Ranking · Cobertura</div></div>`;
-  if(!ranking.length) html+=`<div class="empty">Sin evaluaciones</div>`;
-  else html+=ranking.map((p,i)=>{ const n=parseFloat(p.notaProm),col=color3(n,80,60),sem=n>=80?'🟢':n>=60?'🟡':'🔴';
-    return `<div class="rank-item"><div class="rank-num">#${i+1}</div><div class="rank-info"><div class="rank-name">${p.nombre}</div><div class="rank-meta">${p.finca} · ${p.eval} eval. · ${p.pctC}% inf. correctas</div></div><div class="rank-nota"><div class="rank-nota-num" style="color:${col}">${p.notaProm}</div><div class="rank-nota-den">/100 ${sem}</div></div></div>`;
-  }).join('');
+  if(!ranking.length)html+=`<div class="empty">Sin evaluaciones</div>`;
+  else html+=ranking.map((p,i)=>{const n=parseFloat(p.notaProm),col=color3(n,80,60),sem=n>=80?'🟢':n>=60?'🟡':'🔴';return `<div class="rank-item"><div class="rank-num">#${i+1}</div><div class="rank-info"><div class="rank-name">${p.nombre}</div><div class="rank-meta">${p.finca} · ${p.eval} eval. · ${p.pctC}% inf. correctas</div></div><div class="rank-nota"><div class="rank-nota-num" style="color:${col}">${p.notaProm}</div><div class="rank-nota-den">/100 ${sem}</div></div></div>`;}).join('');
   html+=`<div style="height:10px"></div>`;
-  html+=FINCAS.map(f=>{ const rows=dpolin.filter(r=>r[C.finca]===f); if(!rows.length) return '';
-    const base=rows.reduce((s,r)=>s+Number(r[C.inf_base]),0),all=rows.reduce((s,r)=>s+(Number(r[C.inf_base])+Number(r[C.inf_parcial])+Number(r[C.inf_sin])),0);
-    const pct=all>0?Math.round(base/all*100):0,col=color3(pct,80,60);
-    return `<div class="finca-row"><div style="flex:1"><div class="finca-name">${f}</div><div class="bar-wrap"><div class="bar-fill" style="width:${pct}%;background:${col}"></div></div></div><div class="finca-val" style="color:${col};margin-left:12px">${pct}%</div></div>`;
-  }).filter(Boolean).join('');
+  html+=FINCAS.map(f=>{const rows=dpolin.filter(r=>r[C.finca]===f);if(!rows.length)return '';const base=rows.reduce((s,r)=>s+Number(r[C.inf_base]),0),all=rows.reduce((s,r)=>s+(Number(r[C.inf_base])+Number(r[C.inf_parcial])+Number(r[C.inf_sin])),0);const pct=all>0?Math.round(base/all*100):0,col=color3(pct,80,60);return `<div class="finca-row"><div style="flex:1"><div class="finca-name">${f}</div><div class="bar-wrap"><div class="bar-fill" style="width:${pct}%;background:${col}"></div></div></div><div class="finca-val" style="color:${col};margin-left:12px">${pct}%</div></div>`;}).filter(Boolean).join('');
   html+=`</div>`;
-
-  // Sanidad
   html+=`<div class="section"><div class="sec-header"><div class="sec-icon">Sanidad</div><div class="sec-title">Plagas · Deficiencias</div></div>`;
-  html+=FINCAS.map(f=>{ const r=ur[f]; if(!r) return '';
-    const pl=r[C.plagas],pp=r[C.pct_plagas],def=r[C.tipo_def],dp=r[C.def_pct];
-    const sinPl=!pl||pl.includes('Sin presencia'),sinDef=!def;
-    if(sinPl&&sinDef) return `<div class="finca-row"><div class="finca-name">${f}</div><div class="finca-val" style="color:var(--accent);font-size:12px">Sin alertas</div></div>`;
-    return `<div class="finca-row"><div style="flex:1"><div class="finca-name">${f}</div>${!sinPl?`<div class="finca-meta" style="color:${pp==='>50%'?'var(--red)':'var(--amber)'}">${pl} · ${pp||'<20%'}</div>`:''} ${!sinDef?`<div class="finca-meta" style="color:${dp==='>50%'?'var(--red)':dp==='20-50%'?'var(--amber)':'var(--muted2)'}">${def} · ${dp||'<20%'}</div>`:''}</div></div>`;
-  }).filter(Boolean).join('');
+  html+=FINCAS.map(f=>{const r=ur[f];if(!r)return '';const pl=r[C.plagas],pp=r[C.pct_plagas],def=r[C.tipo_def],dp=r[C.def_pct];const sinPl=!pl||pl.includes('Sin presencia'),sinDef=!def;if(sinPl&&sinDef)return `<div class="finca-row"><div class="finca-name">${f}</div><div class="finca-val" style="color:var(--accent);font-size:12px">Sin alertas</div></div>`;return `<div class="finca-row"><div style="flex:1"><div class="finca-name">${f}</div>${!sinPl?`<div class="finca-meta" style="color:${pp==='>50%'?'var(--red)':'var(--amber)'}">${pl} · ${pp||'<20%'}</div>`:''} ${!sinDef?`<div class="finca-meta" style="color:${dp==='>50%'?'var(--red)':dp==='20-50%'?'var(--amber)':'var(--muted2)'}">${def} · ${dp||'<20%'}</div>`:''}</div></div>`;}).filter(Boolean).join('');
   html+=`</div>`;
-
-  // Gestión agronómica
   const MCOL={'10':'var(--accent)','25':'var(--accent)','50':'var(--amber)','75':'var(--red)','90':'var(--red)'};
   const PCOL={'0 hojas':'var(--accent)','1 a 2 hojas':'var(--accent)','3 a 5 hojas':'var(--amber)','mas de 5 hojas':'var(--red)','0':'var(--accent)'};
   html+=`<div class="section"><div class="sec-header"><div class="sec-icon">Gestión agronómica</div><div class="sec-title">Maleza · Poda</div></div>`;
-  html+=FINCAS.map(f=>{ const r=ur[f]; if(!r) return `<div class="agro-row"><div class="finca-name">${f}</div><div style="font-family:var(--mono);font-size:11px;color:var(--muted)">Sin datos</div></div>`;
-    const m=String(r[C.maleza]||''),p=String(r[C.poda]||''),mc=MCOL[m]||'var(--muted2)',pc=PCOL[p]||'var(--muted2)';
-    const tm=String(r[C.tipo_maleza]||'');
-return `<div class="agro-row"><div class="finca-name">${f}</div><div class="agro-badges">${tm?`<div class="badge" style="color:${mc}">${tm}</div>`:`<div class="badge" style="color:var(--muted2)">Maleza —</div>`}<div class="badge" style="color:${pc}">Poda ${p||'—'}</div></div></div>`;
-  }).join('');
+  html+=FINCAS.map(f=>{const r=ur[f];if(!r)return `<div class="agro-row"><div class="finca-name">${f}</div><div style="font-family:var(--mono);font-size:11px;color:var(--muted)">Sin datos</div></div>`;const m=String(r[C.maleza]||''),p=String(r[C.poda]||''),mc=MCOL[m]||'var(--muted2)',pc=PCOL[p]||'var(--muted2)';const tm=String(r[C.tipo_maleza]||'');return `<div class="agro-row"><div class="finca-name">${f}</div><div class="agro-badges">${tm?`<div class="badge" style="color:${mc}">${tm}</div>`:`<div class="badge" style="color:var(--muted2)">Maleza —</div>`}<div class="badge" style="color:${pc}">Poda ${p||'—'}</div></div></div>`;}).join('');
   html+=`</div>`;
-
-
-
-  // ── TENDENCIA SEMANAL ─────────────────────────
-  const semanas = [...new Set(allData.map(r=>r[C.semana]))].filter(Boolean).sort((a,b)=>a-b);
-  const ultimas6 = semanas.slice(-6);
-
-  if(ultimas6.length >= 2){
+  const semanas=[...new Set(allData.map(r=>r[C.semana]))].filter(Boolean).sort((a,b)=>a-b);
+  const ultimas6=semanas.slice(-6);
+  if(ultimas6.length>=2){
     html+=`<div class="section"><div class="sec-header"><div class="sec-icon">Tendencia</div><div class="sec-title">Evolución semanal</div></div>`;
-
-    // Build weekly data
-    const weekData = ultimas6.map(sem => {
-      const rows = allData.filter(r => String(r[C.semana]) === String(sem));
-      const polinRows = rows.filter(r => r[C.polinizador] && (Number(r[C.inf_base])+Number(r[C.inf_parcial])+Number(r[C.inf_sin]))>0);
-      const tBase = polinRows.reduce((s,r)=>s+Number(r[C.inf_base]),0);
-      const tAll  = polinRows.reduce((s,r)=>s+(Number(r[C.inf_base])+Number(r[C.inf_parcial])+Number(r[C.inf_sin])),0);
-      const pesosV = rows.filter(r=>Number(r[C.peso_prom])>0);
-      const calRows = rows.filter(r=>(Number(r[C.cal100])+Number(r[C.cal70])+Number(r[C.cal50])+Number(r[C.cal20]))>0);
-      const tCal = calRows.reduce((s,r)=>s+Number(r[C.cal100])+Number(r[C.cal70])+Number(r[C.cal50])+Number(r[C.cal20]),0);
-      const tBuenos = calRows.reduce((s,r)=>s+Number(r[C.cal100])+Number(r[C.cal70]),0);
-      return {
-        sem,
-        polin: tAll>0 ? Math.round(tBase/tAll*100) : null,
-        nota:  polinRows.length>0 ? Math.round(polinRows.reduce((s,r)=>s+Number(r[C.nota]),0)/polinRows.length) : null,
-        peso:  pesosV.length>0 ? parseFloat((pesosV.reduce((s,r)=>s+Number(r[C.peso_prom]),0)/pesosV.length).toFixed(1)) : null,
-        calidad: tCal>0 ? Math.round(tBuenos/tCal*100) : null
-      };
-    });
-
-    const indicadores = [
-      {key:'polin', label:'% Inf. correctas', good:80, mid:60, unit:'%', max:100},
-      {key:'nota',  label:'Nota polinizadores', good:80, mid:60, unit:'/100', max:100},
-      {key:'peso',  label:'Peso racimo', good:18, mid:14, unit:' kg', max:30},
-      {key:'calidad',label:'Calidad formación', good:70, mid:50, unit:'%', max:100}
-    ];
-
-    // Semana headers
-    html+=`<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:11px">`;
-    html+=`<tr><td style="padding:4px 8px;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.06em;min-width:110px">Indicador</td>`;
-    weekData.forEach(w=>{ html+=`<td style="padding:4px 8px;text-align:center;color:var(--muted);font-size:10px">Sem ${w.sem}</td>`; });
-    html+=`<td style="padding:4px 8px;text-align:center;color:var(--muted);font-size:10px">Tendencia</td></tr>`;
-
-    indicadores.forEach(ind => {
-      const vals = weekData.map(w => w[ind.key]);
-      const last = vals[vals.length-1];
-      const prev = vals[vals.length-2];
-      const trend = last===null||prev===null ? '→' : last>prev ? '↑' : last<prev ? '↓' : '→';
-      const trendColor = trend==='↑'?'var(--accent)':trend==='↓'?'var(--red)':'var(--amber)';
-
-      html+=`<tr style="border-top:1px solid var(--border)">`;
-      html+=`<td style="padding:8px 8px;color:var(--muted2);font-size:11px">${ind.label}</td>`;
-      vals.forEach((v,i) => {
-        const prev_v = i>0 ? vals[i-1] : null;
-        let bg='transparent', txtColor='var(--muted)';
-        if(v!==null){
-          txtColor = v>=ind.good?'var(--accent)':v>=ind.mid?'var(--amber)':'var(--red)';
-          bg = v>=ind.good?'rgba(184,240,74,.06)':v>=ind.mid?'rgba(240,168,48,.06)':'rgba(240,80,80,.06)';
-        }
-        html+=`<td style="padding:8px 4px;text-align:center;background:${bg};border-radius:4px">`;
-        if(v!==null) html+=`<span style="color:${txtColor};font-weight:500">${v}${ind.unit}</span>`;
-        else html+=`<span style="color:var(--muted)">—</span>`;
-        html+=`</td>`;
-      });
-      // Trend mini sparkline
-      const sparkVals = vals.filter(v=>v!==null);
-      let sparkHtml = '';
-      if(sparkVals.length>=2){
-        const minV=Math.min(...sparkVals), maxV=Math.max(...sparkVals);
-        const range=maxV-minV||1;
-        const w=40, h=24;
-        const points = vals.map((v,i)=>{
-          const x = vals.length>1 ? Math.round(i/(vals.length-1)*w) : w/2;
-          const y = v!==null ? Math.round(h - ((v-minV)/range)*(h-4) - 2) : null;
-          return {x,y};
-        }).filter(p=>p.y!==null);
-        const polyline = points.map(p=>`${p.x},${p.y}`).join(' ');
-        sparkHtml = `<svg width="${w}" height="${h}" style="overflow:visible"><polyline points="${polyline}" fill="none" stroke="${trendColor}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>${points.map((p,i)=>i===points.length-1?`<circle cx="${p.x}" cy="${p.y}" r="2.5" fill="${trendColor}"/>`:'').join('')}</svg>`;
-      }
-      html+=`<td style="padding:4px 8px;text-align:center">`;
-      html+=sparkHtml;
-      html+=`<div style="color:${trendColor};font-size:14px;font-weight:500;margin-top:2px">${trend}</div>`;
-      html+=`</td></tr>`;
-    });
-
+    const weekData=ultimas6.map(sem=>{const rows=allData.filter(r=>String(r[C.semana])===String(sem));const polinRows=rows.filter(r=>r[C.polinizador]&&(Number(r[C.inf_base])+Number(r[C.inf_parcial])+Number(r[C.inf_sin]))>0);const tBase=polinRows.reduce((s,r)=>s+Number(r[C.inf_base]),0);const tAll=polinRows.reduce((s,r)=>s+(Number(r[C.inf_base])+Number(r[C.inf_parcial])+Number(r[C.inf_sin])),0);const pesosV=rows.filter(r=>Number(r[C.peso_prom])>0);const calRows=rows.filter(r=>(Number(r[C.cal100])+Number(r[C.cal70])+Number(r[C.cal50])+Number(r[C.cal20]))>0);const tCal=calRows.reduce((s,r)=>s+Number(r[C.cal100])+Number(r[C.cal70])+Number(r[C.cal50])+Number(r[C.cal20]),0);const tBuenos=calRows.reduce((s,r)=>s+Number(r[C.cal100])+Number(r[C.cal70]),0);return{sem,polin:tAll>0?Math.round(tBase/tAll*100):null,nota:polinRows.length>0?Math.round(polinRows.reduce((s,r)=>s+Number(r[C.nota]),0)/polinRows.length):null,peso:pesosV.length>0?parseFloat((pesosV.reduce((s,r)=>s+Number(r[C.peso_prom]),0)/pesosV.length).toFixed(1)):null,calidad:tCal>0?Math.round(tBuenos/tCal*100):null};});
+    const indicadores=[{key:'polin',label:'% Inf. correctas',good:80,mid:60,unit:'%'},{key:'nota',label:'Nota polinizadores',good:80,mid:60,unit:'/100'},{key:'peso',label:'Peso racimo',good:18,mid:14,unit:' kg'},{key:'calidad',label:'Calidad formación',good:70,mid:50,unit:'%'}];
+    html+=`<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:11px"><tr><td style="padding:4px 8px;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.06em;min-width:110px">Indicador</td>`;
+    weekData.forEach(w=>{html+=`<td style="padding:4px 8px;text-align:center;color:var(--muted);font-size:10px">Sem ${w.sem}</td>`;});
+    html+=`<td style="padding:4px 8px;text-align:center;color:var(--muted);font-size:10px">Tend.</td></tr>`;
+    indicadores.forEach(ind=>{const vals=weekData.map(w=>w[ind.key]);const last=vals[vals.length-1],prev=vals[vals.length-2];const trend=last===null||prev===null?'→':last>prev?'↑':last<prev?'↓':'→';const trendColor=trend==='↑'?'var(--accent)':trend==='↓'?'var(--red)':'var(--amber)';html+=`<tr style="border-top:1px solid var(--border)"><td style="padding:8px;color:var(--muted2);font-size:11px">${ind.label}</td>`;vals.forEach(v=>{let bg='transparent',txtColor='var(--muted)';if(v!==null){txtColor=v>=ind.good?'var(--accent)':v>=ind.mid?'var(--amber)':'var(--red)';bg=v>=ind.good?'rgba(184,240,74,.06)':v>=ind.mid?'rgba(240,168,48,.06)':'rgba(240,80,80,.06)';}html+=`<td style="padding:8px 4px;text-align:center;background:${bg};border-radius:4px">${v!==null?`<span style="color:${txtColor};font-weight:500">${v}${ind.unit}</span>`:`<span style="color:var(--muted)">—</span>`}</td>`;});
+    const sparkVals=vals.filter(v=>v!==null);let sparkHtml='';if(sparkVals.length>=2){const minV=Math.min(...sparkVals),maxV=Math.max(...sparkVals),range=maxV-minV||1,w=40,h=24;const points=vals.map((v,i)=>({x:vals.length>1?Math.round(i/(vals.length-1)*w):w/2,y:v!==null?Math.round(h-((v-minV)/range)*(h-4)-2):null})).filter(p=>p.y!==null);const polyline=points.map(p=>`${p.x},${p.y}`).join(' ');sparkHtml=`<svg width="${w}" height="${h}" style="overflow:visible"><polyline points="${polyline}" fill="none" stroke="${trendColor}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>${points.map((p,i)=>i===points.length-1?`<circle cx="${p.x}" cy="${p.y}" r="2.5" fill="${trendColor}"/>`:'').join('')}</svg>`;}
+    html+=`<td style="padding:4px 8px;text-align:center">${sparkHtml}<div style="color:${trendColor};font-size:14px;font-weight:500;margin-top:2px">${trend}</div></td></tr>`;});
     html+=`</table></div></div>`;
   }
-
   document.getElementById('main-content').innerHTML=html;
+}
+
+// ════════════════════════════════════════
+//  REPORTE PDF
+// ════════════════════════════════════════
+function generarReporte(){
+  const mesIdx=parseInt(document.getElementById('rpt-mes-select').value);
+  const mesNombre=MESES_NAMES[mesIdx];
+  document.getElementById('rpt-status-txt').textContent='Cargando datos...';
+  document.getElementById('rpt-empty').innerHTML='<span class="spinner-w"></span>Cargando datos de Sheets...';
+  document.getElementById('rpt-empty').style.display='block';
+  document.getElementById('rpt-content').style.display='none';
+  document.getElementById('btn-pdf').style.display='none';
+
+  const cargar=()=>{
+    const cbName='_rpt_'+Date.now();
+    window[cbName]=function(json){
+      delete window[cbName];const s=document.getElementById('jsonp-rpt');if(s)s.remove();
+      if(json.ok&&json.registros){
+        const data=json.registros.slice(1).filter(r=>r[C.finca]&&r[C.fecha]);
+        // Si allData no tiene datos actualizados, también actualizar
+        if(data.length>allData.length) allData=data;
+        renderReporte(data,mesIdx,mesNombre);
+      } else {
+        document.getElementById('rpt-empty').innerHTML='<span style="color:var(--red)">// Error al cargar. Verifique conexión.</span>';
+      }
+    };
+    const script=document.createElement('script');script.id='jsonp-rpt';
+    script.src=SCRIPT_URL+'?callback='+cbName;
+    script.onerror=()=>{document.getElementById('rpt-empty').innerHTML='<span style="color:var(--red)">// Sin conexión — conecte WiFi y reintente</span>';};
+    document.head.appendChild(script);
+  };
+
+  // Si ya tenemos datos en allData, usarlos; igual hacemos fetch para actualizar
+  cargar();
+}
+
+function renderReporte(allRawData, mesIdx, mesNombre){
+  const dataMes=allRawData.filter(r=>{const f=new Date(r[C.fecha]);return !isNaN(f)&&f.getMonth()===mesIdx&&f.getFullYear()===2026;});
+  const dataP=dataMes.filter(r=>r[C.polinizador]&&r[C.polinizador]!=='Ninguno'&&String(r[C.polinizador]).trim()!=='');
+  const totalEval=dataP.length;
+  const polinUnicos=[...new Set(dataP.map(r=>r[C.polinizador]))];
+  const fincasActivas=[...new Set(dataP.map(r=>r[C.finca]))];
+  const notaGlobal=totalEval>0?(dataP.reduce((s,r)=>s+Number(r[C.nota]),0)/totalEval).toFixed(1):'—';
+  const notaCol=parseFloat(notaGlobal)>=80?'var(--accent)':parseFloat(notaGlobal)>=60?'var(--amber)':'var(--red)';
+
+  document.getElementById('rpt-status-txt').textContent=`${totalEval} evaluaciones · ${mesNombre} 2026`;
+
+  let html=`<div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:20px">
+    <div style="font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Resumen ${mesNombre} 2026</div>
+    <div class="rpt-global">
+      <div class="kpi-card"><div class="kpi-lbl">Evaluaciones</div><div class="kpi-val">${totalEval}</div></div>
+      <div class="kpi-card"><div class="kpi-lbl">Polinizadores</div><div class="kpi-val">${polinUnicos.length}</div></div>
+      <div class="kpi-card"><div class="kpi-lbl">Fincas</div><div class="kpi-val">${fincasActivas.length}</div></div>
+      <div class="kpi-card"><div class="kpi-lbl">Nota prom.</div><div class="kpi-val" style="color:${notaCol}">${notaGlobal}</div></div>
+    </div>
+  </div>`;
+
+  if(totalEval===0){
+    html+=`<div class="rpt-empty">No hay evaluaciones de polinizadores en ${mesNombre} 2026.<br>Registre rondas de campo con polinizadores y sincronice.</div>`;
+    document.getElementById('rpt-empty').style.display='none';
+    document.getElementById('rpt-content').innerHTML=html;
+    document.getElementById('rpt-content').style.display='block';
+    return;
+  }
+
+  const avg=arr=>arr.length?arr.reduce((a,b)=>a+b,0)/arr.length:0;
+  const cN=n=>n>=80?'var(--accent)':n>=60?'var(--amber)':'var(--red)';
+  const cH=n=>n>=80?'#b8f04a':n>=60?'#f0a830':'#f05050';
+
+  FINCAS.forEach(finca=>{
+    const dataFinca=dataP.filter(r=>r[C.finca]===finca);
+    if(!dataFinca.length) return;
+
+    const byP={};
+    dataFinca.forEach(r=>{
+      const n=r[C.polinizador];
+      if(!byP[n]) byP[n]={notas:[],ib:[],ip:[],is:[],tec:[],cob:[],mar:[],eq:[],ana:[],ap:[],semanas:{}};
+      byP[n].notas.push(Number(r[C.nota]));
+      byP[n].ib.push(Number(r[C.inf_base])||0);
+      byP[n].ip.push(Number(r[C.inf_parcial])||0);
+      byP[n].is.push(Number(r[C.inf_sin])||0);
+      byP[n].tec.push(Number(r[C.cal_tec])||0);
+      byP[n].cob.push(Number(r[C.cal_cob])||0);
+      byP[n].mar.push(Number(r[C.cal_mar])||0);
+      byP[n].eq.push(Number(r[C.cal_eq])||0);
+      byP[n].ana.push(r[C.ana]||'');
+      byP[n].ap.push(r[C.apertura]||'');
+      const sem=r[C.semana];
+      if(sem) byP[n].semanas[sem]=(byP[n].semanas[sem]||[]).concat(Number(r[C.nota]));
+    });
+
+    const ranking=Object.entries(byP).map(([n,d])=>{
+      const prom=avg(d.notas);
+      const tB=d.ib.reduce((a,b)=>a+b,0),tAll2=tB+d.ip.reduce((a,b)=>a+b,0)+d.is.reduce((a,b)=>a+b,0);
+      const pctInf=tAll2>0?Math.round(tB/tAll2*100):0;
+      const ptsInf=Math.round(pctInf/100*35);
+      const ptsTec=Math.round(avg(d.tec)),ptsCob=Math.round(avg(d.cob)),ptsMar=Math.round(avg(d.mar)),ptsEq=Math.round(avg(d.eq));
+      const anaOpt=d.ana.filter(a=>a==='Óptima').length/(d.ana.filter(a=>a!=='').length||1);
+      const ptsANA=Math.round(anaOpt*10);
+      const apSi=d.ap.filter(a=>a==='Sí').length/(d.ap.filter(a=>a!=='').length||1);
+      const ptsAp=Math.round(apSi*5);
+      const crits=[
+        {n:'Inf. correctas',pts:ptsInf,max:35},
+        {n:'ANA en inflorescencia',pts:ptsANA,max:10},
+        {n:'Apertura de inflorescencia',pts:ptsAp,max:5},
+        {n:'Técnica de aplicación',pts:ptsTec,max:10},
+        {n:'Cobertura del lote',pts:ptsCob,max:10},
+        {n:'Marcado de hoja',pts:ptsMar,max:5},
+        {n:'Cuidado de equipos',pts:ptsEq,max:5},
+      ];
+      const peor=[...crits].sort((a,b)=>(a.pts/a.max)-(b.pts/b.max))[0];
+      const semKeys=Object.keys(d.semanas).sort((a,b)=>a-b);
+      const ultima=d.notas[d.notas.length-1];
+      const tend=d.notas.length<2?'→':ultima>prom*1.05?'↑':ultima<prom*0.95?'↓':'→';
+      return {nombre:n,prom,eval:d.notas.length,pctInf,ptsInf,ptsANA,ptsAp,ptsTec,ptsCob,ptsMar,ptsEq,crits,peor,semanas:d.semanas,semKeys,tend};
+    }).sort((a,b)=>b.prom-a.prom);
+
+    html+=`<div class="rpt-finca-block">
+      <div class="rpt-finca-title">
+        <div class="rpt-finca-name">${finca}</div>
+        <div class="rpt-finca-count">${ranking.length} polinizador${ranking.length>1?'es':''}</div>
+      </div>
+      <table class="rpt-ranking">
+        <thead><tr>
+          <th>#</th><th>Polinizador</th><th style="text-align:center">Nota</th><th style="text-align:center">Inf.%</th><th style="text-align:center">Eval.</th><th style="text-align:center">Tendencia</th>
+        </tr></thead>
+        <tbody>
+          ${ranking.map((p,i)=>{
+            const col=cN(p.prom);const pc=['p1','p2','p3'][i]||'';
+            const trendCol=p.tend==='↑'?'var(--accent)':p.tend==='↓'?'var(--red)':'var(--amber)';
+            return `<tr>
+              <td><div class="rpt-pos ${pc}">#${i+1}</div></td>
+              <td><div style="font-weight:600;font-size:13px">${p.nombre}</div><div style="font-family:var(--mono);font-size:10px;color:var(--muted)">${p.eval} evaluaci${p.eval>1?'ones':'ón'}</div></td>
+              <td style="text-align:center"><div class="rpt-nota-num" style="color:${col}">${p.prom.toFixed(1)}</div><div style="font-family:var(--mono);font-size:9px;color:var(--muted)">/100</div></td>
+              <td style="text-align:center;font-family:var(--mono);font-size:12px;color:${cN(p.pctInf)}">${p.pctInf}%</td>
+              <td style="text-align:center;font-family:var(--mono);font-size:12px;color:var(--muted2)">${p.eval}</td>
+              <td style="text-align:center;font-size:18px;color:${trendCol}">${p.tend}</td>
+            </tr>`;
+          }).join('')}
+        </tbody>
+      </table>
+      ${ranking.map(p=>{
+        const col=cN(p.prom);const critData=[
+          {lbl:'Inf. correctas',pts:p.ptsInf,max:35},
+          {lbl:'Técnica',pts:p.ptsTec,max:10},
+          {lbl:'Cobertura lote',pts:p.ptsCob,max:10},
+          {lbl:'Marcado',pts:p.ptsMar,max:5},
+          {lbl:'ANA',pts:p.ptsANA,max:10},
+          {lbl:'Equipos JACO',pts:p.ptsEq,max:5},
+        ];
+        const semKeys4=p.semKeys.slice(-4);
+        const mejora=p.prom>=80?'Excelente desempeño. Mantener técnica y cobertura por encima de 80 puntos.':
+          `Enfocarse en <strong style="color:var(--amber)">${p.peor.n}</strong> — actualmente ${p.peor.pts}/${p.peor.max} pts. ${
+            p.peor.n.includes('Inf')?'Cubrir todas las flores receptivas desde la base.':
+            p.peor.n.includes('Cobertura')?'Visitar todas las palmas del lote sin omitir filas.':
+            p.peor.n.includes('Marcado')?'Marcar correctamente cada hoja polinizada.':
+            p.peor.n.includes('ANA')?'Verificar dosis correcta de ANA — ni deficiente ni en exceso.':
+            p.peor.n.includes('Apertura')?'Confirmar apertura completa antes de aplicar.':
+            'Mantener aspersor, JACO y recipientes en buen estado.'
+          }`;
+        return `<div class="rpt-ficha">
+          <div class="rpt-ficha-head">
+            <div>
+              <div class="rpt-ficha-nombre">${p.nombre}</div>
+              <div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:2px">${finca} · ${p.eval} eval. · mes ${MESES_NAMES[mesIdx]}</div>
+            </div>
+            <div>
+              <div class="rpt-ficha-nota" style="color:${col}">${p.prom.toFixed(1)}</div>
+              <div style="font-family:var(--mono);font-size:9px;color:var(--muted);text-align:right">/100 pts</div>
+            </div>
+          </div>
+          <div class="rpt-ficha-body">
+            <div class="rpt-criterios">
+              ${critData.map(c=>{const pct=Math.round(c.pts/c.max*100);const cc=cN(c.pts/c.max*100);return `<div class="rpt-crit"><div class="rpt-crit-lbl">${c.lbl}</div><div class="rpt-crit-val" style="color:${cc}">${c.pts}/${c.max} pts</div><div class="rpt-crit-bar"><div class="rpt-crit-fill" style="width:${pct}%;background:${cc}"></div></div></div>`;}).join('')}
+            </div>
+            ${semKeys4.length>0?`<div class="rpt-tend">
+              <div class="rpt-tend-lbl">Evolución semanal</div>
+              <div class="rpt-tend-weeks">
+                ${semKeys4.map(sem=>{const nota=avg(p.semanas[sem]);const cl=nota>=80?'g':nota>=60?'a':'r';return `<div class="rpt-tend-week"><div class="rpt-tend-sem">Sem ${sem}</div><div class="rpt-tend-val ${cl}">${nota.toFixed(0)}</div></div>`;}).join('')}
+              </div>
+            </div>`:''}
+            <div class="rpt-mejora">
+              <div class="rpt-mejora-lbl">⚡ Punto de mejora</div>
+              <div class="rpt-mejora-txt">${mejora}</div>
+            </div>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>`;
+  });
+
+  // Guardar data para PDF
+  rptDataCache={allRawData,mesIdx,mesNombre,dataP};
+
+  document.getElementById('rpt-empty').style.display='none';
+  document.getElementById('rpt-content').innerHTML=html;
+  document.getElementById('rpt-content').style.display='block';
+  document.getElementById('btn-pdf').style.display='inline-block';
+}
+
+// ════════════════════════════════════════
+//  GENERAR PDF con jsPDF
+// ════════════════════════════════════════
+function descargarPDF(){
+  if(!rptDataCache){alert('Primero genere el reporte');return;}
+  const {allRawData,mesIdx,mesNombre,dataP}=rptDataCache;
+  const {jsPDF}=window.jspdf;
+  const doc=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
+  const W=210,mg=15,cw=W-mg*2;
+  let y=mg;
+  const avg=arr=>arr.length?arr.reduce((a,b)=>a+b,0)/arr.length:0;
+
+  // Helpers
+  const hex=n=>n>=80?[184,240,74]:n>=60?[240,168,48]:[240,80,80];
+  const nl=(h=5)=>{y+=h;if(y>275){doc.addPage();y=mg;}};
+  const txt=(t,x,yy,s=10,col=[240,237,232],bold=false)=>{doc.setFontSize(s);doc.setTextColor(...col);doc.setFont('helvetica',bold?'bold':'normal');doc.text(t,x,yy);};
+  const rect=(x,yy,w,h,fill=[20,20,20],stroke=null)=>{doc.setFillColor(...fill);if(stroke)doc.setDrawColor(...stroke);doc.rect(x,yy,w,h,stroke?'FD':'F');};
+  const bar=(x,yy,w,h,pct,col)=>{rect(x,yy,w,h,[40,40,40]);rect(x,yy,w*pct/100,h,col);};
+
+  // PORTADA
+  rect(0,0,W,40,[10,10,10]);
+  txt('HACIENDA PANTANAL',mg,12,9,[184,240,74],true);
+  txt('Reporte de Evaluación de Polinizadores',mg,20,16,[240,237,232],true);
+  txt(`${mesNombre} 2026`,mg,28,11,[160,160,160]);
+  txt(`Generado: ${new Date().toLocaleDateString('es-EC')}`,W-mg,28,9,[120,120,120],'right');
+  doc.setFont('helvetica','normal');
+  doc.setTextColor(120,120,120);
+  doc.setFontSize(9);
+  doc.text(`Generado: ${new Date().toLocaleDateString('es-EC')}`,W-mg,28,{align:'right'});
+  y=50;
+
+  // STATS GLOBALES
+  const totalEval=dataP.length;
+  const polinUnicos=[...new Set(dataP.map(r=>r[C.polinizador]))].length;
+  const notaGlobal=totalEval>0?(dataP.reduce((s,r)=>s+Number(r[C.nota]),0)/totalEval).toFixed(1):'—';
+  const fincasAct=[...new Set(dataP.map(r=>r[C.finca]))].length;
+
+  rect(mg,y,cw,20,[20,20,20]);
+  const kpis=[['Evaluaciones',totalEval],['Polinizadores',polinUnicos],['Fincas',fincasAct],['Nota promedio',notaGlobal]];
+  kpis.forEach((k,i)=>{const x=mg+i*(cw/4)+4;txt(String(k[0]),x,y+8,7,[120,120,120]);txt(String(k[1]),x,y+16,12,[184,240,74],true);});
+  y+=25;
+
+  if(totalEval===0){
+    txt(`Sin evaluaciones en ${mesNombre} 2026`,mg,y,11,[180,100,100]);
+    doc.save(`Pantanal_Polinizadores_${mesNombre}_2026.pdf`);
+    return;
+  }
+
+  FINCAS.forEach(finca=>{
+    const dataFinca=dataP.filter(r=>r[C.finca]===finca);
+    if(!dataFinca.length) return;
+
+    // Encabezado finca
+    if(y>240){doc.addPage();y=mg;}
+    rect(mg,y,cw,8,[30,30,30]);
+    rect(mg,y,3,8,[184,240,74]);
+    txt(finca.toUpperCase(),mg+6,y+5.5,9,[240,237,232],true);
+    txt(`${dataFinca.length} evaluaciones`,W-mg,y+5.5,8,[150,150,150]);
+    doc.setFont('helvetica','normal');doc.setTextColor(150,150,150);doc.setFontSize(8);
+    doc.text(`${dataFinca.length} evaluaciones`,W-mg,y+5.5,{align:'right'});
+    y+=12;
+
+    // Agrupar por polinizador
+    const byP={};
+    dataFinca.forEach(r=>{const n=r[C.polinizador];if(!byP[n])byP[n]={notas:[],ib:[],ip:[],is:[],tec:[],cob:[],mar:[],eq:[],ana:[],ap:[],semanas:{}};byP[n].notas.push(Number(r[C.nota]));byP[n].ib.push(Number(r[C.inf_base])||0);byP[n].ip.push(Number(r[C.inf_parcial])||0);byP[n].is.push(Number(r[C.inf_sin])||0);byP[n].tec.push(Number(r[C.cal_tec])||0);byP[n].cob.push(Number(r[C.cal_cob])||0);byP[n].mar.push(Number(r[C.cal_mar])||0);byP[n].eq.push(Number(r[C.cal_eq])||0);byP[n].ana.push(r[C.ana]||'');byP[n].ap.push(r[C.apertura]||'');const sem=r[C.semana];if(sem)byP[n].semanas[sem]=(byP[n].semanas[sem]||[]).concat(Number(r[C.nota]));});
+    const ranking=Object.entries(byP).map(([n,d])=>{const prom=avg(d.notas);const tB=d.ib.reduce((a,b)=>a+b,0),tAll2=tB+d.ip.reduce((a,b)=>a+b,0)+d.is.reduce((a,b)=>a+b,0);const pctInf=tAll2>0?Math.round(tB/tAll2*100):0;const ptsInf=Math.round(pctInf/100*35);const ptsTec=Math.round(avg(d.tec)),ptsCob=Math.round(avg(d.cob)),ptsMar=Math.round(avg(d.mar)),ptsEq=Math.round(avg(d.eq));const anaOpt=d.ana.filter(a=>a==='Óptima').length/(d.ana.filter(a=>a!=='').length||1);const ptsANA=Math.round(anaOpt*10);const apSi=d.ap.filter(a=>a==='Sí').length/(d.ap.filter(a=>a!=='').length||1);const ptsAp=Math.round(apSi*5);const crits=[{n:'Inf. correctas',pts:ptsInf,max:35},{n:'ANA',pts:ptsANA,max:10},{n:'Apertura',pts:ptsAp,max:5},{n:'Tecnica',pts:ptsTec,max:10},{n:'Cobertura',pts:ptsCob,max:10},{n:'Marcado',pts:ptsMar,max:5},{n:'Equipos',pts:ptsEq,max:5}];const peor=[...crits].sort((a,b)=>(a.pts/a.max)-(b.pts/b.max))[0];const semKeys=Object.keys(d.semanas).sort((a,b)=>a-b);return {nombre:n,prom,eval:d.notas.length,pctInf,ptsInf,ptsANA,ptsAp,ptsTec,ptsCob,ptsMar,ptsEq,crits,peor,semanas:d.semanas,semKeys};}).sort((a,b)=>b.prom-a.prom);
+
+    // RANKING TABLE
+    rect(mg,y,cw,6,[25,25,25]);
+    txt('#',mg+2,y+4.5,7,[120,120,120]);txt('Polinizador',mg+12,y+4.5,7,[120,120,120]);txt('Nota',mg+100,y+4.5,7,[120,120,120]);txt('Inf.%',mg+125,y+4.5,7,[120,120,120]);txt('Eval.',mg+145,y+4.5,7,[120,120,120]);txt('Tend.',mg+162,y+4.5,7,[120,120,120]);
+    y+=7;
+    ranking.forEach((p,i)=>{
+      if(y>270){doc.addPage();y=mg;}
+      rect(mg,y,cw,7,i%2===0?[18,18,18]:[22,22,22]);
+      const nc=hex(p.prom);
+      txt(`#${i+1}`,mg+2,y+5,8,[150,150,150]);
+      txt(p.nombre,mg+12,y+5,9,[240,237,232],true);
+      doc.setFillColor(...nc);doc.roundedRect(mg+96,y+1,22,5,1,1,'F');
+      doc.setFontSize(8);doc.setTextColor(10,10,10);doc.setFont('helvetica','bold');doc.text(`${p.prom.toFixed(1)}/100`,mg+107,y+4.8,{align:'center'});
+      txt(`${p.pctInf}%`,mg+127,y+5,8,...[hex(p.pctInf)]);
+      doc.setTextColor(...hex(p.pctInf));doc.setFontSize(8);doc.text(`${p.pctInf}%`,mg+127,y+5);
+      txt(`${p.eval}`,mg+147,y+5,8,[150,150,150]);
+      const tend=p.semKeys.length>=2?(avg(p.semanas[p.semKeys[p.semKeys.length-1]])>avg(p.semanas[p.semKeys[p.semKeys.length-2]])?'↑':'↓'):'→';
+      const tCol=tend==='↑'?[184,240,74]:tend==='↓'?[240,80,80]:[240,168,48];
+      txt(tend,mg+164,y+5,10,tCol,true);
+      y+=8;
+    });
+    y+=4;
+
+    // FICHAS INDIVIDUALES
+    ranking.forEach(p=>{
+      if(y>230){doc.addPage();y=mg;}
+      const notaC=hex(p.prom);
+      // Header ficha
+      rect(mg,y,cw,10,[28,28,28]);
+      rect(mg,y,2,10,notaC);
+      txt(p.nombre,mg+5,y+6.5,10,[240,237,232],true);
+      // Nota grande
+      doc.setFillColor(...notaC);doc.roundedRect(W-mg-28,y+1,26,8,2,2,'F');
+      doc.setFontSize(10);doc.setTextColor(10,10,10);doc.setFont('helvetica','bold');
+      doc.text(`${p.prom.toFixed(1)}/100`,W-mg-15,y+7,{align:'center'});
+      y+=12;
+
+      // BARRAS DE CRITERIOS
+      const critData=[{lbl:'Inflorescencias correctas',pts:p.ptsInf,max:35},{lbl:'Técnica de aplicación',pts:p.ptsTec,max:10},{lbl:'Cobertura del lote',pts:p.ptsCob,max:10},{lbl:'Marcado de hoja',pts:p.ptsMar,max:5},{lbl:'ANA en inflorescencia',pts:p.ptsANA,max:10},{lbl:'Cuidado de equipos',pts:p.ptsEq,max:5}];
+      const colW=cw/2-4;
+      critData.forEach((c,i)=>{
+        if(y>270){doc.addPage();y=mg;}
+        const cx=i%2===0?mg:mg+colW+8;
+        if(i%2===0&&i>0)y+=9;
+        const cc=hex(c.pts/c.max*100);
+        txt(c.lbl,cx,y+3,7,[140,140,140]);
+        txt(`${c.pts}/${c.max}`,cx+colW,y+3,7,cc);
+        doc.setTextColor(...cc);doc.setFontSize(7);doc.text(`${c.pts}/${c.max}`,cx+colW,y+3,{align:'right'});
+        bar(cx,y+4,colW,2,Math.round(c.pts/c.max*100),cc);
+        if(i%2===1) y+=9;
+      });
+      if(critData.length%2!==0) y+=9;
+      y+=2;
+
+      // TENDENCIA SEMANAL
+      if(p.semKeys.length>0){
+        if(y>265){doc.addPage();y=mg;}
+        txt('Evolución semanal',mg,y+3,7,[120,120,120]);
+        y+=5;
+        const semW=15,semH=12;
+        p.semKeys.slice(-6).forEach((sem,si)=>{
+          const nota=avg(p.semanas[sem]);const sc=hex(nota);
+          const sx=mg+si*(semW+3);
+          rect(sx,y,semW,semH,[25,25,25]);
+          doc.setFontSize(6);doc.setTextColor(120,120,120);doc.setFont('helvetica','normal');doc.text(`Sem ${sem}`,sx+semW/2,y+4,{align:'center'});
+          doc.setFontSize(8);doc.setTextColor(...sc);doc.setFont('helvetica','bold');doc.text(`${nota.toFixed(0)}`,sx+semW/2,y+9.5,{align:'center'});
+        });
+        y+=16;
+      }
+
+      // PUNTO DE MEJORA
+      if(y>265){doc.addPage();y=mg;}
+      rect(mg,y,cw,0.5,[240,168,48]);y+=2;
+      rect(mg,y,cw,10,[35,28,10]);
+      txt('⚡ Punto de mejora:',mg+2,y+4.5,7,[240,168,48],true);
+      const mejTxt=p.prom>=80?`Excelente. Mantener técnica y cobertura.`:`Mejorar ${p.peor.n} (${p.peor.pts}/${p.peor.max} pts)`;
+      txt(mejTxt,mg+36,y+4.5,7,[200,180,140]);
+      y+=14;
+    });
+    y+=4;
+  });
+
+  // PIE
+  doc.setFontSize(7);doc.setTextColor(80,80,80);doc.setFont('helvetica','normal');
+  const totalPages=doc.getNumberOfPages();
+  for(let i=1;i<=totalPages;i++){doc.setPage(i);doc.text(`Hacienda Pantanal · Reporte ${mesNombre} 2026 · Página ${i} de ${totalPages}`,W/2,290,{align:'center'});}
+
+  doc.save(`Pantanal_Polinizadores_${mesNombre}_2026.pdf`);
 }
 
 // ════════════════════════════════════════
@@ -790,442 +1040,70 @@ return `<div class="agro-row"><div class="finca-name">${f}</div><div class="agro
 // ════════════════════════════════════════
 document.getElementById('f-finca').addEventListener('change',function(){
   const f=this.value;
-  const s=document.getElementById('f-lote'); s.innerHTML='<option value="">Sin novedad específica</option>';
-  const p=document.getElementById('p-lote'); p.innerHTML='<option value="">— seleccionar lote —</option>';
-  (LOTES[f]||[]).forEach(l=>{ const o=document.createElement('option'); o.value=l; o.textContent=l; s.appendChild(o.cloneNode(true)); p.appendChild(o); });
+  const s=document.getElementById('f-lote');s.innerHTML='<option value="">Sin novedad específica</option>';
+  const p=document.getElementById('p-lote');p.innerHTML='<option value="">— seleccionar lote —</option>';
+  (LOTES[f]||[]).forEach(l=>{const o=document.createElement('option');o.value=l;o.textContent=l;s.appendChild(o.cloneNode(true));p.appendChild(o);});
 });
-
-function updateProgress(paso){
-  for(let i=0;i<5;i++){ const d=document.getElementById('sd-'+i); d.className='step-dot'+(i<paso?' done':i===paso?' active':''); }
-  document.getElementById('progress-label').textContent=`Paso ${paso+1} de 5 — ${PASOS[paso]}`;
-}
-
+function updateProgress(paso){for(let i=0;i<5;i++){const d=document.getElementById('sd-'+i);d.className='step-dot'+(i<paso?' done':i===paso?' active':'');}document.getElementById('progress-label').textContent=`Paso ${paso+1} de 5 — ${PASOS[paso]}`;}
 function nextPaso(actual){
   document.getElementById('msg-error').style.display='none';
-  if(actual===0){
-    if(!document.getElementById('f-fecha').value){showError('Ingresa la fecha');return;}
-    if(!document.getElementById('f-finca').value){showError('Selecciona una finca');return;}
-    if(!document.getElementById('f-by').value){showError('Selecciona quién registra');return;}
-  }
-    if(actual===3){     if(!selPlagas.length){showError('Indica la presencia de plagas (incluyendo "Sin presencia")');return;}     if(!malezaCorona&&!malezaChapia){showError('Selecciona el % de cobertura de maleza (Corona y/o Chapia)');return;}     if(!document.getElementById('f-poda').value){showError('Selecciona el estado de poda');return;}     const hayPlaga=selPlagas.length&&!selPlagas.includes('Sin presencia');     if(hayPlaga&&!document.getElementById('f-plagas-pct').value){showError('Indica el % de palmas afectadas por plagas');return;}     generarResumen();   }
+  if(actual===0){if(!document.getElementById('f-fecha').value){showError('Ingresa la fecha');return;}if(!document.getElementById('f-finca').value){showError('Selecciona una finca');return;}if(!document.getElementById('f-by').value){showError('Selecciona quién registra');return;}}
+  if(actual===3){if(!selPlagas.length){showError('Indica la presencia de plagas (incluyendo "Sin presencia")');return;}if(!malezaCorona&&!malezaChapia){showError('Selecciona el % de cobertura de maleza (Corona y/o Chapia)');return;}if(!document.getElementById('f-poda').value){showError('Selecciona el estado de poda');return;}const hayPlaga=selPlagas.length&&!selPlagas.includes('Sin presencia');if(hayPlaga&&!document.getElementById('f-plagas-pct').value){showError('Indica el % de palmas afectadas por plagas');return;}generarResumen();}
   document.getElementById('paso-'+actual).style.display='none';
   document.getElementById('paso-'+(actual+1)).style.display='block';
   updateProgress(actual+1);
   window.scrollTo({top:0,behavior:'smooth'});
 }
-
-function prevPaso(actual){
-  document.getElementById('paso-'+actual).style.display='none';
-  document.getElementById('paso-'+(actual-1)).style.display='block';
-  updateProgress(actual-1);
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-function agregarPeso(){
-  const inp=document.getElementById('peso-input');
-  const val=parseFloat(inp.value.replace(',','.'));
-  if(!val||val<=0) return;
-  pesos.push(val); inp.value=''; renderPesos();
-}
+function prevPaso(actual){document.getElementById('paso-'+actual).style.display='none';document.getElementById('paso-'+(actual-1)).style.display='block';updateProgress(actual-1);window.scrollTo({top:0,behavior:'smooth'});}
+function agregarPeso(){const inp=document.getElementById('peso-input');const val=parseFloat(inp.value.replace(',','.'));if(!val||val<=0)return;pesos.push(val);inp.value='';renderPesos();}
 document.getElementById('peso-input').addEventListener('keydown',e=>{if(e.key==='Enter')agregarPeso();});
-function renderPesos(){
-  document.getElementById('pesos-list').innerHTML=pesos.map((p,i)=>`<div class="peso-tag">${p} kg<button onclick="removePeso(${i})">×</button></div>`).join('');
-  const avg=document.getElementById('peso-avg');
-  if(pesos.length>0){ const pr=(pesos.reduce((a,b)=>a+b,0)/pesos.length).toFixed(2); avg.innerHTML=`${pesos.length} racimo${pesos.length>1?'s':''} · Promedio: <span>${pr} kg</span>`; }
-  else avg.textContent='Sin pesos registrados';
-}
+function renderPesos(){document.getElementById('pesos-list').innerHTML=pesos.map((p,i)=>`<div class="peso-tag">${p} kg<button onclick="removePeso(${i})">×</button></div>`).join('');const avg=document.getElementById('peso-avg');if(pesos.length>0){const pr=(pesos.reduce((a,b)=>a+b,0)/pesos.length).toFixed(2);avg.innerHTML=`${pesos.length} racimo${pesos.length>1?'s':''} · Promedio: <span>${pr} kg</span>`;}else avg.textContent='Sin pesos registrados';}
 function removePeso(i){pesos.splice(i,1);renderPesos();}
-
-function cambiarCounter(key,delta){ counters[key]=Math.max(0,(counters[key]||0)+delta); const el=document.getElementById('cv-'+key); if(el) el.textContent=counters[key]; }
-
-function calcPolinAuto(){
-  const total=counters.inf_base+counters.inf_parcial+counters.inf_sin;
-  const res=document.getElementById('polin-resumen');
-  if(total>0){ res.style.display='block'; document.getElementById('pct-correcta').textContent=Math.round(counters.inf_base/total*100)+'%'; document.getElementById('pct-parcial').textContent=Math.round(counters.inf_parcial/total*100)+'%'; document.getElementById('pct-sin').textContent=Math.round(counters.inf_sin/total*100)+'%'; }
-  else res.style.display='none';
-  calcNotaTotal();
-}
-
-function selANA(el,val){ document.querySelectorAll('[data-ana]').forEach(b=>b.className='escala-btn'); el.classList.add(val==='Óptima'?'sel-2':val==='Deficiente'?'sel-4':'sel-3'); document.getElementById('f-ana').value=val; calcNotaTotal(); }
-function selApertura(el,val){ document.querySelectorAll('[data-ap]').forEach(b=>b.className='escala-btn'); el.classList.add(val==='Sí'?'sel-2':'sel-4'); document.getElementById('f-apertura').value=val; calcNotaTotal(); }
-function selRendHa(el,val){ document.querySelectorAll('[data-rha]').forEach(b=>{b.className='escala-btn';b.style.flex='1';b.style.minWidth='90px';}); el.classList.add(val.includes('Excelente')?'sel-2':val.includes('Muy bueno')?'sel-2':val.includes('Bueno')?'sel-3':'sel-4'); document.getElementById('f-rend-ha').value=val; calcNotaTotal(); }
-function selDefPct(el,val){ document.querySelectorAll('[data-defpct]').forEach(b=>b.className='escala-btn'); el.classList.add(val==='<20%'?'sel-2':val==='20-50%'?'sel-3':'sel-4'); document.getElementById('f-deficiencia-pct').value=val; }
+function cambiarCounter(key,delta){counters[key]=Math.max(0,(counters[key]||0)+delta);const el=document.getElementById('cv-'+key);if(el)el.textContent=counters[key];}
+function calcPolinAuto(){const total=counters.inf_base+counters.inf_parcial+counters.inf_sin;const res=document.getElementById('polin-resumen');if(total>0){res.style.display='block';document.getElementById('pct-correcta').textContent=Math.round(counters.inf_base/total*100)+'%';document.getElementById('pct-parcial').textContent=Math.round(counters.inf_parcial/total*100)+'%';document.getElementById('pct-sin').textContent=Math.round(counters.inf_sin/total*100)+'%';}else res.style.display='none';calcNotaTotal();}
+function selANA(el,val){document.querySelectorAll('[data-ana]').forEach(b=>b.className='escala-btn');el.classList.add(val==='Óptima'?'sel-2':val==='Deficiente'?'sel-4':'sel-3');document.getElementById('f-ana').value=val;calcNotaTotal();}
+function selApertura(el,val){document.querySelectorAll('[data-ap]').forEach(b=>b.className='escala-btn');el.classList.add(val==='Sí'?'sel-2':'sel-4');document.getElementById('f-apertura').value=val;calcNotaTotal();}
+function selDefPct(el,val){document.querySelectorAll('[data-defpct]').forEach(b=>b.className='escala-btn');el.classList.add(val==='<20%'?'sel-2':val==='20-50%'?'sel-3':'sel-4');document.getElementById('f-deficiencia-pct').value=val;}
 let malezaCorona='',malezaChapia='';
-function selMalezaPct(el,tipo,val){
-  if(tipo==='corona'){
-    document.querySelectorAll('[data-mc]').forEach(b=>b.className='escala-btn');
-    el.classList.add(val==='0'?'sel-2':val==='25'?'sel-2':val==='50'?'sel-3':'sel-4');
-    malezaCorona=val;
-  } else {
-    document.querySelectorAll('[data-mch]').forEach(b=>b.className='escala-btn');
-    el.classList.add(val==='0'?'sel-2':val==='25'?'sel-2':val==='50'?'sel-3':'sel-4');
-    malezaChapia=val;
-  }
-  document.getElementById('f-maleza').value=malezaCorona||malezaChapia;
-  document.getElementById('f-maleza-tipo').value=(malezaCorona?'Corona '+malezaCorona+'%':'')+(malezaCorona&&malezaChapia?' · ':'')+(malezaChapia?'Chapia '+malezaChapia+'%':'');
-}
-function selPlagaPct(el,val){ document.querySelectorAll('[data-plagapct]').forEach(b=>b.className='escala-btn'); el.classList.add(val==='<20%'?'sel-2':val==='20-50%'?'sel-3':'sel-4'); document.getElementById('f-plagas-pct').value=val; }
-
-function selCal(criterio,val,btn){
-  const container=document.getElementById('cal-'+criterio);
-  container.querySelectorAll('.cal-btn').forEach((b,i)=>{ b.className='cal-btn'; if(i<val){ if(val<=3) b.classList.add('active-low'); else if(val<=6) b.classList.add('active-mid'); else b.classList.add('active-high'); } });
-  if(criterio==='tecnica') calTecnica=val;
-  if(criterio==='cobertura') calCobertura=val;
-  if(criterio==='marcado') calMarcado=val;
-  if(criterio==='equipos') calEquipos=val;
-  calcNotaTotal();
-}
-
-function calcNotaTotal(){
-  const total=counters.inf_base+counters.inf_parcial+counters.inf_sin;
-  let ptsInf=0; if(total>0) ptsInf=Math.round(counters.inf_base/total*35);
-  const totalCal=counters.cal_100+counters.cal_70+counters.cal_50+counters.cal_20;
-  const ptsCal=totalCal>0?Math.round((counters.cal_100+counters.cal_70)/totalCal*10):0;
-  const ana=document.getElementById('f-ana').value; const ptsANA=ana==='Óptima'?10:(ana==='Deficiente'||ana==='En exceso')?5:0;
-  const apertura=document.getElementById('f-apertura').value; const ptsAp=apertura==='Sí'?5:0;
-  const ptsTec=calTecnica+calCobertura+calMarcado+calEquipos;
-  const total100=Math.min(100,Math.max(0,ptsInf+ptsCal+ptsANA+ptsAp+ptsTec));
-  const pctLabel=total>0?Math.round(counters.inf_base/total*100)+'% correctas':'sin datos';
-  const el=document.getElementById('nota-auto'); el.style.display='block';
-  el.className='nota-auto'+(total100>=80?'':total100>=60?' warn':' bad');
-  document.getElementById('nota-total').textContent=total100;
-  document.getElementById('nota-semaforo').textContent=total100>=80?'🟢':total100>=60?'🟡':'🔴';
-  document.getElementById('nota-breakdown').innerHTML=`Inf: ${ptsInf}/35 (${pctLabel}) · Form: ${ptsCal}/10 · ANA: ${ptsANA}/10 · Aper: ${ptsAp}/5 · Tec: ${ptsTec}/40`;
-}
-
-function calcNotaFinal(){
-  const total=counters.inf_base+counters.inf_parcial+counters.inf_sin;
-  let ptsInf=0; if(total>0) ptsInf=Math.round(counters.inf_base/total*35);
-  const totalCal=counters.cal_100+counters.cal_70+counters.cal_50+counters.cal_20;
-  const ptsCal=totalCal>0?Math.round((counters.cal_100+counters.cal_70)/totalCal*10):0;
-  const ana=document.getElementById('f-ana').value; const ptsANA=ana==='Óptima'?10:(ana==='Deficiente'||ana==='En exceso')?5:0;
-  const apertura=document.getElementById('f-apertura').value; const ptsAp=apertura==='Sí'?5:0;
-  return Math.min(100,Math.max(0,ptsInf+ptsCal+ptsANA+ptsAp+calTecnica+calCobertura+calMarcado+calEquipos));
-}
-
-function toggleChip(el,tipo,otroId){
-  const val=el.dataset.val;
-  if(tipo==='def'){
-    if(selDeficiencias.includes(val)){selDeficiencias=selDeficiencias.filter(v=>v!==val);el.className='chip';}
-    else{selDeficiencias.push(val);el.className='chip sel-amber';}
-    if(otroId) document.getElementById(otroId).style.display=selDeficiencias.includes('Otro')?'block':'none';
-    document.getElementById('f-deficiencias').value=selDeficiencias.join(', ');
-  } else {
-    if(selPlagas.includes(val)){selPlagas=selPlagas.filter(v=>v!==val);el.className='chip';}
-    else{selPlagas.push(val);el.className='chip sel-red';}
-    if(otroId) document.getElementById(otroId).style.display=selPlagas.includes('Otro')?'block':'none';
-    document.getElementById('f-plagas').value=selPlagas.join(', ');
-  }
-}
-
-function selEscala(el,field,val){ document.querySelectorAll(`[data-field="${field}"]`).forEach((b,i)=>{b.className='escala-btn'; if(b===el) b.classList.add('sel-'+(i+1));}); document.getElementById('f-'+field).value=val; }
-
-function agregarPolinizador(){
-  const nombre=document.getElementById('p-polinizador').value;
-  if(!nombre){showError('Ingresa el nombre del polinizador');return;}
-  const nota=calcNotaFinal();
-  const total=counters.inf_base+counters.inf_parcial+counters.inf_sin;
-  const pctC=total>0?Math.round(counters.inf_base/total*100):0;
-  polinizadores.push({lote:document.getElementById('p-lote').value,nombre,inf_base:counters.inf_base,inf_parcial:counters.inf_parcial,inf_sin:counters.inf_sin,ana:document.getElementById('f-ana').value,apertura:document.getElementById('f-apertura').value,cal_tecnica:calTecnica,cal_cobertura:calCobertura,cal_marcado:calMarcado,cal_equipos:calEquipos,nota,pctC});
-  renderPolinLista();
-  document.getElementById('p-polinizador').value=''; document.getElementById('p-lote').value='';
-  counters.inf_base=0; counters.inf_parcial=0; counters.inf_sin=0;
-  ['cv-inf_base','cv-inf_parcial','cv-inf_sin'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=0;});
-  calTecnica=0; calCobertura=0; calMarcado=0; calEquipos=0;
-  document.querySelectorAll('.cal-btn').forEach(b=>b.className='cal-btn');
-  document.querySelectorAll('[data-ana],[data-ap]').forEach(b=>{b.className='escala-btn';});
-  document.getElementById('f-ana').value=''; document.getElementById('f-apertura').value='';
-  document.getElementById('polin-resumen').style.display='none'; document.getElementById('nota-auto').style.display='none';
-  document.getElementById('msg-error').style.display='none';
-  window.scrollTo({top:document.getElementById('paso-2').offsetTop-80,behavior:'smooth'});
-}
-
-function renderPolinLista(){
-  const lista=document.getElementById('polin-lista'),items=document.getElementById('polin-lista-items');
-  if(!polinizadores.length){lista.style.display='none';return;}
-  lista.style.display='block';
-  items.innerHTML=polinizadores.map((p,i)=>`<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:var(--surface);border:1px solid var(--border);border-radius:10px;margin-bottom:6px"><div><div style="font-size:13px;font-weight:600">${p.nombre}</div><div style="font-family:var(--mono);font-size:10px;color:var(--muted2);margin-top:2px">${p.lote||'Sin lote'} · ${p.pctC}% correctas</div></div><div style="display:flex;align-items:center;gap:10px"><div style="font-family:var(--mono);font-size:16px;font-weight:500;color:${p.nota>=80?'var(--accent)':p.nota>=60?'var(--amber)':'var(--red)'}">${p.nota}/100</div><button onclick="removePolinizador(${i})" style="background:none;border:none;color:var(--muted);font-size:16px;cursor:pointer">×</button></div></div>`).join('');
-}
+function selMalezaPct(el,tipo,val){if(tipo==='corona'){document.querySelectorAll('[data-mc]').forEach(b=>b.className='escala-btn');el.classList.add(val==='0'?'sel-2':val==='25'?'sel-2':val==='50'?'sel-3':'sel-4');malezaCorona=val;}else{document.querySelectorAll('[data-mch]').forEach(b=>b.className='escala-btn');el.classList.add(val==='0'?'sel-2':val==='25'?'sel-2':val==='50'?'sel-3':'sel-4');malezaChapia=val;}document.getElementById('f-maleza').value=malezaCorona||malezaChapia;document.getElementById('f-maleza-tipo').value=(malezaCorona?'Corona '+malezaCorona+'%':'')+(malezaCorona&&malezaChapia?' · ':'')+(malezaChapia?'Chapia '+malezaChapia+'%':'');}
+function selPlagaPct(el,val){document.querySelectorAll('[data-plagapct]').forEach(b=>b.className='escala-btn');el.classList.add(val==='<20%'?'sel-2':val==='20-50%'?'sel-3':'sel-4');document.getElementById('f-plagas-pct').value=val;}
+function selCal(criterio,val,btn){const container=document.getElementById('cal-'+criterio);container.querySelectorAll('.cal-btn').forEach((b,i)=>{b.className='cal-btn';if(i<val){if(val<=3)b.classList.add('active-low');else if(val<=6)b.classList.add('active-mid');else b.classList.add('active-high');}});if(criterio==='tecnica')calTecnica=val;if(criterio==='cobertura')calCobertura=val;if(criterio==='marcado')calMarcado=val;if(criterio==='equipos')calEquipos=val;calcNotaTotal();}
+function calcNotaTotal(){const total=counters.inf_base+counters.inf_parcial+counters.inf_sin;let ptsInf=0;if(total>0)ptsInf=Math.round(counters.inf_base/total*35);const totalCal=counters.cal_100+counters.cal_70+counters.cal_50+counters.cal_20;const ptsCal=totalCal>0?Math.round((counters.cal_100+counters.cal_70)/totalCal*10):0;const ana=document.getElementById('f-ana').value;const ptsANA=ana==='Óptima'?10:(ana==='Deficiente'||ana==='En exceso')?5:0;const apertura=document.getElementById('f-apertura').value;const ptsAp=apertura==='Sí'?5:0;const ptsTec=calTecnica+calCobertura+calMarcado+calEquipos;const total100=Math.min(100,Math.max(0,ptsInf+ptsCal+ptsANA+ptsAp+ptsTec));const pctLabel=total>0?Math.round(counters.inf_base/total*100)+'% correctas':'sin datos';const el=document.getElementById('nota-auto');el.style.display='block';el.className='nota-auto'+(total100>=80?'':total100>=60?' warn':' bad');document.getElementById('nota-total').textContent=total100;document.getElementById('nota-semaforo').textContent=total100>=80?'🟢':total100>=60?'🟡':'🔴';document.getElementById('nota-breakdown').innerHTML=`Inf: ${ptsInf}/35 (${pctLabel}) · Form: ${ptsCal}/10 · ANA: ${ptsANA}/10 · Aper: ${ptsAp}/5 · Tec: ${ptsTec}/40`;}
+function calcNotaFinal(){const total=counters.inf_base+counters.inf_parcial+counters.inf_sin;let ptsInf=0;if(total>0)ptsInf=Math.round(counters.inf_base/total*35);const totalCal=counters.cal_100+counters.cal_70+counters.cal_50+counters.cal_20;const ptsCal=totalCal>0?Math.round((counters.cal_100+counters.cal_70)/totalCal*10):0;const ana=document.getElementById('f-ana').value;const ptsANA=ana==='Óptima'?10:(ana==='Deficiente'||ana==='En exceso')?5:0;const apertura=document.getElementById('f-apertura').value;const ptsAp=apertura==='Sí'?5:0;return Math.min(100,Math.max(0,ptsInf+ptsCal+ptsANA+ptsAp+calTecnica+calCobertura+calMarcado+calEquipos));}
+function toggleChip(el,tipo,otroId){const val=el.dataset.val;if(tipo==='def'){if(selDeficiencias.includes(val)){selDeficiencias=selDeficiencias.filter(v=>v!==val);el.className='chip';}else{selDeficiencias.push(val);el.className='chip sel-amber';}if(otroId)document.getElementById(otroId).style.display=selDeficiencias.includes('Otro')?'block':'none';document.getElementById('f-deficiencias').value=selDeficiencias.join(', ');}else{if(selPlagas.includes(val)){selPlagas=selPlagas.filter(v=>v!==val);el.className='chip';}else{selPlagas.push(val);el.className='chip sel-red';}if(otroId)document.getElementById(otroId).style.display=selPlagas.includes('Otro')?'block':'none';document.getElementById('f-plagas').value=selPlagas.join(', ');}}
+function selEscala(el,field,val){document.querySelectorAll(`[data-field="${field}"]`).forEach((b,i)=>{b.className='escala-btn';if(b===el)b.classList.add('sel-'+(i+1));});document.getElementById('f-'+field).value=val;}
+function agregarPolinizador(){const nombre=document.getElementById('p-polinizador').value;if(!nombre){showError('Ingresa el nombre del polinizador');return;}const nota=calcNotaFinal();const total=counters.inf_base+counters.inf_parcial+counters.inf_sin;const pctC=total>0?Math.round(counters.inf_base/total*100):0;polinizadores.push({lote:document.getElementById('p-lote').value,nombre,inf_base:counters.inf_base,inf_parcial:counters.inf_parcial,inf_sin:counters.inf_sin,ana:document.getElementById('f-ana').value,apertura:document.getElementById('f-apertura').value,cal_tecnica:calTecnica,cal_cobertura:calCobertura,cal_marcado:calMarcado,cal_equipos:calEquipos,nota,pctC});renderPolinLista();document.getElementById('p-polinizador').value='';document.getElementById('p-lote').value='';counters.inf_base=0;counters.inf_parcial=0;counters.inf_sin=0;['cv-inf_base','cv-inf_parcial','cv-inf_sin'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=0;});calTecnica=0;calCobertura=0;calMarcado=0;calEquipos=0;document.querySelectorAll('.cal-btn').forEach(b=>b.className='cal-btn');document.querySelectorAll('[data-ana],[data-ap]').forEach(b=>{b.className='escala-btn';});document.getElementById('f-ana').value='';document.getElementById('f-apertura').value='';document.getElementById('polin-resumen').style.display='none';document.getElementById('nota-auto').style.display='none';document.getElementById('msg-error').style.display='none';window.scrollTo({top:document.getElementById('paso-2').offsetTop-80,behavior:'smooth'});}
+function renderPolinLista(){const lista=document.getElementById('polin-lista'),items=document.getElementById('polin-lista-items');if(!polinizadores.length){lista.style.display='none';return;}lista.style.display='block';items.innerHTML=polinizadores.map((p,i)=>`<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:var(--surface);border:1px solid var(--border);border-radius:10px;margin-bottom:6px"><div><div style="font-size:13px;font-weight:600">${p.nombre}</div><div style="font-family:var(--mono);font-size:10px;color:var(--muted2);margin-top:2px">${p.lote||'Sin lote'} · ${p.pctC}% correctas</div></div><div style="display:flex;align-items:center;gap:10px"><div style="font-family:var(--mono);font-size:16px;font-weight:500;color:${p.nota>=80?'var(--accent)':p.nota>=60?'var(--amber)':'var(--red)'}">${p.nota}/100</div><button onclick="removePolinizador(${i})" style="background:none;border:none;color:var(--muted);font-size:16px;cursor:pointer">×</button></div></div>`).join('');}
 function removePolinizador(i){polinizadores.splice(i,1);renderPolinLista();}
+function generarResumen(){const finca=document.getElementById('f-finca').value,fecha=document.getElementById('f-fecha').value,lote=document.getElementById('f-lote').value,by=document.getElementById('f-by').value;const promPeso=pesos.length>0?(pesos.reduce((a,b)=>a+b,0)/pesos.length).toFixed(2)+' kg':'—';const defOtro=document.getElementById('otro-def').value,plagaOtro=document.getElementById('otro-plaga').value;const defDisplay=[...selDeficiencias.filter(v=>v!=='Otro'),(defOtro||'')].filter(Boolean).join(', ')||'—';const plagaDisplay=[...selPlagas.filter(v=>v!=='Otro'),(plagaOtro||'')].filter(Boolean).join(', ')||'—';document.getElementById('resumen-contenido').innerHTML=`<div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:12px"><div style="font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px">Ronda de campo</div><div class="confirm-row"><span class="confirm-row-lbl">Finca</span><span class="confirm-row-val">${finca}</span></div>${lote?`<div class="confirm-row"><span class="confirm-row-lbl">Lote novedad</span><span class="confirm-row-val">${lote}</span></div>`:''}<div class="confirm-row"><span class="confirm-row-lbl">Fecha</span><span class="confirm-row-val">${fecha}</span></div><div class="confirm-row"><span class="confirm-row-lbl">Registrado por</span><span class="confirm-row-val">${by}</span></div><div class="confirm-row"><span class="confirm-row-lbl">Peso prom. racimo</span><span class="confirm-row-val">${promPeso}</span></div></div><div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:12px"><div style="font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px">Polinizadores (${polinizadores.length})</div>${polinizadores.map(p=>`<div class="confirm-row"><span class="confirm-row-lbl">${p.nombre}${p.lote?' · '+p.lote:''}</span><span class="confirm-row-val" style="color:${p.nota>=80?'var(--accent)':p.nota>=60?'var(--amber)':'var(--red)'}">${p.nota}/100</span></div>`).join('')}</div><div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px"><div style="font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px">Sanidad y gestión</div><div class="confirm-row"><span class="confirm-row-lbl">Defic. nutricional</span><span class="confirm-row-val">${document.getElementById('f-deficiencia-pct').value||'—'}</span></div><div class="confirm-row"><span class="confirm-row-lbl">Tipo deficiencia</span><span class="confirm-row-val">${defDisplay}</span></div><div class="confirm-row"><span class="confirm-row-lbl">Plagas</span><span class="confirm-row-val">${plagaDisplay}</span></div><div class="confirm-row"><span class="confirm-row-lbl">Maleza</span><span class="confirm-row-val">${document.getElementById('f-maleza').value||'—'}%</span></div><div class="confirm-row"><span class="confirm-row-lbl">Poda</span><span class="confirm-row-val">${document.getElementById('f-poda').value||'—'}</span></div></div>`;}
+async function enviar(){const btn=document.getElementById('btn-enviar');btn.disabled=true;btn.innerHTML='<span class="spinner"></span>'+(estaOnline?'Guardando...':'Guardando sin conexión...');const nombreActivo=document.getElementById('p-polinizador').value;if(nombreActivo){const notaA=calcNotaFinal(),totalA=counters.inf_base+counters.inf_parcial+counters.inf_sin;polinizadores.push({lote:document.getElementById('p-lote').value,nombre:nombreActivo,inf_base:counters.inf_base,inf_parcial:counters.inf_parcial,inf_sin:counters.inf_sin,ana:document.getElementById('f-ana').value,apertura:document.getElementById('f-apertura').value,cal_tecnica:calTecnica,cal_cobertura:calCobertura,cal_marcado:calMarcado,cal_equipos:calEquipos,nota:notaA,pctC:totalA>0?Math.round(counters.inf_base/totalA*100):0});}if(!polinizadores.length){showError('Agrega al menos un polinizador');btn.disabled=false;btn.innerHTML='Guardar en Sheets';return;}const defOtro=document.getElementById('otro-def').value,plagaOtro=document.getElementById('otro-plaga').value;const defFinal=[...selDeficiencias.filter(v=>v!=='Otro'),(defOtro||'')].filter(Boolean).join(', ');const plagaFinal=[...selPlagas.filter(v=>v!=='Otro'),(plagaOtro||'')].filter(Boolean).join(', ');const base={fecha:document.getElementById('f-fecha').value,finca:document.getElementById('f-finca').value,lote_novedad:document.getElementById('f-lote').value,by:document.getElementById('f-by').value,pesos_racimos:pesos.join(','),formados_100:counters.cal_100,formados_70:counters.cal_70,formados_50:counters.cal_50,formados_20:counters.cal_20,verdes:counters.verdes,pintones:counters.pintones,sobremaduros:counters.sobremaduros,frutos_sueltos:counters.frutos_sueltos,fruta_sin_cortar:counters.fruta_sin_cortar||0,deficiencia_nutricional:document.getElementById('f-deficiencia-pct').value,tipo_deficiencia:defFinal,plagas_enfermedades:plagaFinal,cobertura_maleza:document.getElementById('f-maleza').value,tipo_maleza:document.getElementById('f-maleza-tipo').value,estado_poda:document.getElementById('f-poda').value,obs:document.getElementById('f-obs').value};
+try{for(const pol of polinizadores){const payload={...base,lote_polin:pol.lote,polinizador:pol.nombre,inf_base:pol.inf_base,inf_parcial:pol.inf_parcial,inf_sin:pol.inf_sin,ana:pol.ana,apertura:pol.apertura,rend_ha:pol.rendHa,cal_tecnica:pol.cal_tecnica,cal_cobertura:pol.cal_cobertura,cal_marcado:pol.cal_marcado,cal_equipos:pol.cal_equipos,nota_final:pol.nota};if(!estaOnline){await guardarEnCola(payload);}else{try{const res=await fetch(SCRIPT_URL,{method:'POST',body:JSON.stringify(payload)});const json=await res.json();if(!json.ok)throw new Error(json.error);}catch(fe){await guardarEnCola(payload);}}}actualizarIndicador();const guardadoOffline=!estaOnline||await contarCola()>0;document.getElementById('confirm-title')?document.querySelector('.confirm-title').textContent=guardadoOffline?'Guardado sin conexión':'Registro guardado':null;document.getElementById('paso-4').style.display='none';document.getElementById('paso-5').style.display='block';document.getElementById('progress-label').textContent='✓ Registro completado';document.querySelectorAll('.step-dot').forEach(d=>d.className='step-dot done');document.getElementById('confirm-sub').textContent=`${base.finca} · ${base.fecha} · ${polinizadores.length} polinizador${polinizadores.length>1?'es':''}`;document.getElementById('confirm-details').innerHTML=polinizadores.map(p=>`<div class="confirm-row"><span class="confirm-row-lbl">${p.nombre}${p.lote?' · '+p.lote:''}</span><span class="confirm-row-val" style="color:${p.nota>=80?'var(--accent)':p.nota>=60?'var(--amber)':'var(--red)'}">${p.nota}/100 ${p.nota>=80?'🟢':p.nota>=60?'🟡':'🔴'}</span></div>`).join('');window.scrollTo({top:0,behavior:'smooth'});}catch(e){showError('// error: '+e.message);btn.disabled=false;btn.innerHTML='Guardar en Sheets';}}
+function showError(txt){const el=document.getElementById('msg-error');el.textContent=txt;el.style.display='block';el.scrollIntoView({behavior:'smooth',block:'center'});}
+function resetForm(){counters={verdes:0,pintones:0,sobremaduros:0,frutos_sueltos:0,fruta_sin_cortar:0,inf_base:0,inf_parcial:0,inf_sin:0,deficiencia:0,cal_100:0,cal_70:0,cal_50:0,cal_20:0};pesos=[];selDeficiencias=[];selPlagas=[];polinizadores=[];calTecnica=0;calCobertura=0;calMarcado=0;calEquipos=0;Object.keys(counters).forEach(k=>{const el=document.getElementById('cv-'+k);if(el)el.textContent=0;});renderPesos();document.querySelectorAll('.chip').forEach(c=>c.className='chip');document.querySelectorAll('.escala-btn').forEach(b=>b.className='escala-btn');malezaCorona='';malezaChapia='';document.querySelectorAll('.cal-btn').forEach(b=>b.className='cal-btn');['f-finca','f-lote','f-maleza','f-maleza-tipo','f-poda','f-deficiencias','f-plagas','f-obs','f-by','p-lote','p-polinizador','f-deficiencia-pct','f-plagas-pct','f-ana','f-apertura'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});const _hoy=new Date().toISOString().split('T')[0];document.getElementById('f-fecha').value=_hoy;document.getElementById('f-fecha').max=_hoy;document.getElementById('f-lote').innerHTML='<option value="">Sin novedad específica</option>';document.getElementById('p-lote').innerHTML='<option value="">— seleccionar lote —</option>';['polin-resumen','nota-auto','polin-lista','otro-def','otro-plaga'].forEach(id=>{const el=document.getElementById(id);if(el)el.style.display='none';});document.querySelectorAll('[data-defpct],[data-plagapct]').forEach(b=>b.className='escala-btn');document.getElementById('polin-lista-items').innerHTML='';for(let i=0;i<6;i++){const p=document.getElementById('paso-'+i);if(p)p.style.display=i===0?'block':'none';}updateProgress(0);window.scrollTo({top:0,behavior:'smooth'});}
+function nuevoRegistro(){resetForm();}
+function nuevoPolinizador(){counters.inf_base=0;counters.inf_parcial=0;counters.inf_sin=0;calTecnica=0;calCobertura=0;calMarcado=0;calEquipos=0;['cv-inf_base','cv-inf_parcial','cv-inf_sin'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=0;});document.getElementById('p-polinizador').value='';document.getElementById('p-lote').value='';document.querySelectorAll('.cal-btn').forEach(b=>b.className='cal-btn');document.querySelectorAll('[data-ana],[data-ap]').forEach(b=>{b.className='escala-btn';});document.getElementById('f-ana').value='';document.getElementById('f-apertura').value='';document.getElementById('polin-resumen').style.display='none';document.getElementById('nota-auto').style.display='none';for(let i=0;i<6;i++){const p=document.getElementById('paso-'+i);if(p)p.style.display=i===2?'block':'none';}const sh=document.querySelector('#paso-2 .sec-sub-form');if(sh)sh.textContent=document.getElementById('f-finca').value+' · '+document.getElementById('f-fecha').value;updateProgress(2);window.scrollTo({top:0,behavior:'smooth'});}
 
-function generarResumen(){
-  const finca=document.getElementById('f-finca').value,fecha=document.getElementById('f-fecha').value,lote=document.getElementById('f-lote').value,by=document.getElementById('f-by').value;
-  const promPeso=pesos.length>0?(pesos.reduce((a,b)=>a+b,0)/pesos.length).toFixed(2)+' kg':'—';
-  const defOtro=document.getElementById('otro-def').value,plagaOtro=document.getElementById('otro-plaga').value;
-  const defDisplay=[...selDeficiencias.filter(v=>v!=='Otro'),(defOtro||'')].filter(Boolean).join(', ')||'—';
-  const plagaDisplay=[...selPlagas.filter(v=>v!=='Otro'),(plagaOtro||'')].filter(Boolean).join(', ')||'—';
-  document.getElementById('resumen-contenido').innerHTML=`
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:12px">
-      <div style="font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px">Ronda de campo</div>
-      <div class="confirm-row"><span class="confirm-row-lbl">Finca</span><span class="confirm-row-val">${finca}</span></div>
-      ${lote?`<div class="confirm-row"><span class="confirm-row-lbl">Lote novedad</span><span class="confirm-row-val">${lote}</span></div>`:''}
-      <div class="confirm-row"><span class="confirm-row-lbl">Fecha</span><span class="confirm-row-val">${fecha}</span></div>
-      <div class="confirm-row"><span class="confirm-row-lbl">Registrado por</span><span class="confirm-row-val">${by}</span></div>
-      <div class="confirm-row"><span class="confirm-row-lbl">Peso prom. racimo</span><span class="confirm-row-val">${promPeso}</span></div>
-    </div>
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:12px">
-      <div style="font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px">Polinizadores (${polinizadores.length})</div>
-      ${polinizadores.map(p=>`<div class="confirm-row"><span class="confirm-row-lbl">${p.nombre}${p.lote?' · '+p.lote:''}</span><span class="confirm-row-val" style="color:${p.nota>=80?'var(--accent)':p.nota>=60?'var(--amber)':'var(--red)'}">${p.nota}/100</span></div>`).join('')}
-    </div>
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px">
-      <div style="font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px">Sanidad y gestión</div>
-      <div class="confirm-row"><span class="confirm-row-lbl">Defic. nutricional</span><span class="confirm-row-val">${document.getElementById('f-deficiencia-pct').value||'—'}</span></div>
-      <div class="confirm-row"><span class="confirm-row-lbl">Tipo deficiencia</span><span class="confirm-row-val">${defDisplay}</span></div>
-      <div class="confirm-row"><span class="confirm-row-lbl">Plagas</span><span class="confirm-row-val">${plagaDisplay}</span></div>
-      <div class="confirm-row"><span class="confirm-row-lbl">Maleza</span><span class="confirm-row-val">${document.getElementById('f-maleza').value||'—'}%</span></div>
-      <div class="confirm-row"><span class="confirm-row-lbl">Poda</span><span class="confirm-row-val">${document.getElementById('f-poda').value||'—'}</span></div>
-    </div>`;
-}
-
-async function enviar(){
-  const btn=document.getElementById('btn-enviar');
-  btn.disabled=true; btn.innerHTML='<span class="spinner"></span>'+(estaOnline?'Guardando...':'Guardando sin conexión...');
-  const nombreActivo=document.getElementById('p-polinizador').value;
-  if(nombreActivo){
-    const notaA=calcNotaFinal(),totalA=counters.inf_base+counters.inf_parcial+counters.inf_sin;
-    polinizadores.push({lote:document.getElementById('p-lote').value,nombre:nombreActivo,inf_base:counters.inf_base,inf_parcial:counters.inf_parcial,inf_sin:counters.inf_sin,ana:document.getElementById('f-ana').value,apertura:document.getElementById('f-apertura').value,cal_tecnica:calTecnica,cal_cobertura:calCobertura,cal_marcado:calMarcado,cal_equipos:calEquipos,nota:notaA,pctC:totalA>0?Math.round(counters.inf_base/totalA*100):0});
-  }
-  if(!polinizadores.length){showError('Agrega al menos un polinizador');btn.disabled=false;btn.innerHTML='Guardar en Sheets';return;}
-  const defOtro=document.getElementById('otro-def').value,plagaOtro=document.getElementById('otro-plaga').value;
-  const defFinal=[...selDeficiencias.filter(v=>v!=='Otro'),(defOtro||'')].filter(Boolean).join(', ');
-  const plagaFinal=[...selPlagas.filter(v=>v!=='Otro'),(plagaOtro||'')].filter(Boolean).join(', ');
-  const base={fecha:document.getElementById('f-fecha').value,finca:document.getElementById('f-finca').value,lote_novedad:document.getElementById('f-lote').value,by:document.getElementById('f-by').value,pesos_racimos:pesos.join(','),formados_100:counters.cal_100,formados_70:counters.cal_70,formados_50:counters.cal_50,formados_20:counters.cal_20,verdes:counters.verdes,pintones:counters.pintones,sobremaduros:counters.sobremaduros,frutos_sueltos:counters.frutos_sueltos,fruta_sin_cortar:counters.fruta_sin_cortar||0,deficiencia_nutricional:document.getElementById('f-deficiencia-pct').value,tipo_deficiencia:defFinal,plagas_enfermedades:plagaFinal,cobertura_maleza:document.getElementById('f-maleza').value,tipo_maleza:document.getElementById('f-maleza-tipo').value,estado_poda:document.getElementById('f-poda').value,obs:document.getElementById('f-obs').value};
-  try{
-    for(const pol of polinizadores){
-      const payload={...base,lote_polin:pol.lote,polinizador:pol.nombre,inf_base:pol.inf_base,inf_parcial:pol.inf_parcial,inf_sin:pol.inf_sin,ana:pol.ana,apertura:pol.apertura,rend_ha:pol.rendHa,cal_tecnica:pol.cal_tecnica,cal_cobertura:pol.cal_cobertura,cal_marcado:pol.cal_marcado,cal_equipos:pol.cal_equipos,nota_final:pol.nota};
-      if(!estaOnline){
-        await guardarEnCola(payload);
-      }else{
-        try{const res=await fetch(SCRIPT_URL,{method:'POST',body:JSON.stringify(payload)});const json=await res.json();if(!json.ok)throw new Error(json.error);}
-        catch(fe){await guardarEnCola(payload);}
-      }
-    }
-    actualizarIndicador();
-    const guardadoOffline=!estaOnline||await contarCola()>0;
-    document.getElementById('confirm-title')?document.querySelector('.confirm-title').textContent=guardadoOffline?'Guardado sin conexión':'Registro guardado':null;
-    document.getElementById('paso-4').style.display='none';
-    document.getElementById('paso-5').style.display='block';
-    document.getElementById('progress-label').textContent='✓ Registro completado';
-    document.querySelectorAll('.step-dot').forEach(d=>d.className='step-dot done');
-    document.getElementById('confirm-sub').textContent=`${base.finca} · ${base.fecha} · ${polinizadores.length} polinizador${polinizadores.length>1?'es':''}`;
-    document.getElementById('confirm-details').innerHTML=polinizadores.map(p=>`<div class="confirm-row"><span class="confirm-row-lbl">${p.nombre}${p.lote?' · '+p.lote:''}</span><span class="confirm-row-val" style="color:${p.nota>=80?'var(--accent)':p.nota>=60?'var(--amber)':'var(--red)'}">${p.nota}/100 ${p.nota>=80?'🟢':p.nota>=60?'🟡':'🔴'}</span></div>`).join('');
-    window.scrollTo({top:0,behavior:'smooth'});
-  }catch(e){showError('// error: '+e.message);btn.disabled=false;btn.innerHTML='Guardar en Sheets';}
-}
-
-function showError(txt){ const el=document.getElementById('msg-error'); el.textContent=txt; el.style.display='block'; el.scrollIntoView({behavior:'smooth',block:'center'}); }
-
-function resetForm(){
-  counters={verdes:0,pintones:0,sobremaduros:0,frutos_sueltos:0,fruta_sin_cortar:0,inf_base:0,inf_parcial:0,inf_sin:0,deficiencia:0,cal_100:0,cal_70:0,cal_50:0,cal_20:0};
-  pesos=[]; selDeficiencias=[]; selPlagas=[]; polinizadores=[];
-  calTecnica=0; calCobertura=0; calMarcado=0; calEquipos=0;
-  Object.keys(counters).forEach(k=>{const el=document.getElementById('cv-'+k);if(el)el.textContent=0;});
-  renderPesos();
-  document.querySelectorAll('.chip').forEach(c=>c.className='chip');
-  document.querySelectorAll('.escala-btn').forEach(b=>b.className='escala-btn');malezaCorona=''; malezaChapia='';
-  document.querySelectorAll('.cal-btn').forEach(b=>b.className='cal-btn');
-  ['f-finca','f-lote','f-maleza','f-maleza-tipo','f-poda','f-deficiencias','f-plagas','f-obs','f-by','p-lote','p-polinizador','f-deficiencia-pct','f-plagas-pct','f-ana','f-apertura'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
-  const _hoy=new Date().toISOString().split('T')[0]; document.getElementById('f-fecha').value=_hoy; document.getElementById('f-fecha').max=_hoy;
-  document.getElementById('f-lote').innerHTML='<option value="">Sin novedad específica</option>';
-  document.getElementById('p-lote').innerHTML='<option value="">— seleccionar lote —</option>';
-  ['polin-resumen','nota-auto','polin-lista','otro-def','otro-plaga'].forEach(id=>{ const el=document.getElementById(id); if(el) el.style.display='none'; });
-  document.querySelectorAll('[data-defpct],[data-plagapct]').forEach(b=>b.className='escala-btn');
-  document.getElementById('polin-lista-items').innerHTML='';
-  for(let i=0;i<6;i++){const p=document.getElementById('paso-'+i);if(p)p.style.display=i===0?'block':'none';}
-  updateProgress(0);
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-function nuevoRegistro(){ resetForm(); }
-
-function nuevoPolinizador(){
-  counters.inf_base=0; counters.inf_parcial=0; counters.inf_sin=0;
-  calTecnica=0; calCobertura=0; calMarcado=0; calEquipos=0;
-  ['cv-inf_base','cv-inf_parcial','cv-inf_sin'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=0;});
-  document.getElementById('p-polinizador').value=''; document.getElementById('p-lote').value='';
-  document.querySelectorAll('.cal-btn').forEach(b=>b.className='cal-btn');
-  document.querySelectorAll('[data-ana],[data-ap]').forEach(b=>{b.className='escala-btn';});
-  document.getElementById('f-ana').value=''; document.getElementById('f-apertura').value='';
-  document.getElementById('polin-resumen').style.display='none'; document.getElementById('nota-auto').style.display='none';
-  for(let i=0;i<6;i++){const p=document.getElementById('paso-'+i);if(p)p.style.display=i===2?'block':'none';}
-  const sh=document.querySelector('#paso-2 .sec-sub-form');
-  if(sh) sh.textContent=document.getElementById('f-finca').value+' · '+document.getElementById('f-fecha').value;
-  updateProgress(2);
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-// Cargar dashboard al iniciar
 cargarDatos();
 
 // ════════════════════════════════════════
 //  ESTADÍSTICAS
 // ════════════════════════════════════════
-function cargarEstadisticas(){
-  if(!allData.length){
-    // Load data first if not loaded
-    const loading=document.getElementById('loading-est');
-    loading.style.display='block';
-    const cbName='_cbEst_'+Date.now();
-    window[cbName]=function(json){
-      delete window[cbName];
-      const s=document.getElementById('jsonp-script-est');
-      if(s) s.remove();
-      if(json.ok&&json.registros){
-        allData=json.registros.slice(1).filter(r=>r[C.finca]&&r[C.fecha]);
-      }
-      loading.style.display='none';
-      renderEstadisticas();
-    };
-    const script=document.createElement('script');
-    script.id='jsonp-script-est';
-    script.src=SCRIPT_URL+'?callback='+cbName;
-    script.onerror=function(){loading.innerHTML='<span style="color:var(--red)">// sin conexión</span>';};
-    document.head.appendChild(script);
-  } else {
-    renderEstadisticas();
-  }
-}
-
-function renderEstadisticas(){
-  const data=allData;
-  let html='';
-
-  // ── RANKING POLINIZADORES ─────────────────────
-  const byP={};
-  data.filter(r=>r[C.polinizador]).forEach(r=>{
-    const n=r[C.polinizador]; if(!n) return;
-    if(!byP[n]) byP[n]={notas:[],corrects:0,total:0,fincas:new Set(),semanas:{}};
-    byP[n].notas.push(Number(r[C.nota]));
-    byP[n].corrects+=Number(r[C.inf_base])||0;
-    byP[n].total+=(Number(r[C.inf_base])||0)+(Number(r[C.inf_parcial])||0)+(Number(r[C.inf_sin])||0);
-    byP[n].fincas.add(r[C.finca]);
-    const sem=r[C.semana];
-    if(sem) byP[n].semanas[sem]=(byP[n].semanas[sem]||[]).concat(Number(r[C.nota]));
-  });
-
-  const ranking=Object.entries(byP).map(([n,d])=>{
-    const notas=d.notas;
-    const prom=notas.reduce((a,b)=>a+b,0)/notas.length;
-    const max=Math.max(...notas);
-    const min=Math.min(...notas);
-    const pctC=d.total>0?Math.round(d.corrects/d.total*100):0;
-    // Tendencia: última nota vs promedio
-    const ultima=notas[notas.length-1];
-    const tend=notas.length<2?'→':ultima>prom*1.05?'↑':ultima<prom*0.95?'↓':'→';
-    const tendColor=tend==='↑'?'var(--accent)':tend==='↓'?'var(--red)':'var(--amber)';
-    return {nombre:n,prom:prom.toFixed(1),max,min,eval:notas.length,pctC,tend,tendColor,finca:[...d.fincas].join(', '),ultima:ultima.toFixed(1)};
-  }).sort((a,b)=>b.prom-a.prom);
-
-  html+=`<div class="section"><div class="sec-header"><div class="sec-icon">Ranking</div><div class="sec-title">Polinizadores — análisis completo</div></div>`;
-
-  if(!ranking.length){
-    html+=`<div class="empty">Sin evaluaciones registradas</div>`;
-  } else {
-    html+=`<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:11px;min-width:500px">`;
-    html+=`<tr style="background:var(--surface2)">
-      <td style="padding:6px 8px;color:var(--muted);font-size:10px">#</td>
-      <td style="padding:6px 8px;color:var(--muted);font-size:10px">Nombre</td>
-      <td style="padding:6px 8px;text-align:center;color:var(--muted);font-size:10px">Eval.</td>
-      <td style="padding:6px 8px;text-align:center;color:var(--muted);font-size:10px">Prom.</td>
-      <td style="padding:6px 8px;text-align:center;color:var(--muted);font-size:10px">Máx.</td>
-      <td style="padding:6px 8px;text-align:center;color:var(--muted);font-size:10px">Mín.</td>
-      <td style="padding:6px 8px;text-align:center;color:var(--muted);font-size:10px">Inf.%</td>
-      <td style="padding:6px 8px;text-align:center;color:var(--muted);font-size:10px">Tend.</td>
-    </tr>`;
-
-    ranking.forEach((p,i)=>{
-      const col=parseFloat(p.prom)>=80?'var(--accent)':parseFloat(p.prom)>=60?'var(--amber)':'var(--red)';
-      const bg=i%2===0?'var(--surface)':'transparent';
-      html+=`<tr style="background:${bg};border-bottom:1px solid var(--border)">
-        <td style="padding:8px;color:var(--muted);font-size:10px">#${i+1}</td>
-        <td style="padding:8px"><div style="font-weight:600;font-size:12px">${p.nombre}</div><div style="color:var(--muted);font-size:10px">${p.finca}</div></td>
-        <td style="padding:8px;text-align:center;color:var(--muted2)">${p.eval}</td>
-        <td style="padding:8px;text-align:center;font-weight:500;color:${col}">${p.prom}</td>
-        <td style="padding:8px;text-align:center;color:var(--accent)">${p.max}</td>
-        <td style="padding:8px;text-align:center;color:var(--red)">${p.min}</td>
-        <td style="padding:8px;text-align:center;color:var(--muted2)">${p.pctC}%</td>
-        <td style="padding:8px;text-align:center;color:${p.tendColor};font-size:16px">${p.tend}</td>
-      </tr>`;
-    });
-    html+=`</table></div>`;
-  }
-  html+=`</div>`;
-
-  // ── ESTADÍSTICAS POR FINCA ────────────────────
-  html+=`<div class="section"><div class="sec-header"><div class="sec-icon">Por finca</div><div class="sec-title">Indicadores acumulados</div></div>`;
-
-  const fincaStats = FINCAS.map(f=>{
-    const rows=data.filter(r=>r[C.finca]===f);
-    const polinRows=rows.filter(r=>r[C.polinizador]&&(Number(r[C.inf_base])+Number(r[C.inf_parcial])+Number(r[C.inf_sin]))>0);
-    const pesosV=rows.filter(r=>Number(r[C.peso_prom])>0);
-    const calRows=rows.filter(r=>(Number(r[C.cal100])+Number(r[C.cal70])+Number(r[C.cal50])+Number(r[C.cal20]))>0);
-    const tBase=polinRows.reduce((s,r)=>s+Number(r[C.inf_base]),0);
-    const tAll=polinRows.reduce((s,r)=>s+(Number(r[C.inf_base])+Number(r[C.inf_parcial])+Number(r[C.inf_sin])),0);
-    const tCal=calRows.reduce((s,r)=>s+Number(r[C.cal100])+Number(r[C.cal70])+Number(r[C.cal50])+Number(r[C.cal20]),0);
-    const tBuenos=calRows.reduce((s,r)=>s+Number(r[C.cal100])+Number(r[C.cal70]),0);
-    const notas=polinRows.map(r=>Number(r[C.nota]));
-    return {
-      finca:f,
-      registros:rows.length,
-      peso:pesosV.length>0?(pesosV.reduce((s,r)=>s+Number(r[C.peso_prom]),0)/pesosV.length).toFixed(1):'—',
-      polin:tAll>0?Math.round(tBase/tAll*100):null,
-      notaProm:notas.length>0?(notas.reduce((a,b)=>a+b,0)/notas.length).toFixed(1):'—',
-      notaMax:notas.length>0?Math.max(...notas):'—',
-      notaMin:notas.length>0?Math.min(...notas):'—',
-      calidad:tCal>0?Math.round(tBuenos/tCal*100):null,
-    };
-  });
-
-  fincaStats.forEach((f,i)=>{
-    if(!f.registros){ html+=`<div class="finca-row"><div class="finca-name">${f.finca}</div><div class="finca-val" style="color:var(--muted)">Sin datos</div></div>`; return; }
-    const pesoCol=parseFloat(f.peso)>=18?'var(--accent)':parseFloat(f.peso)>=14?'var(--amber)':'var(--red)';
-    const polinCol=f.polin!==null?(f.polin>=80?'var(--accent)':f.polin>=60?'var(--amber)':'var(--red)'):'var(--muted)';
-    const calCol=f.calidad!==null?(f.calidad>=70?'var(--accent)':f.calidad>=50?'var(--amber)':'var(--red)'):'var(--muted)';
-    html+=`<div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:8px">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
-        <div style="font-size:14px;font-weight:600">${f.finca}</div>
-        <div style="font-family:var(--mono);font-size:10px;color:var(--muted)">${f.registros} registros</div>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px">
-        <div style="text-align:center;background:var(--surface2);border-radius:8px;padding:8px">
-          <div style="font-family:var(--mono);font-size:16px;font-weight:500;color:${pesoCol}">${f.peso}</div>
-          <div style="font-family:var(--mono);font-size:9px;color:var(--muted);margin-top:2px">kg/racimo</div>
-        </div>
-        <div style="text-align:center;background:var(--surface2);border-radius:8px;padding:8px">
-          <div style="font-family:var(--mono);font-size:16px;font-weight:500;color:${polinCol}">${f.polin!==null?f.polin+'%':'—'}</div>
-          <div style="font-family:var(--mono);font-size:9px;color:var(--muted);margin-top:2px">inf. correctas</div>
-        </div>
-        <div style="text-align:center;background:var(--surface2);border-radius:8px;padding:8px">
-          <div style="font-family:var(--mono);font-size:16px;font-weight:500;color:${f.notaProm!=='—'?(parseFloat(f.notaProm)>=80?'var(--accent)':parseFloat(f.notaProm)>=60?'var(--amber)':'var(--red)'):'var(--muted)'}">${f.notaProm}</div>
-          <div style="font-family:var(--mono);font-size:9px;color:var(--muted);margin-top:2px">nota prom.</div>
-        </div>
-        <div style="text-align:center;background:var(--surface2);border-radius:8px;padding:8px">
-          <div style="font-family:var(--mono);font-size:16px;font-weight:500;color:${calCol}">${f.calidad!==null?f.calidad+'%':'—'}</div>
-          <div style="font-family:var(--mono);font-size:9px;color:var(--muted);margin-top:2px">bien formados</div>
-        </div>
-      </div>
-      ${f.notaMax!=='—'?`<div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:8px">Nota polinizadores — Máx: <span style="color:var(--accent)">${f.notaMax}</span> · Mín: <span style="color:var(--red)">${f.notaMin}</span></div>`:''}
-    </div>`;
-  });
-  html+=`</div>`;
-
-  // ── RESUMEN GENERAL ───────────────────────────
-  const totalReg=data.length;
-  const totalPolin=data.filter(r=>r[C.polinizador]).length;
-  const semanasUnicas=[...new Set(data.map(r=>r[C.semana]).filter(Boolean))].length;
-  const fincasActivas=FINCAS.filter(f=>data.some(r=>r[C.finca]===f)).length;
-
-  html+=`<div class="section"><div class="sec-header"><div class="sec-icon">Resumen</div><div class="sec-title">Totales acumulados</div></div>
-    <div class="kpi-grid">
-      <div class="kpi-card"><div class="kpi-lbl">Registros totales</div><div class="kpi-val">${totalReg}</div><div class="kpi-sub">todas las fincas</div></div>
-      <div class="kpi-card"><div class="kpi-lbl">Semanas</div><div class="kpi-val">${semanasUnicas}</div><div class="kpi-sub">con datos</div></div>
-      <div class="kpi-card"><div class="kpi-lbl">Eval. polinizadores</div><div class="kpi-val">${totalPolin}</div><div class="kpi-sub">acumuladas</div></div>
-      <div class="kpi-card"><div class="kpi-lbl">Fincas activas</div><div class="kpi-val">${fincasActivas}</div><div class="kpi-sub">de 5</div></div>
-    </div>
-  </div>`;
-
-  document.getElementById('est-content').innerHTML=html;
-}
+function cargarEstadisticas(){if(!allData.length){const loading=document.getElementById('loading-est');loading.style.display='block';const cbName='_cbEst_'+Date.now();window[cbName]=function(json){delete window[cbName];const s=document.getElementById('jsonp-script-est');if(s)s.remove();if(json.ok&&json.registros){allData=json.registros.slice(1).filter(r=>r[C.finca]&&r[C.fecha]);}loading.style.display='none';renderEstadisticas();};const script=document.createElement('script');script.id='jsonp-script-est';script.src=SCRIPT_URL+'?callback='+cbName;script.onerror=function(){loading.innerHTML='<span style="color:var(--red)">// sin conexión</span>';};document.head.appendChild(script);}else{renderEstadisticas();}}
+function renderEstadisticas(){const data=allData;let html='';const byP={};data.filter(r=>r[C.polinizador]).forEach(r=>{const n=r[C.polinizador];if(!n)return;if(!byP[n])byP[n]={notas:[],corrects:0,total:0,fincas:new Set(),semanas:{}};byP[n].notas.push(Number(r[C.nota]));byP[n].corrects+=Number(r[C.inf_base])||0;byP[n].total+=(Number(r[C.inf_base])||0)+(Number(r[C.inf_parcial])||0)+(Number(r[C.inf_sin])||0);byP[n].fincas.add(r[C.finca]);const sem=r[C.semana];if(sem)byP[n].semanas[sem]=(byP[n].semanas[sem]||[]).concat(Number(r[C.nota]));});
+const ranking=Object.entries(byP).map(([n,d])=>{const notas=d.notas;const prom=notas.reduce((a,b)=>a+b,0)/notas.length;const max=Math.max(...notas);const min=Math.min(...notas);const pctC=d.total>0?Math.round(d.corrects/d.total*100):0;const ultima=notas[notas.length-1];const tend=notas.length<2?'→':ultima>prom*1.05?'↑':ultima<prom*0.95?'↓':'→';const tendColor=tend==='↑'?'var(--accent)':tend==='↓'?'var(--red)':'var(--amber)';return{nombre:n,prom:prom.toFixed(1),max,min,eval:notas.length,pctC,tend,tendColor,finca:[...d.fincas].join(', ')};}).sort((a,b)=>b.prom-a.prom);
+html+=`<div class="section"><div class="sec-header"><div class="sec-icon">Ranking</div><div class="sec-title">Polinizadores — análisis completo</div></div>`;
+if(!ranking.length){html+=`<div class="empty">Sin evaluaciones registradas</div>`;}
+else{html+=`<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:11px;min-width:500px"><tr style="background:var(--surface2)"><td style="padding:6px 8px;color:var(--muted);font-size:10px">#</td><td style="padding:6px 8px;color:var(--muted);font-size:10px">Nombre</td><td style="padding:6px 8px;text-align:center;color:var(--muted);font-size:10px">Eval.</td><td style="padding:6px 8px;text-align:center;color:var(--muted);font-size:10px">Prom.</td><td style="padding:6px 8px;text-align:center;color:var(--muted);font-size:10px">Máx.</td><td style="padding:6px 8px;text-align:center;color:var(--muted);font-size:10px">Mín.</td><td style="padding:6px 8px;text-align:center;color:var(--muted);font-size:10px">Inf.%</td><td style="padding:6px 8px;text-align:center;color:var(--muted);font-size:10px">Tend.</td></tr>`;
+ranking.forEach((p,i)=>{const col=parseFloat(p.prom)>=80?'var(--accent)':parseFloat(p.prom)>=60?'var(--amber)':'var(--red)';const bg=i%2===0?'var(--surface)':'transparent';html+=`<tr style="background:${bg};border-bottom:1px solid var(--border)"><td style="padding:8px;color:var(--muted);font-size:10px">#${i+1}</td><td style="padding:8px"><div style="font-weight:600;font-size:12px">${p.nombre}</div><div style="color:var(--muted);font-size:10px">${p.finca}</div></td><td style="padding:8px;text-align:center;color:var(--muted2)">${p.eval}</td><td style="padding:8px;text-align:center;font-weight:500;color:${col}">${p.prom}</td><td style="padding:8px;text-align:center;color:var(--accent)">${p.max}</td><td style="padding:8px;text-align:center;color:var(--red)">${p.min}</td><td style="padding:8px;text-align:center;color:var(--muted2)">${p.pctC}%</td><td style="padding:8px;text-align:center;color:${p.tendColor};font-size:16px">${p.tend}</td></tr>`;});
+html+=`</table></div>`;}
+html+=`</div>`;
+const fincaStats=FINCAS.map(f=>{const rows=data.filter(r=>r[C.finca]===f);const polinRows=rows.filter(r=>r[C.polinizador]&&(Number(r[C.inf_base])+Number(r[C.inf_parcial])+Number(r[C.inf_sin]))>0);const pesosV=rows.filter(r=>Number(r[C.peso_prom])>0);const calRows=rows.filter(r=>(Number(r[C.cal100])+Number(r[C.cal70])+Number(r[C.cal50])+Number(r[C.cal20]))>0);const tBase=polinRows.reduce((s,r)=>s+Number(r[C.inf_base]),0);const tAll=polinRows.reduce((s,r)=>s+(Number(r[C.inf_base])+Number(r[C.inf_parcial])+Number(r[C.inf_sin])),0);const tCal=calRows.reduce((s,r)=>s+Number(r[C.cal100])+Number(r[C.cal70])+Number(r[C.cal50])+Number(r[C.cal20]),0);const tBuenos=calRows.reduce((s,r)=>s+Number(r[C.cal100])+Number(r[C.cal70]),0);const notas=polinRows.map(r=>Number(r[C.nota]));return{finca:f,registros:rows.length,peso:pesosV.length>0?(pesosV.reduce((s,r)=>s+Number(r[C.peso_prom]),0)/pesosV.length).toFixed(1):'—',polin:tAll>0?Math.round(tBase/tAll*100):null,notaProm:notas.length>0?(notas.reduce((a,b)=>a+b,0)/notas.length).toFixed(1):'—',notaMax:notas.length>0?Math.max(...notas):'—',notaMin:notas.length>0?Math.min(...notas):'—',calidad:tCal>0?Math.round(tBuenos/tCal*100):null};});
+html+=`<div class="section"><div class="sec-header"><div class="sec-icon">Por finca</div><div class="sec-title">Indicadores acumulados</div></div>`;
+fincaStats.forEach((f,i)=>{if(!f.registros){html+=`<div class="finca-row"><div class="finca-name">${f.finca}</div><div class="finca-val" style="color:var(--muted)">Sin datos</div></div>`;return;}const pesoCol=parseFloat(f.peso)>=18?'var(--accent)':parseFloat(f.peso)>=14?'var(--amber)':'var(--red)';const polinCol=f.polin!==null?(f.polin>=80?'var(--accent)':f.polin>=60?'var(--amber)':'var(--red)'):'var(--muted)';const calCol=f.calidad!==null?(f.calidad>=70?'var(--accent)':f.calidad>=50?'var(--amber)':'var(--red)'):'var(--muted)';html+=`<div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:8px"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px"><div style="font-size:14px;font-weight:600">${f.finca}</div><div style="font-family:var(--mono);font-size:10px;color:var(--muted)">${f.registros} registros</div></div><div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px"><div style="text-align:center;background:var(--surface2);border-radius:8px;padding:8px"><div style="font-family:var(--mono);font-size:16px;font-weight:500;color:${pesoCol}">${f.peso}</div><div style="font-family:var(--mono);font-size:9px;color:var(--muted);margin-top:2px">kg/racimo</div></div><div style="text-align:center;background:var(--surface2);border-radius:8px;padding:8px"><div style="font-family:var(--mono);font-size:16px;font-weight:500;color:${polinCol}">${f.polin!==null?f.polin+'%':'—'}</div><div style="font-family:var(--mono);font-size:9px;color:var(--muted);margin-top:2px">inf. correctas</div></div><div style="text-align:center;background:var(--surface2);border-radius:8px;padding:8px"><div style="font-family:var(--mono);font-size:16px;font-weight:500;color:${f.notaProm!=='—'?(parseFloat(f.notaProm)>=80?'var(--accent)':parseFloat(f.notaProm)>=60?'var(--amber)':'var(--red)'):'var(--muted)'}">${f.notaProm}</div><div style="font-family:var(--mono);font-size:9px;color:var(--muted);margin-top:2px">nota prom.</div></div><div style="text-align:center;background:var(--surface2);border-radius:8px;padding:8px"><div style="font-family:var(--mono);font-size:16px;font-weight:500;color:${calCol}">${f.calidad!==null?f.calidad+'%':'—'}</div><div style="font-family:var(--mono);font-size:9px;color:var(--muted);margin-top:2px">bien formados</div></div></div>${f.notaMax!=='—'?`<div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:8px">Nota polinizadores — Máx: <span style="color:var(--accent)">${f.notaMax}</span> · Mín: <span style="color:var(--red)">${f.notaMin}</span></div>`:''}</div>`;});
+html+=`</div>`;
+const totalReg=data.length;const totalPolin=data.filter(r=>r[C.polinizador]).length;const semanasUnicas=[...new Set(data.map(r=>r[C.semana]).filter(Boolean))].length;const fincasActivas=FINCAS.filter(f=>data.some(r=>r[C.finca]===f)).length;
+html+=`<div class="section"><div class="sec-header"><div class="sec-icon">Resumen</div><div class="sec-title">Totales acumulados</div></div><div class="kpi-grid"><div class="kpi-card"><div class="kpi-lbl">Registros totales</div><div class="kpi-val">${totalReg}</div><div class="kpi-sub">todas las fincas</div></div><div class="kpi-card"><div class="kpi-lbl">Semanas</div><div class="kpi-val">${semanasUnicas}</div><div class="kpi-sub">con datos</div></div><div class="kpi-card"><div class="kpi-lbl">Eval. polinizadores</div><div class="kpi-val">${totalPolin}</div><div class="kpi-sub">acumuladas</div></div><div class="kpi-card"><div class="kpi-lbl">Fincas activas</div><div class="kpi-val">${fincasActivas}</div><div class="kpi-sub">de 5</div></div></div></div>`;
+document.getElementById('est-content').innerHTML=html;}
 </script>
 </body>
 </html>
