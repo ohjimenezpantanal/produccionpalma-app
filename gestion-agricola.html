@@ -786,8 +786,8 @@ function renderReporte(allRawData, mesIdx, mesNombre){
         {n:'Apertura de inflorescencia',pts:ptsAp,max:5},
         {n:'Técnica de aplicación',pts:ptsTec,max:10},
         {n:'Cobertura del lote',pts:ptsCob,max:10},
-        {n:'Marcado de hoja',pts:ptsMar,max:5},
-        {n:'Cuidado de equipos',pts:ptsEq,max:5},
+        {n:'Marcado de hoja',pts:ptsMar,max:10},
+        {n:'Cuidado de equipos',pts:ptsEq,max:10},
       ];
       const peor=[...crits].sort((a,b)=>(a.pts/a.max)-(b.pts/b.max))[0];
       const semKeys=Object.keys(d.semanas).sort((a,b)=>a-b);
@@ -825,9 +825,9 @@ function renderReporte(allRawData, mesIdx, mesNombre){
           {lbl:'Inf. correctas',pts:p.ptsInf,max:35},
           {lbl:'Técnica',pts:p.ptsTec,max:10},
           {lbl:'Cobertura lote',pts:p.ptsCob,max:10},
-          {lbl:'Marcado',pts:p.ptsMar,max:5},
+          {lbl:'Marcado',pts:p.ptsMar,max:10},
           {lbl:'ANA',pts:p.ptsANA,max:10},
-          {lbl:'Equipos JACO',pts:p.ptsEq,max:5},
+          {lbl:'Equipos JACO',pts:p.ptsEq,max:10},
         ];
         const semKeys4=p.semKeys.slice(-4);
         const mejora=p.prom>=80?'Excelente desempeño. Mantener técnica y cobertura por encima de 80 puntos.':
@@ -965,7 +965,7 @@ function descargarPDF(){
       const ptsANA=Math.round(anaOpt*10);
       const apSi=d.ap.filter(a=>a==='S\u00ed').length/(d.ap.filter(a=>a!=='').length||1);
       const ptsAp=Math.round(apSi*5);
-      const crits=[{n:'Inf. correctas',pts:ptsInf,max:35},{n:'ANA',pts:ptsANA,max:10},{n:'Apertura',pts:ptsAp,max:5},{n:'Tecnica',pts:ptsTec,max:10},{n:'Cobertura lote',pts:ptsCob,max:10},{n:'Marcado hoja',pts:ptsMar,max:5},{n:'Equipos',pts:ptsEq,max:5}];
+      const crits=[{n:'Inf. correctas',pts:ptsInf,max:35},{n:'ANA',pts:ptsANA,max:10},{n:'Apertura',pts:ptsAp,max:5},{n:'Tecnica',pts:ptsTec,max:10},{n:'Cobertura lote',pts:ptsCob,max:10},{n:'Marcado hoja',pts:ptsMar,max:10},{n:'Equipos',pts:ptsEq,max:10}];
       const peor=[...crits].sort((a,b)=>(a.pts/a.max)-(b.pts/b.max))[0];
       const semKeys=Object.keys(d.semanas).sort((a,b)=>Number(a)-Number(b));
       return {nombre:n,prom,eval:d.notas.length,pctInf,ptsInf,ptsANA,ptsAp,ptsTec,ptsCob,ptsMar,ptsEq,peor,semanas:d.semanas,semKeys};
@@ -1020,9 +1020,9 @@ function descargarPDF(){
         {lbl:'Inflorescencias correctas',pts:p.ptsInf,max:35},
         {lbl:'Tecnica de aplicacion',pts:p.ptsTec,max:10},
         {lbl:'Cobertura del lote',pts:p.ptsCob,max:10},
-        {lbl:'Marcado de hoja',pts:p.ptsMar,max:5},
+        {lbl:'Marcado de hoja',pts:p.ptsMar,max:10},
         {lbl:'ANA en inflorescencia',pts:p.ptsANA,max:10},
-        {lbl:'Cuidado de equipos',pts:p.ptsEq,max:5},
+        {lbl:'Cuidado de equipos',pts:p.ptsEq,max:10},
       ];
       const cols=3,colW=(cw-6)/cols;
       critData.forEach((c,i)=>{
@@ -1034,7 +1034,7 @@ function descargarPDF(){
         rectF(cx,cy,colW,12,[250,250,250]);
         rectS(cx,cy,colW,12,[220,220,220]);
         txt(c.lbl,cx+2,cy+4.5,6,[100,100,100]);
-        txt(c.pts+'/'+c.max+' pts',cx+colW-2,cy+4.5,6,cc,true,'right');
+        const ptsShow=Math.min(c.pts,c.max);txt(ptsShow+'/'+c.max+' pts',cx+colW-2,cy+4.5,6,cc,true,'right');
         rectF(cx+2,cy+7,colW-4,2,[220,220,220]);
         if(pct>0)rectF(cx+2,cy+7,(colW-4)*pct/100,2,cc);
         txt(pct+'%',cx+colW/2,cy+11,6,cc,true,'center');
