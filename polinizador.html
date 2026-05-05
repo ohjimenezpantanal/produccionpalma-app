@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#0a0a0a">
-<title>Reporte de Polinización</title>
+<title>SAL- Reporte de Polinización</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -41,6 +41,24 @@ body{min-height:100vh;background:#0c0c0c;color:#f0ede8;font-family:'Syne',sans-s
 .toggle-btn.sel-si{background:rgba(184,240,74,.1);border-color:#b8f04a;color:#b8f04a}
 .toggle-btn.sel-no{background:rgba(240,80,80,.1);border-color:#f05050;color:#f05050}
 
+/* Lotes agregados */
+.lotes-lista{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
+.lote-item{background:#1c1c1c;border:1px solid rgba(184,240,74,.2);border-radius:10px;padding:12px 14px;display:flex;justify-content:space-between;align-items:center}
+.lote-item-info{font-size:14px;font-weight:700;color:#b8f04a}
+.lote-item-sub{font-size:12px;color:rgba(240,237,232,.5);margin-top:2px}
+.lote-item-del{background:rgba(240,80,80,.1);border:1px solid rgba(240,80,80,.3);border-radius:8px;padding:6px 10px;color:#f05050;font-size:12px;font-weight:700;cursor:pointer}
+
+.btn-agregar{width:100%;padding:14px;background:rgba(184,240,74,.08);border:2px dashed rgba(184,240,74,.3);border-radius:12px;color:#b8f04a;font-family:'Syne',sans-serif;font-size:14px;font-weight:800;cursor:pointer;margin-top:4px}
+.btn-agregar:disabled{opacity:.3;cursor:not-allowed}
+
+.lote-selector{background:#1a1a1a;border:1px solid rgba(184,240,74,.2);border-radius:12px;padding:16px;margin-top:12px}
+.lote-selector-title{font-size:11px;font-weight:700;color:#b8f04a;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.mini-input{width:100%;padding:10px;background:#1c1c1c;border:1px solid rgba(255,255,255,.1);border-radius:8px;color:#b8f04a;font-family:'Syne',sans-serif;font-size:24px;font-weight:800;outline:none;text-align:center;margin-top:8px}
+.mini-label{font-size:10px;color:rgba(240,237,232,.4);text-align:center;margin-top:4px;font-weight:700;text-transform:uppercase}
+.btn-confirmar-lote{width:100%;padding:12px;background:#b8f04a;border:none;border-radius:10px;color:#0c0c0c;font-family:'Syne',sans-serif;font-size:14px;font-weight:800;cursor:pointer;margin-top:12px}
+
+.resumen-ana{background:rgba(184,240,74,.06);border:1px solid rgba(184,240,74,.15);border-radius:10px;padding:12px 14px;margin-top:10px;font-size:12px;color:rgba(240,237,232,.6);line-height:1.6}
+
 .btn-enviar{width:100%;padding:20px;background:#b8f04a;color:#0c0c0c;font-family:'Syne',sans-serif;font-size:18px;font-weight:800;border:none;border-radius:14px;cursor:pointer;margin-top:8px}
 .btn-enviar:disabled{opacity:.3}
 .spinner{display:inline-block;width:16px;height:16px;border:3px solid rgba(12,12,12,.3);border-top-color:#0c0c0c;border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:8px}
@@ -67,7 +85,7 @@ body{min-height:100vh;background:#0c0c0c;color:#f0ede8;font-family:'Syne',sans-s
 
 <div class="header">
   <div class="header-icon">🌸</div>
-  <div class="header-title">Reporte de Polinización</div>
+  <div class="header-title">SAL- Reporte Polinización</div>
   <div class="header-sub">Hacienda Pantanal</div>
 </div>
 
@@ -97,23 +115,14 @@ body{min-height:100vh;background:#0c0c0c;color:#f0ede8;font-family:'Syne',sans-s
     <input type="date" id="f-fecha" class="fecha-input">
   </div>
 
-  <!-- 3. SELECCIÓN DE FINCA (solo si tiene múltiples) -->
+  <!-- 3. FINCA (multi-finca) -->
   <div class="card" id="card-finca-select" style="display:none">
     <div class="card-label"><div class="num">3</div>¿En qué finca trabajaste?</div>
     <div class="lote-grid" id="finca-select-grid"></div>
   </div>
 
-  <!-- 3b. LOTE -->
-  <div class="card" id="card-lote" style="display:none">
-    <div class="card-label"><div class="num">4</div>Lote</div>
-    <div style="font-size:13px;font-weight:700;color:rgba(240,237,232,.5);margin-bottom:8px" id="finca-label"></div>
-    <div class="lote-grid" id="lote-grid"></div>
-    <input type="hidden" id="f-finca">
-    <input type="hidden" id="f-lote">
-  </div>
-
   <!-- 4. JACO -->
-  <div class="card">
+  <div class="card" id="card-jaco" style="display:none">
     <div class="card-label"><div class="num">4</div>¿El JACO funcionó hoy?</div>
     <div class="toggle-wrap">
       <button class="toggle-btn" id="btn-jaco-si" onclick="setJaco(true)">✅ Sí funcionó</button>
@@ -122,50 +131,35 @@ body{min-height:100vh;background:#0c0c0c;color:#f0ede8;font-family:'Syne',sans-s
     <input type="hidden" id="f-jaco" value="">
   </div>
 
-  <!-- 5. FLORES -->
-  <div class="card">
-    <div class="card-label"><div class="num">5</div>Flores polinizadas (1ra aplicación)</div>
-    <input type="tel" id="f-flores" inputmode="numeric" pattern="[0-9]*" placeholder="Ej: 450" class="num-input">
-    <div class="num-label">flores 1ra aplicación — proyecta cosecha</div>
-    <div class="info-box" id="jaco-info" style="display:none">⚠️ JACO sin servicio — ingresa el conteo manual de flores</div>
+  <!-- 5. LOTES CON FLORES -->
+  <div class="card" id="card-lotes" style="display:none">
+    <div class="card-label"><div class="num">5</div>Lotes trabajados hoy</div>
+    <div class="lotes-lista" id="lotes-lista"></div>
+    <button class="btn-agregar" id="btn-agregar-lote" onclick="mostrarSelectorLote()">＋ Agregar lote</button>
+
+    <!-- Selector inline -->
+    <div class="lote-selector" id="lote-selector" style="display:none">
+      <div class="lote-selector-title">Selecciona el lote</div>
+      <div class="lote-grid" id="lote-selector-grid"></div>
+      <input type="tel" class="mini-input" id="nuevo-flores" inputmode="numeric" placeholder="0">
+      <div class="mini-label">Flores 1ra aplicación</div>
+      <input type="tel" class="mini-input" id="nuevo-repaso1" inputmode="numeric" placeholder="0">
+      <div class="mini-label">Repaso 1</div>
+      <input type="tel" class="mini-input" id="nuevo-repaso2" inputmode="numeric" placeholder="0">
+      <div class="mini-label">Repaso 2</div>
+      <button class="btn-confirmar-lote" onclick="confirmarLote()">✓ Agregar este lote</button>
+    </div>
   </div>
 
-  <!-- 6. REPASO 1 -->
-  <div class="card">
-    <div class="card-label"><div class="num">6</div>Repaso 1 (2da aplicación)</div>
-    <input type="tel" id="f-repaso1" inputmode="numeric" pattern="[0-9]*" placeholder="Ej: 200 (0 si no aplica)" class="num-input">
-    <div class="num-label">flores con 2da aplicación de ANA</div>
+  <!-- 6. ANA TOTAL -->
+  <div class="card" id="card-ana" style="display:none">
+    <div class="card-label"><div class="num">6</div>ANA total utilizado hoy (kg)</div>
+    <input type="tel" id="f-ana" inputmode="decimal" pattern="[0-9.]*" placeholder="Ej: 3.0" class="num-input" oninput="actualizarResumenAna()">
+    <div class="num-label">kg totales de ANA del día</div>
+    <div class="resumen-ana" id="resumen-ana" style="display:none"></div>
   </div>
 
-  <!-- 7. REPASO 2 -->
-  <div class="card">
-    <div class="card-label"><div class="num">7</div>Repaso 2 (3ra aplicación)</div>
-    <input type="tel" id="f-repaso2" inputmode="numeric" pattern="[0-9]*" placeholder="Ej: 100 (0 si no aplica)" class="num-input">
-    <div class="num-label">flores con 3ra aplicación de ANA</div>
-  </div>
-
-  <!-- 6. PALMAS -->
-  <div class="card" id="card-palmas">
-    <div class="card-label"><div class="num">8</div>Palmas polinizadas</div>
-    <input type="tel" id="f-palmas" inputmode="numeric" pattern="[0-9]*" placeholder="Ej: 120" class="num-input">
-    <div class="num-label">palmas visitadas hoy</div>
-  </div>
-
-  <!-- 7. HECTÁREAS -->
-  <div class="card" id="card-hectareas">
-    <div class="card-label"><div class="num">9</div>Hectáreas recorridas</div>
-    <input type="tel" id="f-hectareas" inputmode="decimal" pattern="[0-9.]*" placeholder="Ej: 3.5" class="num-input">
-    <div class="num-label">hectáreas recorridas hoy</div>
-  </div>
-
-  <!-- 8. ANA -->
-  <div class="card">
-    <div class="card-label"><div class="num">10</div>ANA utilizado (kg)</div>
-    <input type="tel" id="f-ana" inputmode="decimal" pattern="[0-9.]*" placeholder="Ej: 0.5" class="num-input">
-    <div class="num-label">kg de ANA utilizados hoy</div>
-  </div>
-
-  <button class="btn-enviar" id="btn-enviar" onclick="enviar()">🌸 Enviar reporte</button>
+  <button class="btn-enviar" id="btn-enviar" onclick="enviar()" style="display:none">🌸 Enviar reporte</button>
 
 </div>
 
@@ -174,7 +168,7 @@ body{min-height:100vh;background:#0c0c0c;color:#f0ede8;font-family:'Syne',sans-s
   <div class="confirm-wrap">
     <div class="confirm-icon">✅</div>
     <div class="confirm-title">¡Reporte enviado!</div>
-    <div class="confirm-sub">Tu reporte de polinización fue guardado</div>
+    <div class="confirm-sub">Tu reporte fue guardado correctamente</div>
     <div class="confirm-detalle" id="confirm-detalle"></div>
     <button class="btn-nuevo" onclick="nuevoReporte()">🌸 Enviar otro reporte</button>
   </div>
@@ -184,50 +178,46 @@ body{min-height:100vh;background:#0c0c0c;color:#f0ede8;font-family:'Syne',sans-s
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzIUbNyVqBWES86pS-udhU3urpY3c4FrA4kH-EP4DdsKAdg29vMK4e0A-v-cDSzNsXz/exec';
 
 const POLINIZADORES = {
-  'Aldhair Bravo':   [{ finca: 'Chipo',        lotes: ['CH-2','CH-3'] }],
-  'Vicente Narvaez': [{ finca: 'Chipo',        lotes: ['CH-1','CH-2'] }],
-  'Manuel Morales':  [{ finca: 'Andino',       lotes: ['AN-1','AN-2'] }],
-  'Jessica Rivera':  [{ finca: 'Andino',       lotes: ['AN-3','AN-4'] }],
-  'Edison Mendoza':  [{ finca: 'Castañeda',    lotes: ['CA-1','CA-2'] }],
-  'Ignacio Barragan':[{ finca: 'Los Corrales', lotes: ['CO-1','CO-2','CO-5'] }],
-  'Diviel Jimenez':  [{ finca: 'Los Corrales', lotes: ['CO-3','CO-4'] }],
-  'Ing. Francisco Mero':  [
+  'Aldhair Bravo':      [{ finca: 'Chipo',        lotes: ['CH-2','CH-3'] }],
+  'Vicente Narvaez':    [{ finca: 'Chipo',        lotes: ['CH-1','CH-2'] }],
+  'Manuel Morales':     [{ finca: 'Andino',       lotes: ['AN-1','AN-2'] }],
+  'Jessica Rivera':     [{ finca: 'Andino',       lotes: ['AN-3','AN-4'] }],
+  'Edison Mendoza':     [{ finca: 'Castañeda',    lotes: ['CA-1','CA-2'] }],
+  'Ignacio Barragan':   [{ finca: 'Los Corrales', lotes: ['CO-1','CO-2','CO-5'] }],
+  'Diviel Jimenez':     [{ finca: 'Los Corrales', lotes: ['CO-3','CO-4'] }],
+  'Ing. Francisco Mero':[
     { finca: 'Marujita',  lotes: ['L1','L2','L3','L4'] },
     { finca: 'Castañeda', lotes: ['CA-1','CA-2'] }
   ]
 };
 
 var jacoFunciono = null;
+var fincaActual = '';
+var lotesAgregados = []; // [{lote, flores, repaso1, repaso2}]
+var loteSeleccionadoTemp = '';
 
-// Fecha de hoy
 const hoy = new Date();
 document.getElementById('f-fecha').value = hoy.getFullYear() + '-' + String(hoy.getMonth()+1).padStart(2,'0') + '-' + String(hoy.getDate()).padStart(2,'0');
 
 function onNombreChange() {
   var nombre = document.getElementById('f-nombre').value;
-  var cardLote = document.getElementById('card-lote');
-  var cardFincaSelect = document.getElementById('card-finca-select');
-  var grid = document.getElementById('lote-grid');
-  var fincaLabel = document.getElementById('finca-label');
-
-  document.getElementById('f-finca').value = '';
-  document.getElementById('f-lote').value = '';
-  grid.innerHTML = '';
-  document.querySelectorAll('.lote-btn').forEach(function(b){b.classList.remove('sel');});
-  cardLote.style.display = 'none';
-  cardFincaSelect.style.display = 'none';
+  resetLotes();
+  document.getElementById('card-finca-select').style.display = 'none';
+  document.getElementById('card-jaco').style.display = 'none';
+  document.getElementById('card-lotes').style.display = 'none';
+  document.getElementById('card-ana').style.display = 'none';
+  document.getElementById('btn-enviar').style.display = 'none';
+  fincaActual = '';
 
   if (!nombre || !POLINIZADORES[nombre]) return;
-
   var fincas = POLINIZADORES[nombre];
 
   if (fincas.length === 1) {
-    // Una sola finca — mostrar directamente
-    selFincaPolinizador(nombre, fincas[0].finca);
+    fincaActual = fincas[0].finca;
+    mostrarJaco();
   } else {
-    // Múltiples fincas — mostrar selector
-    var fincaGrid = document.getElementById('finca-select-grid');
-    fincaGrid.innerHTML = '';
+    var grid = document.getElementById('finca-select-grid');
+    grid.innerHTML = '';
     fincas.forEach(function(f) {
       var btn = document.createElement('button');
       btn.className = 'lote-btn';
@@ -235,46 +225,19 @@ function onNombreChange() {
       btn.onclick = function() {
         document.querySelectorAll('#finca-select-grid .lote-btn').forEach(function(b){b.classList.remove('sel');});
         btn.classList.add('sel');
-        selFincaPolinizador(nombre, f.finca);
+        fincaActual = f.finca;
+        resetLotes();
+        mostrarJaco();
       };
-      fincaGrid.appendChild(btn);
+      grid.appendChild(btn);
     });
-    cardFincaSelect.style.display = 'block';
-    cardFincaSelect.scrollIntoView({behavior:'smooth', block:'start'});
+    document.getElementById('card-finca-select').style.display = 'block';
   }
 }
 
-function selFincaPolinizador(nombre, finca) {
-  var cardLote = document.getElementById('card-lote');
-  var grid = document.getElementById('lote-grid');
-  var fincaLabel = document.getElementById('finca-label');
-
-  document.getElementById('f-finca').value = finca;
-  document.getElementById('f-lote').value = '';
-  grid.innerHTML = '';
-  document.querySelectorAll('.lote-btn').forEach(function(b){b.classList.remove('sel');});
-
-  var fincas = POLINIZADORES[nombre];
-  var info = fincas.find(function(f) { return f.finca === finca; });
-  if (!info) return;
-
-  fincaLabel.textContent = '📍 Finca: ' + finca;
-  cardLote.style.display = 'block';
-
-  info.lotes.forEach(function(l) {
-    var btn = document.createElement('button');
-    btn.className = 'lote-btn';
-    btn.textContent = l;
-    btn.setAttribute('data-lote', l);
-    btn.onclick = function() {
-      document.getElementById('f-lote').value = l;
-      document.querySelectorAll('.lote-btn').forEach(function(b){b.classList.remove('sel');});
-      btn.classList.add('sel');
-    };
-    grid.appendChild(btn);
-  });
-
-  cardLote.scrollIntoView({behavior:'smooth', block:'start'});
+function mostrarJaco() {
+  document.getElementById('card-jaco').style.display = 'block';
+  document.getElementById('card-jaco').scrollIntoView({behavior:'smooth', block:'start'});
 }
 
 function setJaco(val) {
@@ -282,81 +245,186 @@ function setJaco(val) {
   document.getElementById('f-jaco').value = val ? 'Si' : 'No';
   document.getElementById('btn-jaco-si').className = 'toggle-btn' + (val ? ' sel-si' : '');
   document.getElementById('btn-jaco-no').className = 'toggle-btn' + (!val ? ' sel-no' : '');
-  document.getElementById('jaco-info').style.display = val ? 'none' : 'block';
-  // Ocultar palmas y hectáreas si JACO no funciona
-  document.getElementById('card-palmas').style.display = val ? 'block' : 'none';
-  document.getElementById('card-hectareas').style.display = val ? 'block' : 'none';
-  if (!val) {
-    document.getElementById('f-palmas').value = '';
-    document.getElementById('f-hectareas').value = '';
+  resetLotes();
+  document.getElementById('card-lotes').style.display = 'block';
+  renderLoteSelector();
+  document.getElementById('card-lotes').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function resetLotes() {
+  lotesAgregados = [];
+  loteSeleccionadoTemp = '';
+  renderLotesList();
+  document.getElementById('lote-selector').style.display = 'none';
+  document.getElementById('card-ana').style.display = 'none';
+  document.getElementById('btn-enviar').style.display = 'none';
+}
+
+function renderLoteSelector() {
+  var nombre = document.getElementById('f-nombre').value;
+  var fincas = POLINIZADORES[nombre] || [];
+  var info = fincas.find(function(f){ return f.finca === fincaActual; });
+  if (!info) return;
+
+  var grid = document.getElementById('lote-selector-grid');
+  grid.innerHTML = '';
+  info.lotes.forEach(function(l) {
+    var yaAgregado = lotesAgregados.some(function(x){ return x.lote === l; });
+    var btn = document.createElement('button');
+    btn.className = 'lote-btn' + (yaAgregado ? ' sel' : '');
+    btn.textContent = l + (yaAgregado ? ' ✓' : '');
+    btn.disabled = yaAgregado;
+    btn.onclick = function() {
+      loteSeleccionadoTemp = l;
+      document.querySelectorAll('#lote-selector-grid .lote-btn').forEach(function(b){b.classList.remove('sel');});
+      btn.classList.add('sel');
+    };
+    grid.appendChild(btn);
+  });
+}
+
+function mostrarSelectorLote() {
+  document.getElementById('lote-selector').style.display = 'block';
+  document.getElementById('nuevo-flores').value = '';
+  document.getElementById('nuevo-repaso1').value = '';
+  document.getElementById('nuevo-repaso2').value = '';
+  loteSeleccionadoTemp = '';
+  renderLoteSelector();
+  document.getElementById('lote-selector').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function confirmarLote() {
+  if (!loteSeleccionadoTemp) { showError('Selecciona un lote'); return; }
+  var flores = parseInt(document.getElementById('nuevo-flores').value) || 0;
+  var repaso1 = parseInt(document.getElementById('nuevo-repaso1').value) || 0;
+  var repaso2 = parseInt(document.getElementById('nuevo-repaso2').value) || 0;
+  if (flores <= 0) { showError('Ingresa el número de flores'); return; }
+
+  lotesAgregados.push({ lote: loteSeleccionadoTemp, flores: flores, repaso1: repaso1, repaso2: repaso2 });
+  document.getElementById('lote-selector').style.display = 'none';
+  loteSeleccionadoTemp = '';
+  renderLotesList();
+  renderLoteSelector();
+
+  // Mostrar ANA y botón enviar
+  document.getElementById('card-ana').style.display = 'block';
+  document.getElementById('btn-enviar').style.display = 'block';
+  actualizarResumenAna();
+  document.getElementById('card-ana').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function renderLotesList() {
+  var lista = document.getElementById('lotes-lista');
+  lista.innerHTML = '';
+  lotesAgregados.forEach(function(item, idx) {
+    var div = document.createElement('div');
+    div.className = 'lote-item';
+    div.innerHTML =
+      '<div>' +
+        '<div class="lote-item-info">' + fincaActual + ' / ' + item.lote + '</div>' +
+        '<div class="lote-item-sub">🌸 ' + item.flores.toLocaleString() + ' flores' +
+          (item.repaso1 > 0 ? ' · R1: ' + item.repaso1 : '') +
+          (item.repaso2 > 0 ? ' · R2: ' + item.repaso2 : '') + '</div>' +
+      '</div>' +
+      '<button class="lote-item-del" onclick="eliminarLote(' + idx + ')">✕</button>';
+    lista.appendChild(div);
+  });
+  actualizarResumenAna();
+}
+
+function eliminarLote(idx) {
+  lotesAgregados.splice(idx, 1);
+  renderLotesList();
+  renderLoteSelector();
+  if (lotesAgregados.length === 0) {
+    document.getElementById('card-ana').style.display = 'none';
+    document.getElementById('btn-enviar').style.display = 'none';
+  }
+}
+
+function actualizarResumenAna() {
+  if (lotesAgregados.length === 0) return;
+  var ana = parseFloat(document.getElementById('f-ana').value) || 0;
+  var totalFlores = lotesAgregados.reduce(function(s, r){ return s + r.flores + r.repaso1 + r.repaso2; }, 0);
+  var resumen = document.getElementById('resumen-ana');
+  if (ana > 0 && lotesAgregados.length > 1 && totalFlores > 0) {
+    var txt = '📊 Distribución proporcional por flores:<br>';
+    lotesAgregados.forEach(function(item) {
+      var totalItem = item.flores + item.repaso1 + item.repaso2;
+      var anaItem = Math.round(ana * totalItem / totalFlores * 1000) / 1000;
+      txt += '• ' + item.lote + ': <strong>' + anaItem + ' kg</strong><br>';
+    });
+    resumen.innerHTML = txt;
+    resumen.style.display = 'block';
+  } else {
+    resumen.style.display = 'none';
   }
 }
 
 async function enviar() {
   var nombre = document.getElementById('f-nombre').value;
   var fecha = document.getElementById('f-fecha').value;
-  var finca = document.getElementById('f-finca').value;
-  var lote = document.getElementById('f-lote').value;
   var jaco = document.getElementById('f-jaco').value;
-  var flores = parseInt(document.getElementById('f-flores').value) || 0;
-  var repaso1 = parseInt(document.getElementById('f-repaso1').value) || 0;
-  var repaso2 = parseInt(document.getElementById('f-repaso2').value) || 0;
-  var palmas = parseInt(document.getElementById('f-palmas').value) || 0;
-  var hectareas = parseFloat(document.getElementById('f-hectareas').value) || 0;
   var ana = parseFloat(document.getElementById('f-ana').value) || 0;
 
   document.getElementById('msg-error').style.display = 'none';
-
   if (!nombre) { showError('Selecciona tu nombre'); return; }
   if (!fecha) { showError('Selecciona la fecha'); return; }
-  if (!lote) { showError('Selecciona el lote'); return; }
-  if (!jaco) { showError('Indica si el JACO funcionó hoy'); return; }
-  if (flores <= 0) { showError('Ingresa el número de flores polinizadas'); return; }
+  if (!jaco) { showError('Indica si el JACO funcionó'); return; }
+  if (lotesAgregados.length === 0) { showError('Agrega al menos un lote'); return; }
+  if (ana <= 0) { showError('Ingresa el ANA total utilizado'); return; }
 
   var btn = document.getElementById('btn-enviar');
   btn.disabled = true;
   btn.innerHTML = '<span class="spinner"></span>Enviando...';
 
-  var payload = {
-    tipo: 'Polinizacion',
-    nombre: nombre,
-    fecha: fecha,
-    finca: finca,
-    lote: lote,
-    jaco: jaco,
-    flores: flores,
-    repaso1: repaso1,
-    repaso2: repaso2,
-    palmas: palmas,
-    hectareas: hectareas,
-    ana: ana
-  };
+  // Distribuir ANA proporcionalmente
+  var totalFlores = lotesAgregados.reduce(function(s, r){ return s + r.flores + r.repaso1 + r.repaso2; }, 0);
+
+  var payloads = lotesAgregados.map(function(item) {
+    var totalItem = item.flores + item.repaso1 + item.repaso2;
+    var anaItem = totalFlores > 0 ? Math.round(ana * totalItem / totalFlores * 1000) / 1000 : ana;
+    return {
+      tipo: 'Polinizacion',
+      nombre: nombre,
+      fecha: fecha,
+      finca: fincaActual,
+      lote: item.lote,
+      jaco: jaco,
+      flores: item.flores,
+      repaso1: item.repaso1,
+      repaso2: item.repaso2,
+      palmas: 0,
+      hectareas: 0,
+      ana: anaItem
+    };
+  });
 
   try {
-    var res = await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(payload) });
-    var json = await res.json();
-    if (json.ok) {
-      document.getElementById('form-wrap').style.display = 'none';
-      document.getElementById('confirm-wrap').style.display = 'block';
-      document.getElementById('confirm-detalle').innerHTML =
-        '<div class="confirm-row"><span class="confirm-row-lbl">Polinizador</span><span class="confirm-row-val">' + nombre + '</span></div>' +
-        '<div class="confirm-row"><span class="confirm-row-lbl">Finca / Lote</span><span class="confirm-row-val">' + finca + ' / ' + lote + '</span></div>' +
-        '<div class="confirm-row"><span class="confirm-row-lbl">Fecha</span><span class="confirm-row-val">' + fecha + '</span></div>' +
-        '<div class="confirm-row"><span class="confirm-row-lbl">Flores 1ra App</span><span class="confirm-row-val" style="color:#b8f04a">' + flores.toLocaleString() + '</span></div>' +
-        '<div class="confirm-row"><span class="confirm-row-lbl">Repaso 1</span><span class="confirm-row-val">' + repaso1.toLocaleString() + '</span></div>' +
-        '<div class="confirm-row"><span class="confirm-row-lbl">Repaso 2</span><span class="confirm-row-val">' + repaso2.toLocaleString() + '</span></div>' +
-        '<div class="confirm-row"><span class="confirm-row-lbl">Palmas</span><span class="confirm-row-val">' + palmas.toLocaleString() + '</span></div>' +
-        '<div class="confirm-row"><span class="confirm-row-lbl">Hectáreas</span><span class="confirm-row-val">' + hectareas + ' ha</span></div>' +
-        '<div class="confirm-row"><span class="confirm-row-lbl">ANA usado</span><span class="confirm-row-val">' + ana + ' kg</span></div>' +
-        '<div class="confirm-row"><span class="confirm-row-lbl">JACO</span><span class="confirm-row-val">' + (jaco === 'Si' ? '✅ Funcionó' : '❌ Sin servicio') + '</span></div>';
-      window.scrollTo({top:0, behavior:'smooth'});
-    } else {
-      showError('Error: ' + json.error);
-      btn.disabled = false;
-      btn.innerHTML = '🌸 Enviar reporte';
+    // Enviar todos los lotes secuencialmente
+    for (var i = 0; i < payloads.length; i++) {
+      var res = await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(payloads[i]) });
+      var json = await res.json();
+      if (!json.ok) throw new Error(json.error || 'Error en lote ' + payloads[i].lote);
     }
+
+    // Confirmación
+    document.getElementById('form-wrap').style.display = 'none';
+    document.getElementById('confirm-wrap').style.display = 'block';
+
+    var detalleHtml = '<div class="confirm-row"><span class="confirm-row-lbl">Polinizador</span><span class="confirm-row-val">' + nombre + '</span></div>';
+    detalleHtml += '<div class="confirm-row"><span class="confirm-row-lbl">Fecha</span><span class="confirm-row-val">' + fecha + '</span></div>';
+    detalleHtml += '<div class="confirm-row"><span class="confirm-row-lbl">Finca</span><span class="confirm-row-val">' + fincaActual + '</span></div>';
+    detalleHtml += '<div class="confirm-row"><span class="confirm-row-lbl">JACO</span><span class="confirm-row-val">' + (jaco==='Si'?'✅':'❌') + '</span></div>';
+    detalleHtml += '<div class="confirm-row"><span class="confirm-row-lbl">ANA total</span><span class="confirm-row-val">' + ana + ' kg</span></div>';
+    payloads.forEach(function(p) {
+      detalleHtml += '<div class="confirm-row"><span class="confirm-row-lbl">' + p.lote + '</span><span class="confirm-row-val" style="color:#b8f04a">🌸 ' + p.flores.toLocaleString() + ' flores · ' + p.ana + ' kg</span></div>';
+    });
+    document.getElementById('confirm-detalle').innerHTML = detalleHtml;
+    window.scrollTo({top:0, behavior:'smooth'});
+
   } catch(e) {
-    showError('Sin conexión — verifica internet e intenta de nuevo');
+    showError('Error: ' + e.message);
     btn.disabled = false;
     btn.innerHTML = '🌸 Enviar reporte';
   }
@@ -367,24 +435,23 @@ function nuevoReporte() {
   document.getElementById('confirm-wrap').style.display = 'none';
   document.getElementById('f-nombre').value = '';
   document.getElementById('f-fecha').value = '';
-  document.getElementById('f-finca').value = '';
-  document.getElementById('f-lote').value = '';
   document.getElementById('f-jaco').value = '';
-  document.getElementById('f-flores').value = '';
-  document.getElementById('f-repaso1').value = '';
-  document.getElementById('f-repaso2').value = '';
-  document.getElementById('f-palmas').value = '';
-  document.getElementById('f-hectareas').value = '';
   document.getElementById('f-ana').value = '';
-  document.getElementById('card-lote').style.display = 'none';
-  document.getElementById('lote-grid').innerHTML = '';
-  jacoFunciono = null;
+  document.getElementById('card-finca-select').style.display = 'none';
+  document.getElementById('card-jaco').style.display = 'none';
+  document.getElementById('card-lotes').style.display = 'none';
+  document.getElementById('card-ana').style.display = 'none';
+  document.getElementById('btn-enviar').style.display = 'none';
+  document.getElementById('lote-selector').style.display = 'none';
   document.getElementById('btn-jaco-si').className = 'toggle-btn';
   document.getElementById('btn-jaco-no').className = 'toggle-btn';
-  document.getElementById('jaco-info').style.display = 'none';
   document.getElementById('msg-error').style.display = 'none';
   document.getElementById('btn-enviar').disabled = false;
   document.getElementById('btn-enviar').innerHTML = '🌸 Enviar reporte';
+  jacoFunciono = null;
+  fincaActual = '';
+  lotesAgregados = [];
+  loteSeleccionadoTemp = '';
   const h = new Date();
   document.getElementById('f-fecha').value = h.getFullYear() + '-' + String(h.getMonth()+1).padStart(2,'0') + '-' + String(h.getDate()).padStart(2,'0');
   window.scrollTo({top:0, behavior:'smooth'});
