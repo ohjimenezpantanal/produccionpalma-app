@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0a1a0f">
+<title>SAL- Dashboard Polinización</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --dark:#0a1a0f;--dark2:#111f14;--dark3:#162119;
+  --green:#3d9e5f;--green2:#52c47a;--green3:#a8e6be;
+  --yellow:#f0c040;--red:#e05050;--blue:#4a9fd4;
+  --text:#e8f0ea;--muted:#6b8f72;--border:rgba(61,158,95,.2);
+  --card:#131f16;--card2:#172318;
+}
+html{background:var(--dark);color:var(--text);font-family:'Syne',sans-serif}
+body{min-height:100vh;padding:0 0 40px}
+
+/* HEADER */
+.header{background:var(--dark2);border-bottom:1px solid var(--border);padding:16px 18px 14px;position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+.header-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.header-title{font-size:16px;font-weight:800;color:var(--green2);letter-spacing:-.02em}
+.header-badge{font-size:10px;font-family:'DM Mono',monospace;color:var(--muted);background:rgba(61,158,95,.08);padding:3px 8px;border-radius:20px;border:1px solid var(--border)}
+.header-sub{font-size:11px;color:var(--muted);font-family:'DM Mono',monospace}
+
+/* LOADING */
+.loading{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 20px;gap:16px}
+.spinner{width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--green2);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-txt{font-size:13px;color:var(--muted);font-family:'DM Mono',monospace}
+
+/* SECTIONS */
+.section{padding:18px 14px 6px}
+.section-title{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.section-title::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* KPI GRID */
+.kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.kpi-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px}
+.kpi-label{font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.kpi-value{font-size:24px;font-weight:800;color:var(--green2);line-height:1;margin-bottom:4px;letter-spacing:-.02em}
+.kpi-unit{font-size:10px;color:var(--muted);font-family:'DM Mono',monospace}
+.kpi-trend{font-size:11px;font-weight:700;margin-top:4px}
+.kpi-trend.up{color:var(--green2)}
+.kpi-trend.down{color:var(--red)}
+.kpi-trend.flat{color:var(--muted)}
+.kpi-card.full{grid-column:span 2}
+.kpi-card.accent{border-color:rgba(61,158,95,.4);background:linear-gradient(135deg,#131f16,#172318)}
+
+/* SEMÁFORO */
+.chip{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700;font-family:'DM Mono',monospace}
+.chip.normal{background:rgba(82,196,122,.15);color:#52c47a;border:1px solid rgba(82,196,122,.3)}
+.chip.atencion{background:rgba(240,192,64,.15);color:#f0c040;border:1px solid rgba(240,192,64,.3)}
+.chip.alerta{background:rgba(224,80,80,.15);color:#e05050;border:1px solid rgba(224,80,80,.3)}
+.chip.sin_datos{background:rgba(107,143,114,.1);color:var(--muted);border:1px solid var(--border)}
+.chip.pendiente{background:rgba(74,159,212,.1);color:var(--blue);border:1px solid rgba(74,159,212,.3)}
+
+/* FORECAST */
+.forecast-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.forecast-card{background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:12px 10px;border-top:3px solid var(--green)}
+.forecast-mes{font-size:10px;font-weight:700;color:var(--green2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.forecast-kg{font-size:18px;font-weight:800;color:var(--text);letter-spacing:-.02em;margin-bottom:6px}
+.forecast-detail{font-size:9px;color:var(--muted);font-family:'DM Mono',monospace;line-height:1.6}
+
+/* FINCA CARDS */
+.finca-card{background:var(--card);border:1px solid var(--border);border-radius:14px;margin-bottom:10px;overflow:hidden}
+.finca-header{padding:12px 14px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);cursor:pointer}
+.finca-name{font-size:14px;font-weight:800;color:var(--text)}
+.finca-sub{font-size:10px;color:var(--muted);font-family:'DM Mono',monospace;margin-top:1px}
+.finca-body{padding:12px 14px;display:none}
+.finca-body.open{display:block}
+.finca-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px}
+.stat{text-align:center}
+.stat-val{font-size:16px;font-weight:800;color:var(--green2)}
+.stat-lbl{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-top:2px}
+.chevron{font-size:14px;color:var(--muted);transition:.2s}
+.chevron.open{transform:rotate(180deg)}
+
+/* TABLA DETALLE */
+.tabla{width:100%;border-collapse:collapse;font-size:11px;margin-top:8px}
+.tabla th{text-align:left;padding:6px 8px;color:var(--muted);font-size:9px;text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--border);font-weight:600}
+.tabla td{padding:7px 8px;border-bottom:1px solid rgba(61,158,95,.06)}
+.tabla tr:last-child td{border-bottom:none}
+.tabla tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.num{font-family:'DM Mono',monospace;text-align:right}
+
+/* ANA CONTROL */
+.ana-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)}
+.ana-row:last-child{border-bottom:none}
+.ana-mes{font-size:11px;font-weight:600;color:var(--text);width:70px}
+.ana-bars{flex:1;margin:0 10px}
+.bar-wrap{display:flex;align-items:center;gap:6px;margin-bottom:3px}
+.bar-label{font-size:9px;color:var(--muted);width:65px;font-family:'DM Mono',monospace}
+.bar-bg{flex:1;height:5px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden}
+.bar-fill{height:100%;border-radius:3px;transition:.4s}
+.bar-fill.entregado{background:var(--blue)}
+.bar-fill.consumido{background:var(--green2)}
+.bar-fill.alerta{background:var(--red)}
+.ana-val{font-size:10px;font-family:'DM Mono',monospace;color:var(--muted);width:45px;text-align:right}
+
+/* FORECAST TABLE */
+.forecast-table{overflow-x:auto;margin-top:8px}
+.forecast-table table{min-width:400px}
+
+/* SCROLL TABS */
+.tabs{display:flex;gap:6px;padding:0 14px;overflow-x:auto;scrollbar-width:none;margin-bottom:4px}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex-shrink:0;padding:7px 14px;background:var(--card);border:1px solid var(--border);border-radius:20px;font-size:11px;font-weight:700;color:var(--muted);cursor:pointer}
+.tab.active{background:var(--green);border-color:var(--green);color:white}
+
+/* PAGES */
+.page{display:none}
+.page.active{display:block}
+
+.error-box{margin:20px 14px;background:rgba(224,80,80,.1);border:1px solid rgba(224,80,80,.3);border-radius:12px;padding:16px;font-size:13px;color:var(--red);text-align:center}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-top">
+    <div class="header-title">🌴 SAL- Polinización</div>
+    <div class="header-badge" id="badge-time">—</div>
+  </div>
+  <div class="header-sub" id="header-sub">Hacienda Pantanal 2026</div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showPage('overview')">Resumen</div>
+  <div class="tab" onclick="showPage('fincas')">Por Finca</div>
+  <div class="tab" onclick="showPage('forecast')">Forecast</div>
+  <div class="tab" onclick="showPage('ana')">Control ANA</div>
+</div>
+
+<div id="loading" class="loading">
+  <div class="spinner"></div>
+  <div class="loading-txt">Cargando datos...</div>
+</div>
+<div id="error" class="error-box" style="display:none"></div>
+
+<!-- PAGE: RESUMEN -->
+<div class="page active" id="page-overview"></div>
+
+<!-- PAGE: FINCAS -->
+<div class="page" id="page-fincas"></div>
+
+<!-- PAGE: FORECAST -->
+<div class="page" id="page-forecast"></div>
+
+<!-- PAGE: ANA -->
+<div class="page" id="page-ana"></div>
+
+<script>
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzIUbNyVqBWES86pS-udhU3urpY3c4FrA4kH-EP4DdsKAdg29vMK4e0A-v-cDSzNsXz/exec';
+const MESES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+
+var DATA = null;
+
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function chipHtml(status) {
+  var labels = {normal:'✅ Normal', atencion:'⚠️ Atención', alerta:'🚨 Alerta', sin_datos:'— Sin datos', pendiente:'⏳ Pendiente', revisar:'🔍 Revisar'};
+  return `<span class="chip ${status}">${labels[status]||status}</span>`;
+}
+
+function fmt(n) { return n ? Number(n).toLocaleString('es-EC') : '—'; }
+
+function buildOverview(d) {
+  var k = d.kpis;
+  var trendTxt = k.tendencia > 0 ? `▲ +${k.tendencia}% vs mes anterior` : k.tendencia < 0 ? `▼ ${k.tendencia}% vs mes anterior` : '→ igual al mes anterior';
+  var trendClass = k.tendencia > 0 ? 'up' : k.tendencia < 0 ? 'down' : 'flat';
+
+  var html = `
+  <div class="section">
+    <div class="section-title">KPIs del mes · ${d.mesActual}</div>
+    <div class="kpi-grid">
+      <div class="kpi-card accent">
+        <div class="kpi-label">🌴 Flores este mes</div>
+        <div class="kpi-value">${fmt(k.floresMesActual)}</div>
+        <div class="kpi-unit">flores polinizadas</div>
+        <div class="kpi-trend ${trendClass}">${trendTxt}</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">📊 Flores 2026</div>
+        <div class="kpi-value">${fmt(k.totFlores)}</div>
+        <div class="kpi-unit">${fmt(k.fpp)} flor/palma · ${fmt(k.totPalmas)} palmas</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">⚗️ Eficiencia ANA</div>
+        <div class="kpi-value" style="font-size:20px">${k.efGlobal || '—'} g/flor</div>
+        <div class="kpi-unit">ref: ${k.anaRef} g/flor</div>
+        <div style="margin-top:6px">${chipHtml(k.efStatus)}</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">🧪 ANA consumido</div>
+        <div class="kpi-value" style="font-size:20px">${k.totAna} kg</div>
+        <div class="kpi-unit">Entregado: ${k.totEntregado > 0 ? k.totEntregado+' kg' : 'sin datos'}</div>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-title">📅 Forecast próximos meses</div>
+    <div class="forecast-grid">`;
+
+  d.proxMeses.forEach(function(pm) {
+    var det = Object.entries(pm.detalle).map(([f,kg]) => `${f.split(' ')[0]}: ${fmt(kg)}`).join('\n');
+    html += `<div class="forecast-card">
+      <div class="forecast-mes">${pm.mes}</div>
+      <div class="forecast-kg">${fmt(pm.kg)} kg</div>
+      <div class="forecast-detail">${det}</div>
+    </div>`;
+  });
+
+  if (d.proxMeses.length === 0) html += `<div style="grid-column:span 3;text-align:center;color:var(--muted);font-size:12px;padding:20px">Sin proyecciones disponibles</div>`;
+
+  html += `</div></div>`;
+  document.getElementById('page-overview').innerHTML = html;
+}
+
+function buildFincas(d) {
+  var html = '<div class="section"><div class="section-title">Detalle por finca</div>';
+  d.fincas.forEach(function(f, fi) {
+    var efChip = chipHtml(f.efStatus);
+    html += `
+    <div class="finca-card">
+      <div class="finca-header" onclick="toggleFinca(${fi})">
+        <div>
+          <div class="finca-name">${f.finca}</div>
+          <div class="finca-sub">${fmt(f.palmas)} palmas · ${f.fpp} flor/palma</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          ${efChip}
+          <span class="chevron" id="chev-${fi}">▾</span>
+        </div>
+      </div>
+      <div class="finca-body" id="finca-body-${fi}">
+        <div class="finca-stats">
+          <div class="stat">
+            <div class="stat-val">${fmt(f.flores)}</div>
+            <div class="stat-lbl">Flores</div>
+          </div>
+          <div class="stat">
+            <div class="stat-val">${f.ana} kg</div>
+            <div class="stat-lbl">ANA</div>
+          </div>
+          <div class="stat">
+            <div class="stat-val">${f.gFlor || '—'}</div>
+            <div class="stat-lbl">g/flor</div>
+          </div>
+        </div>
+        <div style="margin-bottom:8px;font-size:10px;color:var(--muted)">
+          Proy. cosecha: <strong style="color:var(--text)">${fmt(f.proyTotal)} kg</strong>
+          ${f.proxMesCosecha ? ` · Próximo: <strong style="color:var(--green2)">${f.proxMesCosecha} · ${fmt(f.proxKgCosecha)} kg</strong>` : ''}
+        </div>
+        <table class="tabla">
+          <tr><th>Mes polín.</th><th>Flores</th><th>g/flor</th><th>Mes cosecha</th><th>Proy. kg</th><th>Estado</th></tr>`;
+
+    f.detalleMensual.forEach(function(dm) {
+      html += `<tr>
+        <td>${dm.mes.substring(0,3)}</td>
+        <td class="num">${fmt(dm.flores)}</td>
+        <td class="num">${dm.gFlor || '—'}</td>
+        <td>${dm.mesCosecha.substring(0,3)}</td>
+        <td class="num">${fmt(dm.proyKg)}</td>
+        <td>${chipHtml(dm.estado || 'sin_datos')}</td>
+      </tr>`;
+    });
+
+    html += `</table></div></div>`;
+  });
+  html += '</div>';
+  document.getElementById('page-fincas').innerHTML = html;
+}
+
+function buildForecast(d) {
+  var FINCAS = ['Los Corrales','Andino','Chipo','Castañeda','Marujita'];
+  var html = `<div class="section"><div class="section-title">Forecast kg cosecha por mes</div>
+  <div class="forecast-table">
+  <table class="tabla">
+  <tr><th>Mes</th><th>Corrales</th><th>Andino</th><th>Chipo</th><th>Castañeda</th><th>Marujita</th><th>Total</th><th>Real</th></tr>`;
+
+  d.forecast.forEach(function(fm) {
+    var hasData = fm.total > 0 || fm.real > 0;
+    if (!hasData) return;
+    html += `<tr>
+      <td style="font-weight:700">${fm.mes.substring(0,3)}</td>
+      <td class="num">${fm.fincas['Los Corrales']>0?fmt(fm.fincas['Los Corrales']):'—'}</td>
+      <td class="num">${fm.fincas['Andino']>0?fmt(fm.fincas['Andino']):'—'}</td>
+      <td class="num">${fm.fincas['Chipo']>0?fmt(fm.fincas['Chipo']):'—'}</td>
+      <td class="num">${fm.fincas['Castañeda']>0?fmt(fm.fincas['Castañeda']):'—'}</td>
+      <td class="num">${fm.fincas['Marujita']>0?fmt(fm.fincas['Marujita']):'—'}</td>
+      <td class="num" style="color:var(--green2);font-weight:700">${fmt(fm.total)}</td>
+      <td class="num" style="color:var(--blue)">${fm.real>0?fmt(fm.real):'—'}</td>
+    </tr>`;
+  });
+
+  html += `</table></div></div>`;
+  document.getElementById('page-forecast').innerHTML = html;
+}
+
+function buildAna(d) {
+  var html = '<div class="section"><div class="section-title">Control ANA por finca</div>';
+
+  d.fincas.forEach(function(f) {
+    html += `<div class="finca-card" style="margin-bottom:10px">
+      <div class="finca-header" style="cursor:default">
+        <div>
+          <div class="finca-name">${f.finca}</div>
+          <div class="finca-sub">Entregado vs consumido por mes</div>
+        </div>
+      </div>
+      <div style="padding:10px 14px">`;
+
+    var maxVal = 0;
+    Object.values(f.anaMeses).forEach(function(v) {
+      maxVal = Math.max(maxVal, v.entregado||0, v.consumido||0);
+    });
+    if (maxVal === 0) {
+      html += '<div style="text-align:center;color:var(--muted);font-size:11px;padding:12px">Sin datos de ANA</div>';
+    } else {
+      for (var m = 1; m <= 12; m++) {
+        var am = f.anaMeses[m];
+        if (!am || (am.entregado === 0 && am.consumido === 0)) continue;
+        var pctE = maxVal > 0 ? Math.round(am.entregado/maxVal*100) : 0;
+        var pctC = maxVal > 0 ? Math.round(am.consumido/maxVal*100) : 0;
+        var alertaC = am.entregado > 0 && am.consumido > am.entregado * 1.1;
+        html += `<div class="ana-row">
+          <div class="ana-mes">${MESES[m-1].substring(0,3)}</div>
+          <div class="ana-bars">
+            <div class="bar-wrap">
+              <span class="bar-label">Entregado</span>
+              <div class="bar-bg"><div class="bar-fill entregado" style="width:${pctE}%"></div></div>
+              <span class="ana-val">${am.entregado||'—'}</span>
+            </div>
+            <div class="bar-wrap">
+              <span class="bar-label">Consumido</span>
+              <div class="bar-bg"><div class="bar-fill consumido${alertaC?' alerta':''}" style="width:${pctC}%"></div></div>
+              <span class="ana-val">${am.consumido||'—'}</span>
+            </div>
+          </div>
+        </div>`;
+      }
+    }
+    html += '</div></div>';
+  });
+
+  html += '</div>';
+  document.getElementById('page-ana').innerHTML = html;
+}
+
+function toggleFinca(fi) {
+  var body = document.getElementById('finca-body-'+fi);
+  var chev = document.getElementById('chev-'+fi);
+  body.classList.toggle('open');
+  chev.classList.toggle('open');
+}
+
+async function loadData() {
+  try {
+    const url = SCRIPT_URL + '?mod=polinizacion&t=' + Date.now();
+    const res = await fetch(url);
+    const data = await res.json();
+    if (!data.ok) throw new Error('Error en el servidor');
+    DATA = data;
+
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('badge-time').textContent = data.actualizado;
+
+    buildOverview(data);
+    buildFincas(data);
+    buildForecast(data);
+    buildAna(data);
+
+  } catch(err) {
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('error').style.display = 'block';
+    document.getElementById('error').textContent = 'Error al cargar datos: ' + err.message;
+  }
+}
+
+loadData();
+</script>
+</body>
+</html>
