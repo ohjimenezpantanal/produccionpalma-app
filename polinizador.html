@@ -434,13 +434,14 @@ async function enviar() {
   var payloads = [];
 
   if (jaco === 'Si') {
-    // Con JACO — un registro por lote seleccionado (sin flores, SIOMA las trae)
+    // Con JACO — distribuir ANA equitativamente entre lotes seleccionados
+    var anaPorLote = Math.round(ana / lotesJaco.length * 1000) / 1000;
     lotesJaco.forEach(function(lote) {
       payloads.push({
         tipo:'Polinizacion', nombre:nombre, fecha:fecha,
         finca:fincaActual, lote:lote, jaco:'Si',
         flores:0, repaso1:0, repaso2:0, palmas:0, hectareas:0,
-        ana: ana  // ANA total — el Apps Script lo distribuye al consolidar
+        ana: anaPorLote
       });
     });
   } else {
