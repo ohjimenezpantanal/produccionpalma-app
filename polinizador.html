@@ -150,11 +150,9 @@ body{min-height:100vh;background:#0c0c0c;color:#f0ede8;font-family:'Syne',sans-s
       <div class="lote-selector-title">Selecciona el lote</div>
       <div class="lote-grid" id="lote-selector-grid"></div>
       <input type="tel" class="mini-input" id="nuevo-flores" inputmode="numeric" placeholder="0">
-      <div class="mini-label">🌸 Flores polinizadas — 1ra aplicación</div>
-      <input type="tel" class="mini-input" id="nuevo-repaso1" inputmode="numeric" placeholder="0">
-      <div class="mini-label">🔁 Repaso 1 — 2da aplicación</div>
-      <input type="tel" class="mini-input" id="nuevo-repaso2" inputmode="numeric" placeholder="0">
-      <div class="mini-label">🔁 Repaso 2 — 3ra aplicación</div>
+      <div class="mini-label">🌸 Flores en antesis — 1ra aplicación</div>
+<input type="tel" class="mini-input" id="nuevo-repaso1" inputmode="numeric" placeholder="0">
+<div class="mini-label">🔁 Repaso 1 — 2da aplicación (flor de semana pasada)</div>
       <button class="btn-confirmar-lote" onclick="confirmarLote()">✓ Agregar este lote</button>
     </div>
   </div>
@@ -347,7 +345,7 @@ function confirmarLote() {
   if (!loteSeleccionadoTemp) { showError('Selecciona un lote'); return; }
   var flores  = parseInt(document.getElementById('nuevo-flores').value)  || 0;
   var repaso1 = parseInt(document.getElementById('nuevo-repaso1').value) || 0;
-  var repaso2 = parseInt(document.getElementById('nuevo-repaso2').value) || 0;
+  var repaso2 = 0; // Siempre 0 — JACO no registra esta variable
   if (flores <= 0) { showError('Ingresa el número de flores'); return; }
 
   lotesManual.push({ lote:loteSeleccionadoTemp, flores:flores, repaso1:repaso1, repaso2:repaso2 });
