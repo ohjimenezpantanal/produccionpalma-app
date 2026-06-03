@@ -271,17 +271,44 @@ function buildAna(d){
       +'<div style="height:5px;background:var(--fog);border-radius:3px;overflow:hidden;margin-bottom:4px"><div class="bar-fill '+bc+'" style="width:'+pct+'%"></div></div>'
       +'<div style="font-size:9px;color:var(--text3);font-family:\'DM Mono\',monospace;margin-bottom:10px">'+(f.diasStock<20?'⚠ REABASTECER PRONTO':f.diasStock<35?'Revisar pronto':'Stock ok')+'</div>';
 
+    // ── Auditoría ANA por período ──────────────────────────────
+    var periodos = (d.auditoria||{})[f.finca]||[];
+    if (periodos.length > 0) {
+      html+='<div style="font-size:9px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;font-family:\'DM Mono\',monospace">Auditoría por período de entrega</div>';
+      html+='<div style="overflow-x:auto"><table class="tabla" style="min-width:420px">'
+        +'<tr><th>Período</th><th class="num">Entregado</th><th class="num">Consumido</th><th class="num">Esperado</th><th class="num">Desviación</th><th class="num">g/flor</th><th>Estado</th></tr>';
+      periodos.forEach(function(p){
+        var devColor = p.alerta ? 'var(--fire2)' : Math.abs(p.desviacionPct||0) > 10 ? 'var(--gold2)' : 'var(--leaf3)';
+        var devStr = (p.desviacionKg > 0 ? '+' : '') + fmt(p.desviacionKg,1) + ' kg (' + (p.desviacionPct > 0 ? '+' : '') + p.desviacionPct + '%)';
+        var gColor = p.gFlorReal === 0 ? 'var(--text3)' : p.gFlorReal >= 16 && p.gFlorReal <= 22 ? 'var(--leaf3)' : p.gFlorReal > 22 && p.gFlorReal <= 28 ? 'var(--gold2)' : 'var(--fire2)';
+        var estadoTxt = p.alerta ? '⚠ Revisar' : '✓ Ok';
+        var estadoColor = p.alerta ? 'var(--fire2)' : 'var(--leaf3)';
+        html+='<tr>'
+          +'<td style="font-family:\'DM Mono\',monospace;font-size:9px;white-space:nowrap">'+p.fechaInicio+' → '+p.fechaFin+'</td>'
+          +'<td class="num">'+fmt(p.kgEntregados,1)+' kg</td>'
+          +'<td class="num">'+fmt(p.kgConsumidos,1)+' kg</td>'
+          +'<td class="num" style="color:var(--text3)">'+fmt(p.kgEsperados,1)+' kg</td>'
+          +'<td class="num" style="color:'+devColor+'">'+devStr+'</td>'
+          +'<td class="num" style="color:'+gColor+';font-weight:700">'+(p.gFlorReal||'—')+'</td>'
+          +'<td style="color:'+estadoColor+';font-weight:700;font-size:9px">'+estadoTxt+'</td>'
+          +'</tr>';
+      });
+      html+='</table></div>';
+    } else {
+      html+='<div style="text-align:center;color:var(--text3);font-size:10px;padding:8px;font-family:\'DM Mono\',monospace">Sin entregas registradas — registrar en hoja Insumos</div>';
+    }
+
+    // ── Consumo mensual ANA ────────────────────────────────────
     var maxVal=0;
     Object.values(f.anaMeses||{}).forEach(function(v){maxVal=Math.max(maxVal,v.consumido||0)});
     if(maxVal>0){
+      html+='<div style="font-size:9px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.1em;margin:10px 0 6px;font-family:\'DM Mono\',monospace">Consumo mensual</div>';
       for(var m=1;m<=12;m++){
         var am=(f.anaMeses||{})[m];
         if(!am||(am.consumido||0)===0) continue;
         var pctC=Math.round((am.consumido||0)/maxVal*100);
         html+='<div class="stock-row"><div class="stock-name">'+MESES[m-1].substring(0,3)+'</div><div class="stock-bars"><div class="bar-row"><span class="bar-lbl">Consumido</span><div class="bar-bg"><div class="bar-fill consumido" style="width:'+pctC+'%"></div></div></div></div><div class="stock-val">'+fmt(am.consumido,1)+' kg</div></div>';
       }
-    } else {
-      html+='<div style="text-align:center;color:var(--text3);font-size:10px;padding:8px;font-family:\'DM Mono\',monospace">Sin datos de consumo</div>';
     }
     html+='</div></div>';
   });
