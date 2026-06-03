@@ -242,14 +242,14 @@ function buildForecast(d){
   var html='<div class="section"><div class="section-title">Forecast kg cosecha · por mes y finca</div><div class="forecast-table"><table class="tabla"><tr><th>Mes</th><th class="num">Corrales</th><th class="num">Andino</th><th class="num">Chipo</th><th class="num">Castañeda</th><th class="num">Marujita</th><th class="num" style="color:var(--leaf3)">Total</th><th class="num">Real</th></tr>';
   (d.forecast||[]).forEach(function(fm){
     if((fm.total||0)===0&&(fm.real||0)===0) return;
-    html+='<tr><td style="font-weight:700;color:var(--text)">'+fm.mes.substring(0,3)+'</td>'
+    html+='<tr><td style="font-weight:700;color:var(--text)">'+fm.mes+'</td>'
       +'<td class="num">'+((fm.fincas['Los Corrales']||0)>0?fmt(fm.fincas['Los Corrales']):'—')+'</td>'
       +'<td class="num">'+((fm.fincas['Andino']||0)>0?fmt(fm.fincas['Andino']):'—')+'</td>'
       +'<td class="num">'+((fm.fincas['Chipo']||0)>0?fmt(fm.fincas['Chipo']):'—')+'</td>'
       +'<td class="num">'+((fm.fincas['Castañeda']||0)>0?fmt(fm.fincas['Castañeda']):'—')+'</td>'
       +'<td class="num">'+((fm.fincas['Marujita']||0)>0?fmt(fm.fincas['Marujita']):'—')+'</td>'
       +'<td class="num" style="color:var(--leaf3);font-weight:700">'+((fm.total||0)>0?fmt(fm.total):'—')+'</td>'
-      +'<td class="num" style="color:var(--sky2)">'+((fm.real||0)>0?fmt(fm.real):'—')+'</td></tr>';
+      +'<td class="num" style="color:var(--sky2)">'+(fm.real&&fm.real!==0&&fm.real!=='0'?fmt(fm.real):'—')+'</td></tr>';
   });
   html+='</table></div></div><div class="serif-note">* Proyección basada en flores en antesis · cuajado 70% · peso ideal por finca</div>';
   document.getElementById('page-forecast').innerHTML=html;
