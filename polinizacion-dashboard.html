@@ -270,7 +270,20 @@ function buildAna(d){
       +'<div style="padding:0 14px 12px">'
       +'<div style="height:5px;background:var(--fog);border-radius:3px;overflow:hidden;margin-bottom:4px"><div class="bar-fill '+bc+'" style="width:'+pct+'%"></div></div>'
       +'<div style="font-size:9px;color:var(--text3);font-family:\'DM Mono\',monospace;margin-bottom:10px">'+(f.diasStock<20?'⚠ REABASTECER PRONTO':f.diasStock<35?'Revisar pronto':'Stock ok')+'</div>';
-
+// ── Compra óptima ──────────────────────────────────────────
+    var co = ((d.compraOptima||{})[f.finca])||{};
+    if (co.sacosBuffer) {
+      html+='<div style="background:rgba(52,196,122,.06);border:1px solid rgba(52,196,122,.2);border-radius:8px;padding:10px 12px;margin-bottom:10px">'
+        +'<div style="font-size:9px;font-weight:700;color:var(--leaf3);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;font-family:\'DM Mono\',monospace">📦 Compra óptima mensual</div>'
+        +'<div style="display:flex;gap:16px;flex-wrap:wrap">'
+        +'<div><div style="font-size:18px;font-weight:800;color:var(--text)">'+co.sacosBuffer+'</div><div style="font-size:9px;color:var(--text3);font-family:\'DM Mono\',monospace">sacos a pedir</div></div>'
+        +'<div><div style="font-size:18px;font-weight:800;color:var(--text2)">'+co.sacosBase+'</div><div style="font-size:9px;color:var(--text3);font-family:\'DM Mono\',monospace">sacos base</div></div>'
+        +'<div><div style="font-size:18px;font-weight:800;color:var(--text2)">+2</div><div style="font-size:9px;color:var(--text3);font-family:\'DM Mono\',monospace">buffer seguridad</div></div>'
+        +'<div><div style="font-size:14px;font-weight:700;color:var(--text2)">'+fmt(co.medianaFlores)+'</div><div style="font-size:9px;color:var(--text3);font-family:\'DM Mono\',monospace">flores/sem mediana</div></div>'
+        +'<div><div style="font-size:14px;font-weight:700;color:var(--text2)">'+fmt(co.anaMensualKg,1)+' kg</div><div style="font-size:9px;color:var(--text3);font-family:\'DM Mono\',monospace">ANA estimado/mes</div></div>'
+        +'<div><div style="font-size:14px;font-weight:700;color:var(--text3)">'+co.semanasMuestra+' sem</div><div style="font-size:9px;color:var(--text3);font-family:\'DM Mono\',monospace">muestra</div></div>'
+        +'</div></div>';
+    }
     // ── Auditoría ANA por período ──────────────────────────────
     var periodos = (d.auditoria||{})[f.finca]||[];
     if (periodos.length > 0) {
