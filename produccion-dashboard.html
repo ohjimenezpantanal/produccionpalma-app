@@ -210,6 +210,28 @@ function renderDashboard() {
   html += '<div class="kpi-card"><div class="kpi-lbl">Mejor kg/rac</div><div class="kpi-val" style="font-size:13px">' + (kpis.mejorKgRacFinca || '—') + '</div><div class="kpi-sub">por finca</div></div>';
   html += '</div>';
 
+  // ── Semana actual ──
+  const semanas = d.semanas || [];
+  const semActual = semanas.length > 0 ? semanas[semanas.length - 1] : null;
+  if (semActual) {
+    html += '<div class="slabel">Semana ' + semActual.semana + ' — toneladas por finca</div>';
+    html += '<div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px">';
+    const fincasSem = semActual.fincas || {};
+    Object.entries(fincasSem).sort(function(a,b){return b[1]-a[1];}).forEach(function(entry) {
+      const ton = (entry[1] / 1000).toFixed(1);
+      html += '<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border)">';
+      html += '<span style="font-size:13px;font-weight:600">' + entry[0] + '</span>';
+      html += '<span style="font-family:var(--mono);font-size:18px;font-weight:500;color:var(--accent)">' + ton + '<span style="font-size:11px;color:var(--muted)"> t</span></span>';
+      html += '</div>';
+    });
+    const totalTon = (semActual.kg / 1000).toFixed(1);
+    html += '<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0 0">';
+    html += '<span style="font-size:13px;font-weight:700;color:var(--text)">TOTAL</span>';
+    html += '<span style="font-family:var(--mono);font-size:20px;font-weight:700;color:var(--accent)">' + totalTon + '<span style="font-size:11px;color:var(--muted)"> t</span></span>';
+    html += '</div>';
+    html += '</div>';
+  }
+
   // Kg por finca
   html += '<div class="slabel">Kg por finca</div>';
   const maxKg = Math.max(...fincas.map(function(f) { return f.totalKg || 0; }), 1);
