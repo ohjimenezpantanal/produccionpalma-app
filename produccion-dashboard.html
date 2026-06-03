@@ -210,26 +210,31 @@ function renderDashboard() {
   html += '<div class="kpi-card"><div class="kpi-lbl">Mejor kg/rac</div><div class="kpi-val" style="font-size:13px">' + (kpis.mejorKgRacFinca || '—') + '</div><div class="kpi-sub">por finca</div></div>';
   html += '</div>';
 
-  // ── Semana actual ──
+  // ── Últimas 5 semanas ──
   const semanas = d.semanas || [];
-  const semActual = semanas.length > 0 ? semanas[semanas.length - 1] : null;
-  if (semActual) {
-    html += '<div class="slabel">Semana ' + semActual.semana + ' — toneladas por finca</div>';
-    html += '<div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px">';
-    const fincasSem = semActual.fincas || {};
-    Object.entries(fincasSem).sort(function(a,b){return b[1]-a[1];}).forEach(function(entry) {
-      const ton = (entry[1] / 1000).toFixed(1);
-      html += '<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border)">';
-      html += '<span style="font-size:13px;font-weight:600">' + entry[0] + '</span>';
-      html += '<span style="font-family:var(--mono);font-size:18px;font-weight:500;color:var(--accent)">' + ton + '<span style="font-size:11px;color:var(--muted)"> t</span></span>';
+  const ultimas5 = semanas.slice(-5);
+  if (ultimas5.length > 0) {
+    html += '<div class="slabel">Últimas semanas — toneladas por finca</div>';
+    ultimas5.slice().reverse().forEach(function(sem, idx) {
+      const esActual = idx === 0;
+      const totalTon = (sem.kg / 1000).toFixed(1);
+      const borderColor = esActual ? 'var(--accent)' : 'var(--border)';
+      html += '<div style="background:var(--surface);border:1px solid ' + borderColor + ';border-radius:12px;padding:14px 16px;margin-bottom:10px">';
+      html += '<div style="font-family:var(--mono);font-size:9px;color:' + (esActual ? 'var(--accent)' : 'var(--muted)') + ';text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Semana ' + sem.semana + (esActual ? ' · en curso' : '') + '</div>';
+      const fincasSem = sem.fincas || {};
+      Object.entries(fincasSem).sort(function(a,b){return b[1]-a[1];}).forEach(function(entry) {
+        const ton = (entry[1] / 1000).toFixed(1);
+        html += '<div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04)">';
+        html += '<span style="font-size:12px;font-weight:500">' + entry[0] + '</span>';
+        html += '<span style="font-family:var(--mono);font-size:14px;font-weight:500;color:var(--muted2)">' + ton + '<span style="font-size:10px;color:var(--muted)"> t</span></span>';
+        html += '</div>';
+      });
+      html += '<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0 0">';
+      html += '<span style="font-size:12px;font-weight:700">TOTAL</span>';
+      html += '<span style="font-family:var(--mono);font-size:17px;font-weight:700;color:var(--accent)">' + totalTon + '<span style="font-size:10px;color:var(--muted)"> t</span></span>';
+      html += '</div>';
       html += '</div>';
     });
-    const totalTon = (semActual.kg / 1000).toFixed(1);
-    html += '<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0 0">';
-    html += '<span style="font-size:13px;font-weight:700;color:var(--text)">TOTAL</span>';
-    html += '<span style="font-family:var(--mono);font-size:20px;font-weight:700;color:var(--accent)">' + totalTon + '<span style="font-size:11px;color:var(--muted)"> t</span></span>';
-    html += '</div>';
-    html += '</div>';
   }
 
   // Kg por finca
