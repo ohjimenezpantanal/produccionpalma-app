@@ -159,7 +159,7 @@ function cargarDatos() {
   };
   const script = document.createElement('script');
   script.id = 'jsonp-prod';
-  script.src = SCRIPT_URL + '?callback=' + cb;
+  script.src = SCRIPT_URL + '?mod=produccion&callback=' + cb;
   script.onerror = function() {
     document.getElementById('loading-dash').innerHTML = '<span style="color:var(--red)">// sin conexión</span>';
   };
