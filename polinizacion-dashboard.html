@@ -172,7 +172,7 @@ function buildOverview(d){
   var efClass=k.efStatus==='normal'?'':k.efStatus==='atencion'?'warn':'danger';
 
   var alertas=[];
-  if(d.fincas) d.fincas.forEach(function(f){if((f.diasStock||0)<20) alertas.push(f.finca.replace('Los Corrales','Corrales')+': '+f.diasStock+'d');});
+  if(d.fincas) d.fincas.forEach(function(f){if(f.stockAlerta) alertas.push(f.finca.replace('Los Corrales','Corrales')+': '+fmt(f.sacosRestantes,1)+' sacos · '+(f.diasStock||0)+'d');});
 
   var html='<div class="section"><div class="section-title">KPIs ejecutivos · '+d.mesActual+' 2026</div><div class="kpi-grid">';
   html+='<div class="kpi"><div class="kpi-label">🌸 Flores '+d.mesActual+'</div><div class="kpi-value">'+fmt(k.floresMesActual)+'</div><div class="kpi-unit">flores en antesis · '+d.mesPrevio+': '+fmt(k.floresMesPrevio)+'</div><div class="kpi-trend '+trendClass+'">'+trendTxt+'</div></div>';
@@ -218,7 +218,7 @@ function buildFincas(d){
   (d.fincas||[]).forEach(function(f,fi){
     html+='<div class="finca-card">'
       +'<div class="finca-header" onclick="toggleFinca('+fi+')" id="fh-'+fi+'">'
-      +'<div><div class="finca-name">'+f.finca+'</div><div class="finca-sub">'+fmt(f.palmas)+' palmas · '+fmt(f.fpp,2)+' flor/palma · stock ~'+(f.diasStock||0)+'d</div></div>'
+      +'<div><div class="finca-name">'+f.finca+'</div><div class="finca-sub">'+fmt(f.palmas)+' palmas · '+fmt(f.fpp,2)+' flor/palma · '+fmt(f.sacosRestantes,1)+' sacos · '+(f.diasStock||0)+'d</div></div>'
       +'<div style="display:flex;align-items:center;gap:8px">'+chip(f.efStatus)+'<span class="chevron" id="chev-'+fi+'">▾</span></div>'
       +'</div>'
       +'<div class="finca-body" id="fb-'+fi+'">'
@@ -264,7 +264,7 @@ function buildAna(d){
     var pct=Math.min(100,Math.round((f.diasStock||0)/60*100));
     html+='<div class="finca-card" style="margin-bottom:8px">'
       +'<div class="finca-header" style="cursor:default;pointer-events:none">'
-      +'<div><div class="finca-name">'+f.finca+'</div><div class="finca-sub">Stock: '+(f.stockKg||0)+' kg · Estimado: ~'+(f.diasStock||0)+' días</div></div>'
+      +'<div><div class="finca-name">'+f.finca+'</div><div class="finca-sub">Stock actual: '+Math.round(f.stockKg||0)+' kg · '+fmt(f.sacosRestantes,1)+' sacos · ~'+(f.diasStock||0)+' días</div></div>'
       +'<div style="text-align:right"><div style="font-size:18px;font-weight:800;color:'+vc+'">'+(f.diasStock||0)+'d</div><div style="font-size:9px;color:var(--text3);font-family:\'DM Mono\',monospace">'+(f.stockFecha||'—')+'</div></div>'
       +'</div>'
       +'<div style="padding:0 14px 12px">'
