@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#080c06">
+<title>SAL · ANA Stock</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --ink:#080c06;--ink2:#111a0e;
+  --leaf:#2d6a3f;--leaf3:#52c47a;
+  --gold:#c8a84b;--gold2:#e8c96a;
+  --fire:#c94f2d;--fire2:#e8694d;
+  --fog:rgba(255,255,255,.06);
+  --border:rgba(52,120,70,.25);
+  --text:#e8f0ea;--text2:rgba(232,240,234,.65);--text3:rgba(232,240,234,.35);
+  --card:#111a0e;--card2:#162019;
+}
+html{background:var(--ink);color:var(--text);font-family:'Syne',sans-serif;font-size:14px}
+body{min-height:100vh;overflow-x:hidden}
+
+.header{position:sticky;top:0;z-index:200;background:rgba(8,12,6,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:12px 16px;display:flex;align-items:center;justify-content:space-between}
+.header-name{font-size:15px;font-weight:800;color:var(--leaf3)}
+.header-sub{font-size:10px;color:var(--text3);font-family:'DM Mono',monospace}
+.pulse{width:7px;height:7px;border-radius:50%;background:var(--leaf3);animation:pulse 2s infinite;margin-right:8px}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.badge{font-size:10px;font-family:'DM Mono',monospace;color:var(--text3);background:var(--fog);padding:3px 8px;border-radius:20px;border:1px solid var(--border)}
+
+.tabs{display:flex;border-bottom:1px solid var(--border)}
+.tab{flex:1;padding:12px 6px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer}
+.tab.active{color:var(--leaf3);border-bottom-color:var(--leaf3)}
+
+.page{display:none;padding:16px 14px 40px}
+.page.active{display:block}
+
+.loading{text-align:center;padding:60px 20px;font-family:'DM Mono',monospace;font-size:12px;color:var(--text3)}
+.spinner{display:inline-block;width:20px;height:20px;border:2px solid var(--border);border-top-color:var(--leaf3);border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:8px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.slabel{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:10px;margin-top:18px;display:flex;align-items:center;gap:8px}
+.slabel::after{content:'';flex:1;height:1px;background:var(--border)}
+.slabel:first-child{margin-top:0}
+
+/* Finca card */
+.finca-card{background:var(--card2);border:1px solid var(--border);border-radius:14px;margin-bottom:10px;overflow:hidden}
+.finca-card.alerta{border-color:rgba(201,79,45,.5)}
+.finca-top{padding:14px;display:flex;justify-content:space-between;align-items:flex-start}
+.finca-nombre{font-size:14px;font-weight:800;color:var(--text)}
+.finca-fecha{font-size:9px;color:var(--text3);font-family:'DM Mono',monospace;margin-top:2px}
+.stock-grande{font-size:32px;font-weight:800;letter-spacing:-.03em;line-height:1}
+.stock-sub{font-size:10px;font-family:'DM Mono',monospace;color:var(--text3);margin-top:2px;text-align:right}
+
+.barra-wrap{height:8px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden;margin:0 14px 12px}
+.barra-fill{height:100%;border-radius:4px;transition:width .5s}
+
+.finca-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-top:1px solid var(--border)}
+.stat-item{background:var(--card);padding:10px;text-align:center}
+.stat-val{font-size:14px;font-weight:700;font-family:'DM Mono',monospace;color:var(--text)}
+.stat-lbl{font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-top:2px}
+
+.alerta-strip{background:rgba(201,79,45,.1);border-top:1px solid rgba(201,79,45,.3);padding:8px 14px;font-size:10px;color:var(--fire2);font-family:'DM Mono',monospace;display:flex;align-items:center;gap:6px}
+
+/* Formulario */
+.form-card{background:var(--card2);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:12px}
+.form-title{font-size:13px;font-weight:700;margin-bottom:14px;color:var(--leaf3)}
+.form-group{margin-bottom:12px}
+.form-label{font-size:10px;font-family:'DM Mono',monospace;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;display:block}
+.form-control{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--text);font-family:'DM Mono',monospace;font-size:13px;-webkit-appearance:none}
+.form-control:focus{outline:none;border-color:var(--leaf3)}
+.form-control option{background:#1a2516}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.kg-preview{font-size:11px;color:var(--leaf3);font-family:'DM Mono',monospace;margin-top:4px}
+
+.btn-primary{width:100%;padding:14px;background:var(--leaf);border:none;border-radius:10px;color:#fff;font-family:'Syne',sans-serif;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:.02em;margin-top:4px}
+.btn-primary:active{opacity:.8}
+.btn-primary:disabled{opacity:.4;cursor:not-allowed}
+
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1a2516;border:1px solid var(--leaf3);border-radius:10px;padding:10px 20px;font-family:'DM Mono',monospace;font-size:12px;color:var(--leaf3);z-index:999;opacity:0;transition:opacity .3s;pointer-events:none}
+.toast.show{opacity:1}
+
+/* Historial */
+.hist-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border)}
+.hist-row:last-child{border-bottom:none}
+.hist-finca{font-size:12px;font-weight:700}
+.hist-fecha{font-size:10px;color:var(--text3);font-family:'DM Mono',monospace}
+.hist-kg{font-size:13px;font-family:'DM Mono',monospace;color:var(--leaf3);font-weight:500}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div style="display:flex;align-items:center">
+    <div class="pulse"></div>
+    <div>
+      <div class="header-name">SAL · ANA Stock</div>
+      <div class="header-sub">Hacienda Pantanal 2026</div>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px">
+    <div class="badge" id="badge-time">—</div>
+    <button onclick="cargarDatos()" style="background:none;border:1px solid var(--border);border-radius:8px;color:var(--text3);padding:4px 10px;font-family:'DM Mono',monospace;font-size:11px;cursor:pointer">↻</button>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" id="tab-btn-stock" onclick="goTab('stock')">Stock</button>
+  <button class="tab" id="tab-btn-entregar" onclick="goTab('entregar')">Entregar</button>
+  <button class="tab" id="tab-btn-historial" onclick="goTab('historial')">Historial</button>
+</div>
+
+<div class="page active" id="page-stock">
+  <div class="loading" id="loading-stock"><span class="spinner"></span>Cargando stock...</div>
+  <div id="stock-content" style="display:none"></div>
+</div>
+
+<div class="page" id="page-entregar">
+  <div class="slabel">Nueva entrega ANA</div>
+  <div class="form-card">
+    <div class="form-group">
+      <label class="form-label">Finca</label>
+      <select class="form-control" id="f-finca">
+        <option value="">Seleccionar finca...</option>
+        <option>Los Corrales</option>
+        <option>Andino</option>
+        <option>Chipo</option>
+        <option>Castañeda</option>
+        <option>Marujita</option>
+      </select>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Fecha entrega</label>
+        <input type="date" class="form-control" id="f-fecha">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Sacos</label>
+        <input type="number" class="form-control" id="f-sacos" placeholder="0" min="1" max="20" step="0.5" oninput="actualizarKg()">
+        <div class="kg-preview" id="kg-preview"></div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Notas (opcional)</label>
+      <input type="text" class="form-control" id="f-notas" placeholder="Ej: GreenChain semana 23">
+    </div>
+    <button class="btn-primary" id="btn-guardar" onclick="guardarEntrega()">Registrar entrega</button>
+  </div>
+</div>
+
+<div class="page" id="page-historial">
+  <div class="slabel">Últimas entregas</div>
+  <div id="historial-content"><div class="loading">Carga el stock primero ↻</div></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzIUbNyVqBWES86pS-udhU3urpY3c4FrA4kH-EP4DdsKAdg29vMK4e0A-v-cDSzNsXz/exec';
+const KG_SACO = 26.5;
+let datosGlobal = null;
+
+// Fecha de hoy por defecto
+document.getElementById('f-fecha').valueAsDate = new Date();
+
+function goTab(t) {
+  ['stock','entregar','historial'].forEach(function(n) {
+    document.getElementById('page-'+n).style.display = n===t?'block':'none';
+    document.getElementById('page-'+n).className = 'page' + (n===t?' active':'');
+    document.getElementById('tab-btn-'+n).classList.toggle('active', n===t);
+  });
+}
+
+function fmt(n, dec) {
+  if (!n && n !== 0) return '—';
+  var num = Number(n);
+  if (isNaN(num)) return '—';
+  if (dec !== undefined) return num.toFixed(dec);
+  return num.toLocaleString('es-EC');
+}
+
+function actualizarKg() {
+  var sacos = parseFloat(document.getElementById('f-sacos').value) || 0;
+  var kg = sacos * KG_SACO;
+  document.getElementById('kg-preview').textContent = sacos > 0 ? '= ' + kg.toFixed(1) + ' kg' : '';
+}
+
+function showToast(msg, error) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.borderColor = error ? 'var(--fire2)' : 'var(--leaf3)';
+  t.style.color = error ? 'var(--fire2)' : 'var(--leaf3)';
+  t.classList.add('show');
+  setTimeout(function() { t.classList.remove('show'); }, 3000);
+}
+
+function cargarDatos() {
+  document.getElementById('loading-stock').style.display = 'block';
+  document.getElementById('stock-content').style.display = 'none';
+  document.getElementById('badge-time').textContent = '…';
+
+  fetch(SCRIPT_URL + '?mod=anastock&t=' + Date.now())
+    .then(function(r) { return r.json(); })
+    .then(function(d) {
+      if (!d.ok) throw new Error('Error servidor');
+      datosGlobal = d;
+      document.getElementById('badge-time').textContent = d.actualizado;
+      renderStock(d);
+      renderHistorial(d);
+      document.getElementById('loading-stock').style.display = 'none';
+      document.getElementById('stock-content').style.display = 'block';
+    })
+    .catch(function(err) {
+      document.getElementById('loading-stock').innerHTML = '<span style="color:var(--fire2)">// error: ' + err.message + '</span>';
+    });
+}
+
+function renderStock(d) {
+  var html = '';
+  var hayAlertas = d.fincas.some(function(f) { return f.alerta; });
+
+  if (hayAlertas) {
+    html += '<div style="background:rgba(201,79,45,.1);border:1px solid rgba(201,79,45,.3);border-radius:10px;padding:10px 14px;margin-bottom:14px;font-family:\'DM Mono\',monospace;font-size:11px;color:var(--fire2)">⚠ REORDEN URGENTE: ' +
+      d.fincas.filter(function(f){return f.alerta;}).map(function(f){return f.finca.replace('Los Corrales','Corrales');}).join(', ') + '</div>';
+  }
+
+  d.fincas.forEach(function(f) {
+    if (f.sinDatos) {
+      html += '<div class="finca-card"><div class="finca-top"><div><div class="finca-nombre">' + f.finca + '</div><div class="finca-fecha">Sin entregas registradas</div></div></div></div>';
+      return;
+    }
+
+    var pct = Math.min(100, f.pctRestante);
+    var colorStock = f.alerta ? 'var(--fire2)' : f.pctRestante < 30 ? 'var(--gold2)' : 'var(--leaf3)';
+    var colorBarra = f.alerta ? '#c94f2d' : f.pctRestante < 30 ? '#c8a84b' : '#52c47a';
+
+    html += '<div class="finca-card' + (f.alerta?' alerta':'') + '">';
+    html += '<div class="finca-top">';
+    html += '<div><div class="finca-nombre">' + f.finca + '</div><div class="finca-fecha">Entrega: ' + f.ultimaFecha + ' · ' + f.ultimaSacos + ' sacos (' + fmt(f.ultimaKg,1) + ' kg)</div></div>';
+    html += '<div style="text-align:right"><div class="stock-grande" style="color:' + colorStock + '">' + fmt(f.stockKg,1) + '</div><div class="stock-sub">kg restantes<br>' + fmt(f.stockSacos,1) + ' sacos</div></div>';
+    html += '</div>';
+
+    html += '<div class="barra-wrap"><div class="barra-fill" style="width:' + pct + '%;background:' + colorBarra + '"></div></div>';
+
+    html += '<div class="finca-stats">';
+    html += '<div class="stat-item"><div class="stat-val">' + fmt(f.consumidoKg,1) + ' kg</div><div class="stat-lbl">Consumido</div></div>';
+    html += '<div class="stat-item"><div class="stat-val" style="color:' + colorStock + '">' + pct + '%</div><div class="stat-lbl">Restante</div></div>';
+    html += '<div class="stat-item"><div class="stat-val" style="color:' + (f.diasEstimados < 7 ? 'var(--fire2)' : f.diasEstimados < 14 ? 'var(--gold2)' : 'var(--leaf3)') + '">' + (f.diasEstimados >= 99 ? '—' : f.diasEstimados + 'd') + '</div><div class="stat-lbl">Estimado</div></div>';
+    html += '</div>';
+
+    if (f.alerta) {
+      html += '<div class="alerta-strip">⚠ Stock crítico — menos de 20 kg · Coordinar reabastecimiento</div>';
+    }
+
+    html += '</div>';
+  });
+
+  document.getElementById('stock-content').innerHTML = html;
+}
+
+function renderHistorial(d) {
+  var todas = [];
+  d.fincas.forEach(function(f) {
+    (f.historial || []).forEach(function(h) {
+      todas.push({ finca: f.finca, fecha: h.fecha, sacos: h.sacos, kg: h.kg, notas: h.notas });
+    });
+  });
+
+  if (!todas.length) {
+    document.getElementById('historial-content').innerHTML = '<div class="loading" style="color:var(--text3)">Sin entregas registradas</div>';
+    return;
+  }
+
+  var html = '';
+  todas.forEach(function(h) {
+    html += '<div class="hist-row">';
+    html += '<div><div class="hist-finca">' + h.finca + '</div><div class="hist-fecha">' + h.fecha + (h.notas ? ' · ' + h.notas : '') + '</div></div>';
+    html += '<div style="text-align:right"><div class="hist-kg">' + fmt(h.kg,1) + ' kg</div><div style="font-size:9px;color:var(--text3);font-family:\'DM Mono\',monospace">' + h.sacos + ' sacos</div></div>';
+    html += '</div>';
+  });
+
+  document.getElementById('historial-content').innerHTML = html;
+}
+
+function guardarEntrega() {
+  var finca = document.getElementById('f-finca').value;
+  var fecha = document.getElementById('f-fecha').value;
+  var sacos = parseFloat(document.getElementById('f-sacos').value) || 0;
+  var notas = document.getElementById('f-notas').value;
+
+  if (!finca) { showToast('Selecciona una finca', true); return; }
+  if (!fecha) { showToast('Ingresa la fecha', true); return; }
+  if (sacos <= 0) { showToast('Ingresa los sacos', true); return; }
+
+  var btn = document.getElementById('btn-guardar');
+  btn.disabled = true;
+  btn.textContent = 'Guardando…';
+
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    body: JSON.stringify({ tipo: 'ANA_Entrega', finca: finca, fecha: fecha, sacos: sacos, notas: notas })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(d) {
+    if (d.ok) {
+      showToast('✓ Entrega registrada — ' + finca + ' · ' + sacos + ' sacos');
+      document.getElementById('f-finca').value = '';
+      document.getElementById('f-sacos').value = '';
+      document.getElementById('f-notas').value = '';
+      document.getElementById('kg-preview').textContent = '';
+      setTimeout(function() { cargarDatos(); goTab('stock'); }, 1000);
+    } else {
+      showToast('Error al guardar', true);
+    }
+  })
+  .catch(function() { showToast('Error de conexión', true); })
+  .finally(function() {
+    btn.disabled = false;
+    btn.textContent = 'Registrar entrega';
+  });
+}
+
+cargarDatos();
+</script>
+</body>
+</html>
