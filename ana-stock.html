@@ -219,11 +219,11 @@ function cargarDatos() {
 
 function renderStock(d) {
   var html = '';
-  var hayAlertas = d.fincas.some(function(f) { return f.alerta; });
+  var hayAlertas = d.fincas.some(function(f) { return f.alerta || f.deficit; });
 
   if (hayAlertas) {
     html += '<div style="background:rgba(201,79,45,.1);border:1px solid rgba(201,79,45,.3);border-radius:10px;padding:10px 14px;margin-bottom:14px;font-family:\'DM Mono\',monospace;font-size:11px;color:var(--fire2)">⚠ REORDEN URGENTE: ' +
-      d.fincas.filter(function(f){return f.alerta;}).map(function(f){return f.finca.replace('Los Corrales','Corrales');}).join(', ') + '</div>';
+      d.fincas.filter(function(f){return f.alerta || f.deficit;}).map(function(f){return f.finca.replace('Los Corrales','Corrales');}).join(', ') + '</div>';
   }
 
   d.fincas.forEach(function(f) {
@@ -232,26 +232,47 @@ function renderStock(d) {
       return;
     }
 
+    // Lote entregado pero sin confirmar la fecha de apertura.
+    // No se descarga stock: mostrar el estado tal cual, sin inventar saldo.
+    if (f.enBodega) {
+      html += '<div class="finca-card' + (f.contradiccion ? ' alerta' : '') + '">';
+      html += '<div class="finca-top">';
+      html += '<div><div class="finca-nombre">' + f.finca + '</div><div class="finca-fecha">Entrega: ' + f.ultimaFecha + ' · ' + f.ultimaSacos + ' sacos (' + fmt(f.ultimaKg,1) + ' kg)</div></div>';
+      html += '<div style="text-align:right"><div class="stock-grande" style="color:var(--gold2);font-size:26px">EN BODEGA</div><div class="stock-sub">' + f.diasEnBodega + ' días sin abrir</div></div>';
+      html += '</div>';
+      html += '<div class="alerta-strip" style="' + (f.contradiccion ? '' : 'color:var(--gold2);border-color:rgba(200,168,75,.3)') + '">';
+      if (f.contradiccion) {
+        html += '⚠ Hay ' + fmt(f.consumoSinConfirmar,1) + ' kg consumidos pero nadie confirmó la apertura · Verificar serie de sacos';
+      } else {
+        html += '⏳ Confirmar fecha de apertura en ANA_Stock (columna Inicio Uso) para iniciar el descargo';
+      }
+      html += '</div></div>';
+      return;
+    }
+
     var pct = Math.min(100, f.pctRestante);
-    var colorStock = f.alerta ? 'var(--fire2)' : f.pctRestante < 30 ? 'var(--gold2)' : 'var(--leaf3)';
+    var colorStock = (f.alerta || f.deficit) ? 'var(--fire2)' : f.pctRestante < 30 ? 'var(--gold2)' : 'var(--leaf3)';
     var colorBarra = f.alerta ? '#c94f2d' : f.pctRestante < 30 ? '#c8a84b' : '#52c47a';
 
     html += '<div class="finca-card' + (f.alerta?' alerta':'') + '">';
     html += '<div class="finca-top">';
-    html += '<div><div class="finca-nombre">' + f.finca + '</div><div class="finca-fecha">Entrega: ' + f.ultimaFecha + ' · ' + f.ultimaSacos + ' sacos (' + fmt(f.ultimaKg,1) + ' kg)</div></div>';
+    html += '<div><div class="finca-nombre">' + f.finca + '</div><div class="finca-fecha">Entrega: ' + f.ultimaFecha + ' · ' + f.ultimaSacos + ' sacos (' + fmt(f.ultimaKg,1) + ' kg)</div>';
+    html += '<div class="finca-fecha">En uso desde ' + f.inicioUso + (f.diasEnBodega > 0 ? ' · ' + f.diasEnBodega + 'd en bodega' : '') + '</div></div>';
     html += '<div style="text-align:right"><div class="stock-grande" style="color:' + colorStock + '">' + fmt(f.stockKg,1) + '</div><div class="stock-sub">kg restantes<br>' + fmt(f.stockSacos,1) + ' sacos</div></div>';
     html += '</div>';
 
     html += '<div class="barra-wrap"><div class="barra-fill" style="width:' + pct + '%;background:' + colorBarra + '"></div></div>';
 
     html += '<div class="finca-stats">';
-    html += '<div class="stat-item"><div class="stat-val">' + fmt(f.consumidoKg,1) + ' kg</div><div class="stat-lbl">Consumido</div></div>';
+    html += '<div class="stat-item"><div class="stat-val">' + fmt(f.consumidoKg,1) + ' kg</div><div class="stat-lbl">Consumido · ' + fmt(f.consumoDiario,2) + '/día</div></div>';
     html += '<div class="stat-item"><div class="stat-val" style="color:' + colorStock + '">' + pct + '%</div><div class="stat-lbl">Restante</div></div>';
     html += '<div class="stat-item"><div class="stat-val" style="color:' + (f.diasEstimados < 7 ? 'var(--fire2)' : f.diasEstimados < 14 ? 'var(--gold2)' : 'var(--leaf3)') + '">' + (f.diasEstimados >= 99 ? '—' : f.diasEstimados + 'd') + '</div><div class="stat-lbl">Estimado</div></div>';
     html += '</div>';
 
-    if (f.alerta) {
-      html += '<div class="alerta-strip">⚠ Stock crítico — menos de 20 kg · Coordinar reabastecimiento</div>';
+    if (f.deficit) {
+      html += '<div class="alerta-strip">🚨 DÉFICIT de ' + fmt(Math.abs(f.stockKg),1) + ' kg · Consumo mayor a lo entregado: revisar entregas sin registrar</div>';
+    } else if (f.alerta) {
+      html += '<div class="alerta-strip">⚠ Stock crítico — ' + fmt(f.stockSacos,1) + ' sacos · ' + f.diasEstimados + ' días de cobertura · Coordinar reabastecimiento</div>';
     }
 
     html += '</div>';
