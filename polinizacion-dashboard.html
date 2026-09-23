@@ -65,7 +65,10 @@ body{min-height:100vh;overflow-x:hidden}
 .chip.atencion{background:rgba(200,168,75,.12);color:var(--gold2);border:1px solid rgba(200,168,75,.25)}
 .chip.alerta{background:rgba(201,79,45,.12);color:var(--fire2);border:1px solid rgba(201,79,45,.25)}
 .chip.sin_datos{background:var(--fog);color:var(--text3);border:1px solid var(--border)}
-.forecast-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.forecast-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.fc-card.actual{border-top-color:var(--sky2)}
+.fc-tag{display:inline-block;margin-left:6px;padding:1px 6px;border-radius:6px;background:var(--sky2);color:#0b0f0c;font-size:8px;letter-spacing:.08em}
+.fc-real{font-size:10px;color:var(--sky2);font-family:'DM Mono',monospace;margin:-2px 0 6px}
 .fc-card{background:var(--card3);border:1px solid var(--border);border-radius:12px;padding:12px 10px;border-top:2px solid var(--leaf)}
 .fc-mes{font-size:9px;font-weight:700;color:var(--leaf3);text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px;font-family:'DM Mono',monospace}
 .fc-kg{font-size:20px;font-weight:800;color:var(--text);letter-spacing:-.02em;margin-bottom:6px}
@@ -183,16 +186,24 @@ function buildOverview(d){
 
   if(alertas.length>0) html+='<div class="alert-strip"><div class="alert-dot"></div><div><strong>Stock ANA crítico:</strong> '+alertas.join(' · ')+' · Revisar reabastecimiento urgente</div></div>';
 
-  html+='<div class="section"><div class="section-title">📅 Forecast cosecha · próximos meses</div><div class="forecast-grid">';
-  var maxFc=Math.max.apply(null,(d.proxMeses||[]).map(function(p){return p.kg||0}));
-  if(d.proxMeses&&d.proxMeses.length>0){
-    d.proxMeses.forEach(function(pm){
-      var det=Object.entries(pm.detalle||{}).map(function(e){return e[0].split(' ')[0]+': '+fmt(e[1])}).join('\n');
-      var pct=maxFc>0?Math.round((pm.kg||0)/maxFc*100):0;
-      html+='<div class="fc-card"><div class="fc-mes">'+pm.mes+'</div><div class="fc-kg">'+fmt(pm.kg)+' kg</div><div class="fc-detail">'+det+'</div><div class="fc-bar" style="width:'+pct+'%"></div></div>';
+  // Forecast: mes en curso + 3 siguientes, tomado de d.forecast (misma fuente que la pestaña Forecast)
+  html+='<div class="section"><div class="section-title">📅 Forecast cosecha · mes en curso y próximos</div><div class="forecast-grid">';
+  var fcList=d.forecast||[];
+  var iAct=fcList.findIndex(function(fm){return String(fm.mes||'').toLowerCase().indexOf(String(d.mesActual||'').toLowerCase())===0;});
+  var cards=iAct>=0?fcList.slice(iAct,iAct+4):[];
+  if(cards.length>0){
+    var maxFc=Math.max.apply(null,cards.map(function(fm){return fm.total||0}));
+    cards.forEach(function(fm,ci){
+      var esActual=ci===0;
+      var det=Object.entries(fm.fincas||{}).filter(function(e){return (e[1]||0)>0}).map(function(e){return e[0].split(' ')[0]+': '+fmt(e[1])}).join('\n');
+      var pct=maxFc>0?Math.round((fm.total||0)/maxFc*100):0;
+      var real=Number(fm.real)||0;
+      var realTxt='';
+      if(esActual) realTxt='<div class="fc-real">Real a la fecha: '+(real>0?fmt(real)+' kg'+((fm.total||0)>0?' · '+Math.round(real/fm.total*100)+'%':''):'—')+'</div>';
+      html+='<div class="fc-card'+(esActual?' actual':'')+'"><div class="fc-mes">'+fm.mes+(esActual?'<span class="fc-tag">EN CURSO</span>':'')+'</div><div class="fc-kg">'+fmt(fm.total)+' kg</div>'+realTxt+'<div class="fc-detail">'+det+'</div><div class="fc-bar" style="width:'+pct+'%"></div></div>';
     });
   } else {
-    html+='<div style="grid-column:span 3;text-align:center;color:var(--text3);font-size:11px;padding:20px;font-family:\'DM Mono\',monospace">Sin proyecciones disponibles</div>';
+    html+='<div style="grid-column:span 2;text-align:center;color:var(--text3);font-size:11px;padding:20px;font-family:\'DM Mono\',monospace">Sin proyecciones disponibles</div>';
   }
   html+='</div></div>';
 
