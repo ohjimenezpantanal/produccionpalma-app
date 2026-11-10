@@ -107,9 +107,8 @@ body{min-height:100vh;background:#0c0c0c;color:#f0ede8;font-family:'Syne',sans-s
       <option value="Manuel Morales">Manuel Morales</option>
       <option value="Ginner Rivera">Ginner Rivera</option>
       <option value="Jessica Rivera">Jessica Rivera</option>
-      <option value="Mariuxi Rivera">Mariuxi Rivera</option>
       <option value="Ignacio Barragan">Ignacio Barragan</option>
-      <option value="Alejandro Pluas">Alejandro Pluas</option>
+      <option value="Milton Barragan">Milton Barragan</option>
       <option value="Ing. Francisco Mero">Ing. Francisco Mero</option>
     </select>
   </div>
@@ -120,7 +119,7 @@ body{min-height:100vh;background:#0c0c0c;color:#f0ede8;font-family:'Syne',sans-s
     <input type="date" id="f-fecha" class="fecha-input">
   </div>
 
-  <!-- 3. FINCA (solo para Ing. Francisco Mero) -->
+  <!-- 3. FINCA (solo para quien trabaja en más de una finca) -->
   <div class="card" id="card-finca-select" style="display:none">
     <div class="card-label"><div class="num">3</div>¿En qué finca trabajaste?</div>
     <div class="lote-grid" id="finca-select-grid"></div>
@@ -194,10 +193,12 @@ const POLINIZADORES = {
   'Vicente Narvaez':    [{ finca:'Chipo',        lotes:['CH-1','CH-2'] }],
   'Manuel Morales':     [{ finca:'Andino',       lotes:['AN-1','AN-2'] }],
   'Ginner Rivera':      [{ finca:'Andino',       lotes:['AN-1','AN-2'] }],
-  'Jessica Rivera':     [{ finca:'Andino',       lotes:['AN-3','AN-4'] }],
-  'Mariuxi Rivera':     [{ finca:'Castañeda',    lotes:['CA-1','CA-2'] }],
+  'Jessica Rivera':     [
+    { finca:'Andino',    lotes:['AN-3','AN-4'] },
+    { finca:'Castañeda', lotes:['CA-1','CA-2'] }
+  ],
   'Ignacio Barragan':   [{ finca:'Los Corrales', lotes:['CO-1','CO-2','CO-5'] }],
-  'Alejandro Pluas':    [{ finca:'Los Corrales', lotes:['CO-3','CO-4','CO-5'] }],
+  'Milton Barragan':    [{ finca:'Los Corrales', lotes:['CO-3','CO-4','CO-5'] }],
   'Ing. Francisco Mero':[
     { finca:'Marujita',  lotes:['L1','L2','L3','L4'] },
     { finca:'Castañeda', lotes:['CA-1','CA-2'] }
@@ -227,7 +228,7 @@ function onNombreChange() {
     fincaActual = fincas[0].finca;
     mostrarJaco();
   } else {
-    // Ing. Francisco Mero — selección de finca primero
+    // Más de una finca (Ing. Francisco Mero, Jessica Rivera) — selección de finca primero
     var grid = document.getElementById('finca-select-grid');
     grid.innerHTML = '';
     fincas.forEach(function(f) {
